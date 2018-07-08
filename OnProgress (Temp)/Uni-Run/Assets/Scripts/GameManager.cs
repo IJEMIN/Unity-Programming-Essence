@@ -32,20 +32,14 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update () {
-        if (isGameover && Input.GetMouseButtonDown (0)) {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-        }
+
     }
 
     public void AddScore (int newScore) {
-        if (!isGameover) {
-            score += newScore;
-            scoreText.text = "Score: " + score;
-        }
+
     }
 
     public void OnPlayerDead () {
-        isGameover = true;
-        gameoverUI.SetActive (true);
+
     }
 }

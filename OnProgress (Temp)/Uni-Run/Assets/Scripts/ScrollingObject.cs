@@ -6,9 +6,6 @@ using UnityEngine;
 public class ScrollingObject : MonoBehaviour {
     public float speed = 8f; // 이동 속도
     private void Update () {
-        if (!GameManager.instance.isGameover) {
-            // 1초에 speed 만큼 지속적으로 왼쪽으로 이동하는 처리가 온다
-            transform.Translate (Vector3.left * speed * Time.deltaTime);
-        }
+
     }
 }

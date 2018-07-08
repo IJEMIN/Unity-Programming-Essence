@@ -21,37 +21,10 @@ public class PlatformSpawner : MonoBehaviour {
     private float lastSpawnTime; // 마지막으로 스폰한 시점
 
     void Start () {
-        platforms = new GameObject[count]; // 바닥 배열의 길이를 생성할 갯수만큼으로 지정
 
-        // count 만큼 루프하면서
-        for (int i = 0; i < count; i++) {
-            // 바닥을 생성하여 배열에 저장
-            platforms[i] = Instantiate (platformPrefab, startPosition, Quaternion.identity);
-        }
-
-        timeBetSpawn = 0f; // 마지막 스폰 시점을 초기화
     }
 
     void Update () {
-        if (GameManager.instance.isGameover) {
-            return;
-        }
 
-        if (Time.time >= lastSpawnTime + timeBetSpawn) {
-            lastSpawnTime = Time.time;
-            timeBetSpawn = Random.Range (timeBetSpawnMin, timeBetSpawnMax);
-
-            float yPos = Random.Range (yMin, yMax);
-
-            platforms[currentIndex].transform.position = new Vector2 (xPos, yPos);
-            platforms[currentIndex].SetActive (false);
-            platforms[currentIndex].SetActive (true);
-
-            currentIndex++;
-
-            if (currentIndex >= count) {
-                currentIndex = 0;
-            }
-        }
     }
 }

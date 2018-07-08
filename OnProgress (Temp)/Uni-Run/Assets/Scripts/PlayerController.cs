@@ -18,54 +18,31 @@ public class PlayerController : MonoBehaviour {
 
     private void Start () {
         // 초기화를 합니다
-        playerRigidbody = GetComponent<Rigidbody2D> ();
-        animator = GetComponent<Animator> ();
-        playerAudio = GetComponent<AudioSource> ();
+
     }
 
     private void Update () {
         // 사용자 입력을 감지하고 점프를 하는 처리를 구현합니다
-        if (isDead) {
-            return;
-        }
 
-        if (Input.GetMouseButtonDown (0) && isGrounded) {
-            playerRigidbody.AddForce (new Vector2 (0, jumpForce));
-            playerAudio.Play ();
-        } else if (Input.GetMouseButtonUp (0) && playerRigidbody.velocity.y > 0) {
-            playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
-        }
-        animator.SetBool ("Grounded", isGrounded);
     }
 
     private void Die () {
         // 플레이어가 사망했을 때의 처리를 구현합니다
 
-        animator.SetTrigger ("Die");
-
-        playerAudio.clip = deathClip;
-        playerAudio.Play ();
-
-        playerRigidbody.velocity = Vector2.zero;
-        isDead = true;
-
-        GameManager.instance.OnPlayerDead ();
     }
 
     private void OnTriggerEnter2D (Collider2D other) {
         // 트리거 충돌체인 장애물에 부딫쳤을때의 처리가 옵니다
-        if (other.tag == "Death" && !isDead) {
-            Die ();
-        }
+
     }
 
     private void OnCollisionEnter2D (Collision2D other) {
         // 바닥에 닿았음을 감지하는 처리가 옵니다
-        isGrounded = true;
+
     }
 
     private void OnCollisionExit2D (Collision2D other) {
         // 점프 등으로 바닥에서 떼어졌음을 감지하는 처리가 옵니다
-        isGrounded = false;
+
     }
 }
