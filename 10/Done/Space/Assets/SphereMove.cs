@@ -16,21 +16,21 @@ public class SphereMove : MonoBehaviour {
 
     void Update () {
         if (Input.GetKey (KeyCode.UpArrow)) {
-            transform.Translate (new Vector3 (0, 1, 0) * Time.deltaTime);
+            transform.Translate (new Vector3 (0, 1, 0) );
         }
 
         if (Input.GetKey (KeyCode.DownArrow)) {
-            transform.Translate (new Vector3 (0, -1, 0) * Time.deltaTime);
+            transform.Translate (new Vector3 (0, -1, 0) );
         }
 
         if (Input.GetKey (KeyCode.LeftArrow)) {
-            transform.Rotate (new Vector3 (0, 0, 180) * Time.deltaTime);
-            childTransform.Rotate (new Vector3 (0, 180, 0) * Time.deltaTime);
+            transform.Rotate (new Vector3 (0, 0, 180) );
+            childTransform.Rotate (new Vector3 (0, 180, 0) );
         }
 
         if (Input.GetKey (KeyCode.RightArrow)) {
-            transform.Rotate (new Vector3 (0, 0, -180) * Time.deltaTime);
-            childTransform.Rotate (new Vector3 (0, 180, 0) * Time.deltaTime);
+            transform.Rotate (new Vector3 (0, 0, -180) );
+            childTransform.Rotate (new Vector3 (0, 180, 0) );
         }
     }
 }

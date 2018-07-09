@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+// 바닥을 주기적으로 배치하는 스크립트
+// 미리 바닥을 생성한 다음, 만들어진 바닥들을 돌아가며 사용하는 방식으로 무한 배치한다.
 public class PlatformSpawner : MonoBehaviour {
 
     public GameObject platformPrefab; // 생성할 바닥의 원본 프리팹
@@ -21,10 +23,12 @@ public class PlatformSpawner : MonoBehaviour {
     private float lastSpawnTime; // 마지막으로 스폰한 시점
 
     void Start () {
+        // 변수들을 초기화하고 사용할 바닥 오브젝트들을 미리 생성한다
 
     }
 
     void Update () {
+        // 순서를 돌아가며 바닥을 배치한다
 
     }
 }

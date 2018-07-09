@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// 게임의 점수와 UI, 게임 오버 상태를 관리하는 게임 매니저
+// 씬 상에 단 하나의 게임 매니저만 존재할 수 있다.
 public class GameManager : MonoBehaviour {
     public static GameManager instance; // 싱글톤을 구현하기 위한 전역변수
 
@@ -30,16 +32,15 @@ public class GameManager : MonoBehaviour {
             Destroy (gameObject);
         }
     }
-
     void Update () {
-
+        // 게임 오버 상태일 경우 게임을 재시작 할 수 있게한다
     }
 
     public void AddScore (int newScore) {
-
+        // 점수를 증가시키고, 점수 UI를 갱신하는 처리가 온다
     }
 
     public void OnPlayerDead () {
-
+        // 플레이어가 죽었을때 실행할 게임 오버 처리를 구현한다
     }
 }
