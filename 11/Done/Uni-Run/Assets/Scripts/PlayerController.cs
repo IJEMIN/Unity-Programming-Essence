@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter2D (Collider2D other) {
         // 트리거 충돌체인 장애물에 부딫쳤을때의 처리가 옵니다
-        if (other.tag == "Death" && !isDead) {
+        if (other.tag == "Dead" && !isDead) {
             Die ();
         }
     }

@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollingObject : MonoBehaviour
-{
-    public float speed = 8f;
-    void Update()
-    {
-        if (!GameManager.instance.isGameover)
-        {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-        }
-    }
+// ScrollingObject 컴포넌트는 게임 오브젝트를 왼쪽으로 계속 이동시키는 역할을 한다
+public class ScrollingObject : MonoBehaviour {
+    public float speed = 8f; // 이동 속도
 
+    private void Update () {
+
+    }
 }

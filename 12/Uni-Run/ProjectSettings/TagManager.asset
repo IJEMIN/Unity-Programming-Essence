@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Death
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - Enemy
+  - 
   - 
   - 
   - 
@@ -41,13 +41,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 623622761
-    locked: 0
-  - name: Midground
-    uniqueID: 3868372319
-    locked: 0
-  - name: Foreground
-    uniqueID: 2150168563
     locked: 0
