@@ -7,7 +7,7 @@ using UnityEngine;
 // 또한 현재 바닥에 발이 닿아있는지 체크하며, 상황에 알맞는 효과음과 애니메이션을 재생한다.
 public class PlayerController : MonoBehaviour {
     public AudioClip deathClip; // 죽었을때 재생할 오디오 클립
-    public float jumpForce = 600f; // 위쪽으로 점프하는 힘
+    public float jumpForce = 700f; // 위쪽으로 점프하는 힘
 
     private bool isGrounded = false; // 플레이어가 바닥에 닿아있는지
     private bool isDead = false; // 플레이어가 죽었는지

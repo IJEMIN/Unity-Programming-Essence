@@ -281,7 +281,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &667537491
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathClip: {fileID: 8300000, guid: 668a107660fa54fe98e03b698a09aa49, type: 3}
-  jumpForce: 600
+  jumpForce: 700
 --- !u!1 &942158368
 GameObject:
   m_ObjectHideFlags: 0

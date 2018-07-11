@@ -19,7 +19,7 @@ public class PlatformSpawner : MonoBehaviour {
     private GameObject[] platforms; // 미리 생성된 바닥 모음
     private int currentIndex = 0; // 현재 스폰할 바닥의 순번
 
-    private Vector2 startPosition = new Vector2 (0, -20); // 처음 바닥들을 생성할때 화면 밖에 숨겨둘 위치
+    private Vector2 poolPosition = new Vector2 (0, -20); // 처음 바닥들을 생성할때 화면 밖에 숨겨둘 위치
     private float lastSpawnTime; // 마지막으로 스폰한 시점
 
     void Start () {
