@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b09ae844fa70e4b35beb8a653be4fe8b
 ModelImporter:
-  serializedVersion: 23
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: Head
     100002: HeadTop_End
@@ -114,6 +114,7 @@ ModelImporter:
     7400008: Zombie|ZombieWalk
     9500000: //RootNode
     13700000: Zombie_Cylinder
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -132,7 +133,12 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
+      does not match position in animation file:\n\t'LeftLeg' : position error = 3.964918
+      mm\n\t'LeftFoot' : position error = 4.011452 mm\n\t'LeftToeBase' : position
+      error = 1.502450 mm\n\t'RightLeg' : position error = 3.958649 mm\n\t'RightFoot'
+      : position error = 4.010785 mm\n\t'RightToeBase' : position error = 1.509945
+      mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -170,8 +176,6 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.001
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
