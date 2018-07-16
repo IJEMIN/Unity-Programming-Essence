@@ -71,14 +71,14 @@ public class Gun : MonoBehaviour
             // 상대방이 IDamageable 로서 가져와진다면,
             // 상대방의 OnDamage 함수를 실행시켜서 데미지를 쥐어준다
 
-            /*
+            
             IDamageable target = hit.collider.GetComponent<IDamageable>();
 
             if (target != null)
             {
-                target.OnDamage(m_Damage);
+                target.OnDamage(m_Damage, hit.point, hit.point - m_FireTransform.position);
             }
-            */
+
 
             // 충돌 위치를 가져오기
             hitPosition = hit.point;

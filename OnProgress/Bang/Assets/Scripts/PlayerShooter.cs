@@ -9,10 +9,14 @@ public class PlayerShooter : MonoBehaviour
     private PlayerInput playerInput;
     private Animator playerAnimator;
 
+    private Vector3 offset = new Vector3(-0.2f, -0.04f, 0.17f);
+
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>();
+
+        gun.transform.localPosition += offset;
     }
 
     private void Update()
