@@ -1,218 +1,113 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.AI;
 
-public class Enemy : LivingEntity
-{
-    public LayerMask explosionTarget;
-    public float explosionForce = 1000f; //폭심지에서 발생하는 힘
-
-    public enum State { Idle, Chasing, Attacking };
-    State currentState; // 현재 AI 상태
-
-    public ParticleSystem deathEffect; // 적이 죽었을때 재생할 이펙트
+public class Enemy : LivingEntity {
     public ParticleSystem hitEffect; // 적이 공격받았을때 재생할 이펙트
 
-    public float damage = 50f; // 적이 폭발하면서 줄 데미지
-    public float explosionDistance = 5; // 폭발 반경
-    public float explosionSpeed = 1.0f; // 폭발하는 속도
+    public Renderer enemeyRenderer;
 
-    AudioSource audioPlayer; // 사운드 재생기
+    public LayerMask targetLayer;
+
+    public float damage = 30f; // 적이 폭발하면서 줄 데미지
+
     public AudioClip hitSound; // 맞았을때 소리
+    public AudioClip deathSound; // 죽었을때 재생할 소리
+
+    //[HideInInspector]
+    public LivingEntity targetEntity; // 추적 대상으로부터 가져온 '생명' 정보
+
+    public float timeBetAttck = 0.5f; // 공격 간격
+    public float attackRanage = 0.6f;
+    private float lastAttackTime;
+
+    bool hasTarget {
+        get {
+            if (targetEntity != null && !targetEntity.dead) {
+                return true;
+            }
+            return false;
+        }
+    } // 추적할 대상이 있는가?
 
     private Animator enemyAnimator;
+    private AudioSource enemyAudioPlayer; // 사운드 재생기
+    private NavMeshAgent pathFinder; // 경로 AI
 
-    NavMeshAgent pathFinder; // 경로 AI
-    Transform target; // 추적 대상
-    LivingEntity targetEntity; // 추적 대상으로부터 가져온 '생명' 정보 
-    Material skinMaterial; // 표면의 색깔을 결정하는 애셋
-
-    public Color attackColor = Color.red; // 공격 컬러
-    private Color originColor; // 원래 머티리얼의 컬러
-
-    float attackDistanceThreshold = 3.5f; // 공격을 시도하는 거리
-    bool hasTarget; // 추적할 대상이 있는가?
-
-
-    private void Awake()
-    {
-        enemyAnimator = GetComponent<Animator>();
-        audioPlayer = GetComponent<AudioSource>();
-        pathFinder = GetComponent<NavMeshAgent>();
-
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-        {
-            hasTarget = true;
-
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-            targetEntity = target.GetComponent<LivingEntity>();
-
-            targetEntity.OnDeath += OnTargetDeath;
-        }
+    private void Awake () {
+        enemyAnimator = GetComponent<Animator> ();
+        enemyAudioPlayer = GetComponent<AudioSource> ();
+        pathFinder = GetComponent<NavMeshAgent> ();
     }
 
-    protected override void Start()
-    {
-        base.Start();
-
-        if (hasTarget)
-        {
-            currentState = State.Chasing;
-            StartCoroutine("UpdatePath"); //추적 루틴 시작
-        }
+    void Start () {
+        StartCoroutine (UpdatePath ()); //추적 루틴 시작
     }
 
-    // 타겟이 죽었을때 체인으로 실행됨
-    void OnTargetDeath()
-    {
-        // 타겟이 죽었으니 더이상 추적안함
-        hasTarget = false;
-        currentState = State.Idle;
-    }
+    private void Update () {
+        if (hasTarget && !dead) {
 
-    private void Update()
-    {
-        if (hasTarget)
-        {
-            float distance = Vector3.Distance(transform.position, target.position);
+            Debug.DrawLine (transform.position + Vector3.up * 0.5f, transform.position + Vector3.up * 0.5f+ transform.forward * attackRanage);
 
-            if (distance < attackDistanceThreshold && currentState != State.Attacking)
-            {
-               // StartCoroutine("Attack");
+            float distance = Vector3.Distance (transform.position, targetEntity.transform.position);
+
+            if (distance <= attackRanage && Time.time >= lastAttackTime + timeBetAttck) {
+                lastAttackTime = Time.time;
+                Attack ();
             }
         }
     }
-
 
     // 외부에서 Enemy를 만들경우, 이것을 통해 디테일을 설정함
-    public void Setup(float moveSpeed, float newDamage,
-        float newHeath, Color skinColor)
-    {
+    public void Setup (float moveSpeed, float newDamage, float newHeath, Color skinColor, LivingEntity newTarget) {
         pathFinder.speed = moveSpeed;
         damage = newDamage;
-
         startingHealth = newHeath;
-
-        // 이펙트와 표면의 색깔을 설정
-        deathEffect.startColor = skinColor;
-
-        skinMaterial = GetComponent<Renderer>().material;
-        skinMaterial.color = skinColor;
-        originColor = skinMaterial.color;
+        enemeyRenderer.material.color = skinColor;
+        targetEntity = newTarget;
     }
 
-    public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitDirection)
-    {
-        audioPlayer.clip = hitSound; // 클립을 교체하고
-        audioPlayer.Play(); // 데미지 입는 소리를 재생
+    public override void OnDamage (float damage, Vector3 hitPoint, Vector3 hitDirection) {
+        enemyAudioPlayer.PlayOneShot (hitSound); // 데미지 입는 소리를 재생
 
-        var effectInstance = Instantiate(hitEffect, hitPoint,
-            Quaternion.FromToRotation(Vector3.forward, hitDirection));
+        var effectInstance = Instantiate (hitEffect, hitPoint, Quaternion.LookRotation (-hitDirection));
+        effectInstance.Play ();
 
-        effectInstance.Play();
-        //아래 코드는 파티클 시스템 컴포넌트 측의 StopAction을 Destroy를 사용함으로써 대체할수도 있음
-        Destroy(effectInstance.gameObject, effectInstance.duration);
+        Destroy (effectInstance.gameObject, effectInstance.main.duration);
 
-        base.OnDamage(damage, hitPoint, hitDirection);
+        base.OnDamage (damage, hitPoint, hitDirection);
     }
 
-    public override void Die()
-    {
-        enemyAnimator.SetTrigger("Die");
-        GetComponent<Collider>().enabled = false;
+    public override void Die () {
+        FindObjectOfType<GameManager>().AddScore(100);
         pathFinder.isStopped = true;
 
-        var effectInstance
-            = Instantiate(deathEffect, transform.position, transform.rotation);
-
-        var effectAudio = effectInstance.GetComponent<AudioSource>();
-
-        if (effectAudio != null)
-        {
-            effectAudio.Play();
-        }
-
-        effectInstance.Play();
-
-       // Destroy(effectInstance.gameObject, effectInstance.duration);
-
-
-
-        base.Die();
+        enemyAnimator.SetTrigger ("Die");
+        GetComponent<Collider> ().enabled = false;
+        base.Die ();
     }
 
-    IEnumerator UpdatePath()
-    {
-        float refreshRate = 0.25f;
-
+    IEnumerator UpdatePath () {
         // 추적할 대상이 존재하는 동안 경로 갱신을 무한루프
-        while (hasTarget)
-        {
-            if (currentState == State.Chasing)
-            {
-                if (!dead)
-                {
-                    pathFinder.SetDestination(target.position);
-                }
-            }
-            yield return new WaitForSeconds(refreshRate);
+        while (hasTarget && !dead) {
+            pathFinder.SetDestination (targetEntity.transform.position);
+            yield return new WaitForSeconds (0.25f);
         }
     }
 
-    IEnumerator Attack()
-    {
-        currentState = State.Attacking; // 공격하는 상태로 전환
-        pathFinder.isStopped = true; // AI 경로 추적을 중지
+    void Attack () {
 
-        Color startColor = skinMaterial.color; // 시작 
-        Color targetColor = attackColor; // 변환 완료로 될 컬러
+        RaycastHit hit;
 
-        float percent = 0f; // 공격 진행도
+        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, transform.forward, out hit, attackRanage, targetLayer)) {
+            LivingEntity target = hit.collider.GetComponent<LivingEntity> ();
 
-        while (percent <= 1f)
-        {
-            percent += Time.deltaTime * explosionSpeed;
-
-            skinMaterial.color = Color.Lerp(startColor, targetColor, percent);
-
-            yield return null;
-        }
-
-        Debug.Log("공격을 했다! " + damage);
-
-        // transform.positino을 중심으로 구를 그려서
-        // 겹치는 모든 콜라이더를 가져옴
-        Collider[] attackTargets
-            = Physics.OverlapSphere(transform.position,
-            explosionDistance, explosionTarget);
-
-        for (int i = 0; i < attackTargets.Length; i++)
-        {
-            LivingEntity targetLivingEntity
-                = attackTargets[i].GetComponent<LivingEntity>();
-
-            if (targetLivingEntity != null)
-            {
-                Transform targetTransform = targetLivingEntity.transform;
-
-                targetLivingEntity.OnDamage(damage,
-                    targetTransform.position, transform.forward);
-
-                Debug.Log("공격당한 상대방 체력: "
-                    + targetLivingEntity.health);
-            }
-
-            Rigidbody targetRigidbody = attackTargets[i].GetComponent<Rigidbody>();
-
-            if (targetRigidbody != null)
-            {
-                targetRigidbody.AddExplosionForce(explosionForce,
-                    transform.position, explosionDistance);
+            if (target != null) {
+                target.OnDamage (damage, hit.point, -hit.normal);
             }
         }
-
-        Die(); // 자폭이라서 공격하면 스스로 죽음
     }
+
 }
