@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour {
 
+
     public Transform fireTransform; // 총구의 위치를 나타내는 트랜스폼
     public ParticleSystem shellEjectEffect; // 탄피 배출 효과 재생기
     public ParticleSystem muzzleFlashEffect; // 총구 화염 효과 재생기

@@ -28,11 +28,19 @@ public class PlayerHealth : LivingEntity {
 	public override void OnDamage (float damage, Vector3 hitPoint, Vector3 hitDirection) {
 
 		base.OnDamage (damage, hitPoint, hitDirection);
-		playerAudioPlayer.PlayOneShot (hitClip);
-		healthSlider.value = health;
 
-		StopCoroutine ("DamageEffect");
-		StartCoroutine ("DamageEffect");
+		if (!dead) {
+			playerAudioPlayer.PlayOneShot (hitClip);
+			healthSlider.value = health;
+
+			StopCoroutine ("DamageEffect");
+			StartCoroutine ("DamageEffect");
+		}
+	}
+
+	public void RestoreHealth (float newHealth) {
+		health += newHealth;
+		healthSlider.value = health;
 	}
 
 	private IEnumerator DamageEffect () {
@@ -50,7 +58,7 @@ public class PlayerHealth : LivingEntity {
 	}
 
 	public override void Die () {
-				healthSlider.value =0;
+		healthSlider.value = 0;
 
 		playerMovement.enabled = false;
 		playerShooter.enabled = false;
@@ -58,7 +66,7 @@ public class PlayerHealth : LivingEntity {
 		playerAnimator.SetTrigger ("Die");
 		playerAudioPlayer.PlayOneShot (deeathClip);
 
-		FindObjectOfType<GameManager>().gameoverUI.SetActive(true);
+		FindObjectOfType<GameManager> ().gameoverUI.SetActive (true);
 
 		base.Die ();
 	}

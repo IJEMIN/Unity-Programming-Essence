@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour {
     private PlayerInput playerInput;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
-    // Use this for initialization
     void Start () {
         playerInput = GetComponent<PlayerInput> ();
         playerRigidbody = GetComponent<Rigidbody> ();
@@ -35,5 +34,13 @@ public class PlayerMovement : MonoBehaviour {
 
     void Rotate () {
         playerRigidbody.rotation *= Quaternion.Euler (0, playerInput.rotate * rotateSpeed * Time.deltaTime, 0f);
+    }
+
+    void OnTriggerEnter (Collider other) {
+        IItem item = other.GetComponent<IItem> ();
+
+        if (item != null) {
+            item.Use (gameObject);
+        }
     }
 }

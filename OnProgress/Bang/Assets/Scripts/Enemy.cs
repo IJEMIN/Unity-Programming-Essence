@@ -78,6 +78,7 @@ public class Enemy : LivingEntity {
 
         enemyAudioPlayer.PlayOneShot (deathSound);
         pathFinder.isStopped = true;
+        pathFinder.enabled = false;
         enemyAnimator.SetTrigger ("Die");
 
         base.Die ();

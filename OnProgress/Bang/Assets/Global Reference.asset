@@ -29,10 +29,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
   m_Name: MotionBlur
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
-    value: 1
+    value: 0
   shutterAngle:
     overrideState: 1
     value: 300
@@ -83,7 +83,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.8
+    value: 4
   threshold:
     overrideState: 1
     value: 0.22
@@ -133,7 +133,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.15
+    value: 0.552
   fastMode:
     overrideState: 0
     value: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.3
+    value: 0.437
   smoothness:
     overrideState: 1
     value: 0.391
@@ -232,7 +232,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -21
+    value: -57
   tint:
     overrideState: 0
     value: 0
