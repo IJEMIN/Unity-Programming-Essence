@@ -15,7 +15,7 @@ public class ItemRandomSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating("SpawnItem",1f,3f);
+		InvokeRepeating ("SpawnItem", 1f, 3f);
 	}
 
 	// Update is called once per frame
@@ -25,12 +25,11 @@ public class ItemRandomSpawner : MonoBehaviour {
 		Vector3 randomSourcePosition = Random.insideUnitSphere * maxDistance;
 		randomSourcePosition += sourceTransform.position;
 
-
 		NavMeshHit hit;
-		NavMesh.SamplePosition(randomSourcePosition,out hit,maxDistance,NavMesh.AllAreas);
+		NavMesh.SamplePosition (randomSourcePosition, out hit, maxDistance, NavMesh.AllAreas);
 
 		Vector3 spawnPosition = hit.position + Vector3.up * 0.5f;
 
-		Instantiate(items[Random.Range(0,items.Length)],spawnPosition,Quaternion.identity);
+		Instantiate (items[Random.Range (0, items.Length)], spawnPosition, Quaternion.identity);
 	}
 }

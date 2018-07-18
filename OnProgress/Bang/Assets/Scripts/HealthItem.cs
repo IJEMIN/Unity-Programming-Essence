@@ -2,26 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthItem : MonoBehaviour, IItem {
+public class HealthItem : Item {
 
 	public float health = 30;
 
-	public AudioClip pickSound;
+	public override void Use (GameObject target) {
 
-	void Start () {
-		Destroy (gameObject, 5f);
-	}
-
-	public void Use (GameObject target) {
 		PlayerHealth playerHealth = target.GetComponent<PlayerHealth> ();
 
 		if (playerHealth != null) {
 			playerHealth.RestoreHealth (health);
 		}
 
-		FindObjectOfType<GameManager> ().PlaySoundEffect (pickSound);
+		base.Use (target);
 
-		Destroy (gameObject);
 	}
 
 }

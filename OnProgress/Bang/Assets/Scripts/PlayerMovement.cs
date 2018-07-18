@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
-        IItem item = other.GetComponent<IItem> ();
+        Item item = other.GetComponent<Item> ();
 
         if (item != null) {
             item.Use (gameObject);

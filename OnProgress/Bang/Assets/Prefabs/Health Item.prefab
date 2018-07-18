@@ -193,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56df96b0d8b224ce7a07291ff4720bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpClip: {fileID: 8300000, guid: 519ad2e4de69341948a938bf2a31e33b, type: 3}
   health: 30
-  pickSound: {fileID: 8300000, guid: ed475c53d8c334b79b72bcb10c55e713, type: 3}
 --- !u!114 &114891860197230130
 MonoBehaviour:
   m_ObjectHideFlags: 1
