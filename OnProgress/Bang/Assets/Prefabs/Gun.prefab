@@ -689,7 +689,7 @@ MonoBehaviour:
   ammoRemain: 100
   timeBetFire: 0.1
   damage: 25
-  reloadTime: 2
+  reloadTime: 1.8
 --- !u!120 &120362909866402364
 LineRenderer:
   m_ObjectHideFlags: 1

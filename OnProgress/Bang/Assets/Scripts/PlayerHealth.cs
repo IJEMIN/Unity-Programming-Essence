@@ -66,7 +66,7 @@ public class PlayerHealth : LivingEntity {
 		playerAnimator.SetTrigger ("Die");
 		playerAudioPlayer.PlayOneShot (deeathClip);
 
-		FindObjectOfType<GameManager> ().gameoverUI.SetActive (true);
+        GameManager.instance.Gameover();
 
 		base.Die ();
 	}

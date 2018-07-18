@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 	public Text scoreText;
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
 	public AudioSource effectAudioPlayer;
 	private int score = 0;
+
+    public bool isGameover { get; private set; }
 
 	public static GameManager instance {
 		get {
@@ -27,10 +30,15 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void AddScore (int newScore) {
-		score += newScore;
-		UpdateUI ();
-	}
+    public void AddScore(int newScore)
+    {
+
+        if (!isGameover)
+        {
+            score += newScore;
+            UpdateUI();
+        }
+    }
 
 	void UpdateUI () {
 		scoreText.text = "SCORE : " + score;
@@ -39,5 +47,19 @@ public class GameManager : MonoBehaviour {
 	public void PlaySoundEffect (AudioClip clip) {
 		effectAudioPlayer.PlayOneShot (clip);
 	}
+
+    private void Update()
+    {
+        if (isGameover && Input.GetMouseButtonDown(0))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    public void Gameover()
+    {
+        isGameover = true;
+        gameoverUI.SetActive(true);
+    }
 
 }

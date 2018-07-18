@@ -11,8 +11,6 @@ public class LivingEntity : MonoBehaviour, IDamageable {
     public float health { get; protected set; }
     public bool dead { get; protected set; }
 
-    public event Action OnDeath;
-
     void OnEnable () {
         dead = false;
         health = startingHealth;
@@ -32,8 +30,5 @@ public class LivingEntity : MonoBehaviour, IDamageable {
 
         Destroy (gameObject, 10f); // 스스로를 파괴
 
-        if (OnDeath != null) {
-            OnDeath (); // 죽었을때 실행할 연쇄 처리들을
-        }
     }
 }

@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour {
 
     public float timeBetFire = 0.5f; // 발사와 발사 사이의 시간 간격
     public float damage = 25;
-    public float reloadTime = 2.0f;
+    public float reloadTime = 1.8f;
     private float fireDistance = 50f;
 
     public enum State { Ready, Empty, Reloading }
