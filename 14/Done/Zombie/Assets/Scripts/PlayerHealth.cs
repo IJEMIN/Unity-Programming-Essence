@@ -66,9 +66,13 @@ public class PlayerHealth : LivingEntity {
 		playerAnimator.SetTrigger ("Die");
 		playerAudioPlayer.PlayOneShot (deeathClip);
 
-        GameManager.instance.Gameover();
+		GameManager.instance.Gameover ();
 
 		base.Die ();
+	}
+
+	void OnTriggerEnter (Collider other) {
+		// 아이템과 충돌한 경우 아이템을 먹는다
 	}
 
 }
