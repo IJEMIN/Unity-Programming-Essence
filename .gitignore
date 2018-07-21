@@ -7,7 +7,6 @@
 /*/*/[Oo]bj/
 /*/*/[Bb]uild/
 /*/*/[Bb]uilds/
-/*/*/[Pp]ackages/
 /*/*/Assets/AssetStoreTools*
 
 ### Unity Done ###
@@ -16,7 +15,6 @@
 /*/*/*/[Oo]bj/
 /*/*/*/[Bb]uild/
 /*/*/*/[Bb]uilds/
-/*/*/*/[Pp]ackages/
 /*/*/*/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
