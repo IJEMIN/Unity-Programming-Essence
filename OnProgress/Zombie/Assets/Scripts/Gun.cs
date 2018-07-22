@@ -16,11 +16,11 @@ public class Gun : MonoBehaviour {
 
     private LineRenderer bulletLineRenderer; // 총알 궤적 랜더러
 
-    public int magCapacity = 13; // 탄창 용량
+    public int magCapacity = 25; // 탄창 용량
     public int magAmmo = 0; // 탄창에 남은 현재 탄약 갯수
     public int ammoRemain = 100;
 
-    public float timeBetFire = 0.5f; // 발사와 발사 사이의 시간 간격
+    public float timeBetFire = 0.12f; // 발사와 발사 사이의 시간 간격
     public float damage = 25;
     public float reloadTime = 1.8f;
     private float fireDistance = 50f;

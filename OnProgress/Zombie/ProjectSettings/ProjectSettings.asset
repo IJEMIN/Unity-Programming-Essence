@@ -565,14 +565,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Zombie copy 2
+  metroPackageName: Zombie
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Zombie copy 2
+  metroApplicationDescription: Zombie
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
