@@ -42,21 +42,23 @@ public class PlayerHealth : LivingEntity {
 
         healthSlider.value = 0;
 
-        playerMovement.enabled = false;
-        playerShooter.enabled = false;
-
         playerAudioPlayer.PlayOneShot (deathClip);
         playerAnimator.SetTrigger ("Die");
 
         GameManager.instance.Gameover ();
+
+        playerMovement.enabled = false;
+        playerShooter.enabled = false;
     }
 
     private void OnTriggerEnter (Collider other) {
-        Item item = other.GetComponent<Item> ();
+        if (!dead) {
+            Item item = other.GetComponent<Item> ();
 
-        if (item != null) {
-            playerAudioPlayer.PlayOneShot (itemPickupClip);
-            item.Use (gameObject);
+            if (item != null) {
+                playerAudioPlayer.PlayOneShot (itemPickupClip);
+                item.Use (gameObject);
+            }
         }
     }
 }

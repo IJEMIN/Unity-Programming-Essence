@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashImage: {fileID: 114990543794546316}
   flashColor: {r: 1, g: 0, b: 0, a: 0.3}
-  flashSpeed: 5
+  flashSpeed: 4
 --- !u!114 &114243814168809894
 MonoBehaviour:
   m_ObjectHideFlags: 1

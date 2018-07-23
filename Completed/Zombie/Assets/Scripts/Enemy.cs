@@ -52,10 +52,21 @@ public class Enemy : LivingEntity {
         StartCoroutine (UpdatePath ()); //추적 루틴 시작
     }
 
+    private void Update () {
+        enemyAnimator.SetBool ("HasTarget", hasTarget);
+    }
+
     private IEnumerator UpdatePath () {
-        // 추적할 대상이 존재하는 동안 경로 갱신을 무한루프
-        while (hasTarget && !dead) {
-            pathFinder.SetDestination (targetEntity.transform.position);
+
+        while (!dead) {
+
+            if (hasTarget) {
+                pathFinder.isStopped = false;
+                pathFinder.SetDestination (targetEntity.transform.position);
+            } else {
+                pathFinder.isStopped = true;
+            }
+
             yield return new WaitForSeconds (0.25f);
         }
     }
@@ -80,12 +91,11 @@ public class Enemy : LivingEntity {
             enemyColliders[i].enabled = false;
         }
 
-        enemyAnimator.SetTrigger ("Die");
-        enemyAudioPlayer.PlayOneShot (deathSound);
-
         pathFinder.isStopped = true;
         pathFinder.enabled = false;
 
+        enemyAnimator.SetTrigger ("Die");
+        enemyAudioPlayer.PlayOneShot (deathSound);
         GameManager.instance.AddScore (score);
     }
 

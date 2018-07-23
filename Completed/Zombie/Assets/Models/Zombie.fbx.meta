@@ -135,7 +135,16 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Zombie|ZombieBite':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Zombie|ZombieCrawl':\n\tRightLowerLeg average position
+      error 0.3 mm and maximum position error 1.3 mm at time 0:11 (8.9%) Frame 11\n\nRetargeting
+      quality report for clip 'Zombie|ZombieIdle':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Zombie|ZombieRun':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Zombie|ZombieWalk':\n\tLeftLowerArm average position
+      error 0.2 mm and maximum position error 1.1 mm at time 0:14 (14.6%) Frame 14\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0

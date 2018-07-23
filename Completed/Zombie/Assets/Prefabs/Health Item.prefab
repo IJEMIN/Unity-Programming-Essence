@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56df96b0d8b224ce7a07291ff4720bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpClip: {fileID: 8300000, guid: 519ad2e4de69341948a938bf2a31e33b, type: 3}
   health: 30
 --- !u!135 &135478876175241966
 SphereCollider:
@@ -185,7 +184,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838412652947266}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
