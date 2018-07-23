@@ -1,65 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
-{
+// 적 게임 오브젝트를 주기적으로 생성한다
+public class EnemySpawner : MonoBehaviour {
 
-    public Enemy enemyPrefab;
-    public Transform[] spawnPositions;
+    public Enemy enemyPrefab; // 생성할 적 AI
+    public LivingEntity playerEntity; // 생성되는 적 AI들이 추적할 대상
+    public Transform[] spawnPositions; // 적 AI를 소환할 위치들
+    public Color strongEnemeyColor = Color.red; // 강한 적 AI가 가지게 될 피부색
 
-    public Color strongEnemeyColor = Color.red;
+    // 적 AI가 생성되면서 가지게 될 스펙들의 범위
+    public float damageMax = 40f; // 최대 공격력
+    public float damageMin = 20f; // 최소 공격력
 
-    public float healthMax = 200;
-    public float healthMin = 100;
+    public float healthMax = 200f; // 최대 체력
+    public float healthMin = 100f; // 최소 체력
 
-    public float damageMin = 20;
-    public float damageMax = 50;
+    public float speedMax = 3f; // 최대 속도
+    public float speedMin = 1f; // 최소 속도
+    public float timeBetSpawn = 7f; // 생성 주기
 
-    public float speedMin = 1f;
-    public float speedMax = 3f;
+    private int wave = 0; // 현재 웨이브 횟수
 
-    public LivingEntity playerEntity;
-
-    public float timeBetSpawn = 5f;
-
-    private int waveCount = 0;
-
-    private int minSpawnCount = 1;
-
-    void Start()
-    {
-        InvokeRepeating("Spawn", 1f, timeBetSpawn);
+    private void Start () {
+        // 1초 뒤에 Spawn 메서드를 timeBetSpawn 간격으로 주기적으로 반복 실행 시작
+        InvokeRepeating ("Spawn", 1f, timeBetSpawn);
     }
 
-    void Spawn()
-    {
-        if (!playerEntity)
-        {
+    private void Spawn () {
+        // 현재 웨이브 수에 맞춰 적을 생성한다
+
+        if (!playerEntity) {
+            // 생성된 AI들이 추적할 대상이 없다면 적 AI를 생성하지 않는다
             return;
         }
 
-        waveCount++;
+        // 웨이브 1 증가
+        wave++;
 
-        int spawnCount = minSpawnCount * waveCount * 2;
+        // 현재 웨이브 * 1.5에 반올림 한 개수 만큼 적 AI를 생성한다
+        int spawnCount = Mathf.CeilToInt (wave * 1.5f);
 
-
-        for (int i = 0; i < minSpawnCount; i++)
-        {
-            float enemyStrength = Random.Range(0f, 1f);
-
-            float health = Mathf.Lerp(healthMin, healthMax, enemyStrength);
-            float damage = Mathf.Lerp(damageMin, damageMax, enemyStrength);
-            float speed = Mathf.Lerp(speedMin, speedMax, enemyStrength);
-
-            Color skinColor = Color.Lerp(Color.white, strongEnemeyColor, enemyStrength);
-
-            int randomSel = Random.Range(0, spawnPositions.Length);
-            Enemy createdEnemey = Instantiate(enemyPrefab, spawnPositions[randomSel].position, spawnPositions[randomSel].rotation);
-            createdEnemey.Setup(health, damage, speed, skinColor, playerEntity);
+        for (int i = 0; i < spawnCount; i++) {
+            CreateEnemey ();
         }
-
-
     }
 
+    void CreateEnemey () {
+        // 실제 적 AI를 생성하고, 적 AI의 스펙을 랜덤하게 결정한다
+
+    }
 }
