@@ -1635,14 +1635,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  targetEntity: {fileID: 0}
   hitEffect: {fileID: 198000011254678926, guid: da33d2f1d5c4b41689d8063e19e3a7dc,
     type: 2}
-  damage: 30
-  hitSound: {fileID: 8300000, guid: c3d8accfc053f004ca665a1c8c4a6919, type: 3}
   deathSound: {fileID: 8300000, guid: b86f03005ed394911b43027aeaaedeb7, type: 3}
-  targetEntity: {fileID: 0}
-  timeBetAttck: 0.5
+  hitSound: {fileID: 8300000, guid: c3d8accfc053f004ca665a1c8c4a6919, type: 3}
+  damage: 30
   score: 100
+  timeBetAttck: 0.5
 --- !u!136 &136170880910703210
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -1,21 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealthItem : Item {
+    public float health = 30;
 
-	public float health = 30;
+    public override void Use (GameObject target) {
+        PlayerHealth playerHealth = target.GetComponent<PlayerHealth> ();
 
-	public override void Use (GameObject target) {
+        if (playerHealth != null) {
+            playerHealth.RestoreHealth (health);
+        }
 
-		PlayerHealth playerHealth = target.GetComponent<PlayerHealth> ();
-
-		if (playerHealth != null) {
-			playerHealth.RestoreHealth (health);
-		}
-
-		base.Use (target);
-
-	}
-
+        base.Use (target);
+    }
 }

@@ -1,78 +1,64 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : LivingEntity {
+    public Slider healthSlider;
 
-	public PlayerShooter playerShooter;
-	public PlayerMovement playerMovement;
+    public AudioClip deathClip;
+    public AudioClip hitClip;
+    public AudioClip itemPickupClip;
+    private AudioSource playerAudioPlayer;
 
-	public Slider healthSlider;
-	Animator playerAnimator;
-	public AudioClip hitClip;
-	public AudioClip deeathClip;
-	private AudioSource playerAudioPlayer;
+    private Animator playerAnimator;
+    public PlayerMovement playerMovement;
+    public PlayerShooter playerShooter;
 
-	public Color damageColor = new Color (255, 0, 0, 30);
-	public Image damageEffectImage;
-	public float flashSpeed = 5f;
+    private void Start () {
+        playerAnimator = GetComponent<Animator> ();
+        playerAudioPlayer = GetComponent<AudioSource> ();
 
-	void Start () {
-		playerAnimator = GetComponent<Animator> ();
-		playerAudioPlayer = GetComponent<AudioSource> ();
+        healthSlider.value = health;
+    }
 
-		healthSlider.value = health;
-	}
+    public void RestoreHealth (float newHealth) {
+        health += newHealth;
+        healthSlider.value = health;
+    }
 
-	public override void OnDamage (float damage, Vector3 hitPoint, Vector3 hitDirection) {
+    public override void OnDamage (float damage, Vector3 hitPoint, Vector3 hitDirection) {
+        base.OnDamage (damage, hitPoint, hitDirection);
 
-		base.OnDamage (damage, hitPoint, hitDirection);
+        if (!dead) {
+            playerAudioPlayer.PlayOneShot (hitClip);
+            healthSlider.value = health;
 
-		if (!dead) {
-			playerAudioPlayer.PlayOneShot (hitClip);
-			healthSlider.value = health;
+            FlashEffect.instance.Flash ();
+        }
+    }
 
-			StopCoroutine ("DamageEffect");
-			StartCoroutine ("DamageEffect");
-		}
-	}
+    public override void Die () {
+        base.Die ();
 
-	public void RestoreHealth (float newHealth) {
-		health += newHealth;
-		healthSlider.value = health;
-	}
+        healthSlider.value = 0;
 
-	private IEnumerator DamageEffect () {
-		damageEffectImage.color = damageColor;
+        playerAudioPlayer.PlayOneShot (deathClip);
+        playerAnimator.SetTrigger ("Die");
 
-		float progress = 0f;
+        GameManager.instance.Gameover ();
 
-		while (progress < 1f) {
-			damageEffectImage.color = Color.Lerp (damageColor, Color.clear, progress);
-			progress += Time.time * flashSpeed;
-			yield return null;
-		}
+        playerMovement.enabled = false;
+        playerShooter.enabled = false;
+    }
 
-		damageEffectImage.color = Color.clear;
-	}
+    private void OnTriggerEnter (Collider other) {
+        if (!dead) {
+            Item item = other.GetComponent<Item> ();
 
-	public override void Die () {
-		healthSlider.value = 0;
-
-		playerMovement.enabled = false;
-		playerShooter.enabled = false;
-
-		playerAnimator.SetTrigger ("Die");
-		playerAudioPlayer.PlayOneShot (deeathClip);
-
-		GameManager.instance.Gameover ();
-
-		base.Die ();
-	}
-
-	void OnTriggerEnter (Collider other) {
-		// 아이템과 충돌한 경우 아이템을 먹는다
-	}
-
+            if (item != null) {
+                playerAudioPlayer.PlayOneShot (itemPickupClip);
+                item.Use (gameObject);
+            }
+        }
+    }
 }

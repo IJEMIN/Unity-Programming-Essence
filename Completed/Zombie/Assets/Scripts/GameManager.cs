@@ -1,65 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-	public Text scoreText;
-	public GameObject gameoverUI;
+    private static GameManager m_instance;
+    public static GameManager instance {
+        get {
+            if (m_instance == null) {
+                m_instance = FindObjectOfType<GameManager> ();
+            }
+            return m_instance;
+        }
+    }
 
-	public AudioSource effectAudioPlayer;
-	private int score = 0;
+    public GameObject gameoverUI;
+    public Text scoreText;
 
+    private int score;
     public bool isGameover { get; private set; }
 
-	public static GameManager instance {
-		get {
-			if (m_instance == null) {
-				m_instance = FindObjectOfType<GameManager> ();
-			}
-			return m_instance;
-		}
-	}
+    private void Awake () {
+        if (instance != this) {
+            Destroy (gameObject);
+        }
+    }
 
-	private static GameManager m_instance;
+    private void Update () {
+        if (isGameover && Input.GetMouseButtonDown (0)) {
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+        }
+    }
 
-	void Awake () {
-		if (instance != this) {
-			Destroy (gameObject);
-		}
-	}
-
-    public void AddScore(int newScore)
-    {
-
-        if (!isGameover)
-        {
+    public void AddScore (int newScore) {
+        if (!isGameover) {
             score += newScore;
-            UpdateUI();
+            UpdateUI ();
         }
     }
 
-	void UpdateUI () {
-		scoreText.text = "SCORE : " + score;
-	}
-
-	public void PlaySoundEffect (AudioClip clip) {
-		effectAudioPlayer.PlayOneShot (clip);
-	}
-
-    private void Update()
-    {
-        if (isGameover && Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+    private void UpdateUI () {
+        scoreText.text = "SCORE : " + score;
     }
-
-    public void Gameover()
-    {
+    public void Gameover () {
         isGameover = true;
-        gameoverUI.SetActive(true);
+        gameoverUI.SetActive (true);
     }
-
 }
