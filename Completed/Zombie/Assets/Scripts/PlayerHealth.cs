@@ -37,17 +37,21 @@ public class PlayerHealth : LivingEntity {
     }
 
     public override void OnDamage (float damage, Vector3 hitPoint, Vector3 hitDirection) {
-        // 데미지를 입었을때의 처리
-        playerAudioPlayer.PlayOneShot (hitClip); // 피격 사운드 재생
-        FlashEffect.instance.Flash (); // 화면 깜박임 효과 사용
 
+        // 데미지를 입었을때의 처리
         base.OnDamage (damage, hitPoint, hitDirection); // 부모 클래스의 OnDamage 메서드를 실행하여 데미지를 적용
 
-        healthSlider.value = health; // 갱신된 체력을 체력 슬라이더에 반영
+        if (!dead) { // 사망하지 않은 경우에만 이펙트를 재생하고 UI에 반영
+            playerAudioPlayer.PlayOneShot (hitClip); // 피격 사운드 재생
+            FlashEffect.instance.Flash (); // 화면 깜박임 효과 사용
+            healthSlider.value = health; // 갱신된 체력을 체력 슬라이더에 반영
+        }
     }
 
     public override void Die () {
         // 죽었을때의 처리
+        healthSlider.value = 0; // 체력 슬라이드를 0으로 만들기
+
         playerAudioPlayer.PlayOneShot (deathClip); // 사망음 재생
         playerAnimator.SetTrigger ("Die"); // 애니메이터의 Die 트리거를 발동시켜 사망 애니메이션 재생
 
