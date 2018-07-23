@@ -25,6 +25,12 @@ public class ItemRandomSpawner : MonoBehaviour {
     }
 
     private void Spawn () {
+
+        if(GameManager.instance.isGameover)
+        {
+            return;
+        }
+
         Vector3 spawnPosition = GetRandomPositionOnNavMesh (playerTransform.position, 5f) + Vector3.up * 0.5f;
 
         Instantiate (items[Random.Range (0, items.Length)], spawnPosition, Quaternion.identity);

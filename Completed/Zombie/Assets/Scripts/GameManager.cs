@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void Update () {
-        if (isGameover && Input.GetMouseButtonDown (0)) {
+    public void Restart () {
+        if (isGameover) {
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
         }
     }
