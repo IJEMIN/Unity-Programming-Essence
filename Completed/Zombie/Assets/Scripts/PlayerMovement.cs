@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// 플레이어 캐릭터를 사용자 입력에 따라 앞뒤로 움직이거나 좌우로 회전한다
 public class PlayerMovement : MonoBehaviour {
     public float moveSpeed = 5f; // 앞뒤 움직임의 속도
     private Animator playerAnimator; // 플레이어 자신의 애니메이터
