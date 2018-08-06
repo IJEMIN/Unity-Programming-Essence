@@ -1641,8 +1641,8 @@ MonoBehaviour:
   reloadClip: {fileID: 8300000, guid: 9eca29ee7f8209e419470fcd586aec21, type: 3}
   damage: 25
   ammoRemain: 100
-  magAmmo: 0
   magCapacity: 25
+  magAmmo: 0
   reloadTime: 1.8
   timeBetFire: 0.12
 --- !u!82 &846015492

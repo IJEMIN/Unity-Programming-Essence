@@ -3,7 +3,6 @@ using UnityEngine;
 
 // 총을 구현한다
 public class Gun : MonoBehaviour {
-
     // 총의 상태를 표현하는데 사용할 타입을 선언한다
     public enum State {
         Ready, // 총이 발사될 준비가 됬다
@@ -34,42 +33,41 @@ public class Gun : MonoBehaviour {
     public float timeBetFire = 0.12f; // 총알 발사 간격
     private float lastFireTime; // 총을 마지막으로 발사한 시점
 
-    private void Awake () {
+
+    private void Awake() {
         // 사용할 컴포넌트들의 참조를 가져오고, 상태를 초기화
-
     }
 
-    public void Fire () {
-        // 발사를 시도하는 메서드
-
+    public void Fire() {
+        // 발사를 시도한다
     }
 
-    private void Shot () {
-        // 실제 발사 처리를 실행한다
-
+    private void Shot() {
+        // 실제 발사처리가 온다
     }
 
-    private IEnumerator ShotEffect (Vector3 hitPosition) {
-        // 발사 이펙트와 소리를 재생하고 총알 궤적을 잠시 그렸다가 끄는 처리가 온다
+    private IEnumerator ShotEffect(Vector3 hitPosition) {
+        // 발사 이펙트와 소리를 재생하고 총알 궤적을 그린다
 
+        // 발사 이펙트 재생
         bulletLineRenderer.enabled = true; // 총알 궤적 랜더러를 켠다
 
-        yield return new WaitForSeconds (0.03f); // 총알 궤적 랜더러를 켠체로 잠시 쉰다
+        yield return new WaitForSeconds(0.03f); // 총알 궤적 랜더러를 켠체로 잠시 쉰다
 
         bulletLineRenderer.enabled = false; // 총알 궤적 랜더러를 끈다
     }
 
-    public void Reload () {
+    public bool Reload() {
         // 재장전을 시도한다
-
+        return false;
     }
 
-    private IEnumerator ReloadRoutine () {
+    private IEnumerator ReloadRoutine() {
         // 실제 재장전 처리가 진행되는 곳
 
         state = State.Reloading; // 현재 상태를 재장전 상태로 전환
 
-        yield return new WaitForSeconds (reloadTime); // 재장전 소요 시간 만큼 처리를 쉰다
+        yield return new WaitForSeconds(reloadTime); // 재장전 소요 시간 만큼 처리를 쉰다
 
         state = State.Ready; // 총의 현재 상태를 발사 준비된 상태로 변경
     }

@@ -18,31 +18,26 @@ public class PlayerHealth : LivingEntity {
     public PlayerMovement playerMovement; // 플레이어의 PlayerMovement 컴포넌트
     public PlayerShooter playerShooter; // 플레이어의 PlayerShooter 컴포넌트
 
-    private void Start () {
+    private void Start() {
         // 초기 설정을 한다
     }
 
-    public void RestoreHealth (float newHealth) {
+    public void RestoreHealth(float newHealth) {
         // 체력을 회복하는 처리가 온다
-
     }
 
-    public override void OnDamage (float damage, Vector3 hitPoint, Vector3 hitDirection) {
-
+    public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitDirection) {
         // 데미지를 입었을때의 처리
-        base.OnDamage (damage, hitPoint, hitDirection); // 부모 클래스의 OnDamage 메서드를 실행하여 데미지를 적용
-
-
+        base.OnDamage(damage, hitPoint, hitDirection); // 부모 클래스의 OnDamage 메서드를 실행하여 데미지를 적용
     }
 
-    public override void Die () {
+    public override void Die() {
         // 죽었을때의 처리
 
-        base.Die (); // 부모 클래스의 Die 메서드를 실행하여 사망 적용
+        base.Die(); // 부모 클래스의 Die 메서드를 실행하여 사망 적용
     }
 
-    private void OnTriggerEnter (Collider other) {
+    private void OnTriggerEnter(Collider other) {
         // 아이템과 충돌한 경우 아이템을 사용하는 처리를 한다
-
     }
 }
