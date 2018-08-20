@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: 3b92048e45df415429b4bb59eb913f85
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: bar 24
+    100002: bar 25
+    100004: bar 26
+    100006: bar 27
+    100008: bar 28
+    100010: bar 29
+    100012: bar 30
+    100014: bar 31
+    100016: bar 32
+    100018: bar 33
+    100020: bar 34
+    100022: //RootNode
+    400000: bar 24
+    400002: bar 25
+    400004: bar 26
+    400006: bar 27
+    400008: bar 28
+    400010: bar 29
+    400012: bar 30
+    400014: bar 31
+    400016: bar 32
+    400018: bar 33
+    400020: bar 34
+    400022: //RootNode
+    2300000: bar 24
+    2300002: bar 25
+    2300004: bar 26
+    2300006: bar 27
+    2300008: bar 28
+    2300010: bar 29
+    2300012: bar 30
+    2300014: bar 31
+    2300016: bar 32
+    2300018: bar 33
+    2300020: bar 34
+    2300022: //RootNode
+    3300000: bar 24
+    3300002: bar 25
+    3300004: bar 26
+    3300006: bar 27
+    3300008: bar 28
+    3300010: bar 29
+    3300012: bar 30
+    3300014: bar 31
+    3300016: bar 32
+    3300018: bar 33
+    3300020: bar 34
+    3300022: //RootNode
+    4300000: fenceIronBorderPillar
+    4300002: bar 24
+    4300004: bar 25
+    4300006: bar 26
+    4300008: bar 27
+    4300010: bar 28
+    4300012: bar 29
+    4300014: bar 30
+    4300016: bar 31
+    4300018: bar 32
+    4300020: bar 33
+    4300022: bar 34
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 5bf0f2c3a9c57564ebe2dc5101981635, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stone
+    second: {fileID: 2100000, guid: 0e1d04ffdfec3a34a9d7884aed510d1c, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 2
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
