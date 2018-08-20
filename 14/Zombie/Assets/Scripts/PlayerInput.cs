@@ -5,11 +5,13 @@ public class PlayerInput : MonoBehaviour {
     public string fireInputButtonName = "Fire1"; // 발사를 위한 입력 버튼 이름
     public string moveInputAxisName = "Vertical"; // 앞뒤 움직임을 위한 입력축 이름
     public string rotateInputAxisName = "Horizontal"; // 좌우 회전을 위한 입력축 이름
+    public string reloadInputButtonName = "Reload"; 
 
     // 자동 생성 프로퍼티를 사용하여, 값을 가져올때는(get) public으로, 값을 할당할때는(set) private으로 동작한다.
     public float move { get; private set; } // 감지된 move 입력값
     public float rotate { get; private set; } // 감지된 rotate 입력값
     public bool fire { get; private set; } // 감지된 fire 입력값
+    public bool reload {get; private set; }
 
     // Update 메서드에서 매프레임 사용자 입력을 감지한다
     private void Update() {
@@ -18,11 +20,13 @@ public class PlayerInput : MonoBehaviour {
             move = 0;
             rotate = 0;
             fire = false;
+            reload = false;
             return;
         }
 
         move = Input.GetAxis(moveInputAxisName); // move에 관한 입력 감지
         rotate = Input.GetAxis(rotateInputAxisName); // rotate에 관한 입력 감지
         fire = Input.GetButton(fireInputButtonName); // fire에 관한 입력 감지
+        reload = Input.GetButton(reloadInputButtonName);
     }
 }
