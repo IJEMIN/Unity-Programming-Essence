@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114923613129635330}
   - component: {fileID: 114448886708327992}
   m_Layer: 0
-  m_Name: Ammo Item
+  m_Name: AmmoPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045172808418600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.57, z: 1.691}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4001094036461928}
@@ -264,10 +264,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1045172808418600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89b675e33d18400487c95e533fad164, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ee38b5a28adc49418c1bfa348e61750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpClip: {fileID: 8300000, guid: 519ad2e4de69341948a938bf2a31e33b, type: 3}
   ammo: 30
 --- !u!114 &114923613129635330
 MonoBehaviour:

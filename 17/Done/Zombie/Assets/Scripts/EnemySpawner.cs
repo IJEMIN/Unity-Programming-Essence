@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour {
     public Text enemyWaveText; // 적 개수 표시 텍스트
     private List<Enemy> enemies = new List<Enemy>(); // 생성된 적들을 담는 리스트
 
+    private int wave = 0; // 현재 웨이브
 
     // 적 AI가 생성되면서 가지게 될 스펙들의 범위
     public float damageMax = 40f; // 최대 공격력
@@ -24,9 +25,6 @@ public class EnemySpawner : MonoBehaviour {
     public float speedMax = 3f; // 최대 속도
     public float speedMin = 1f; // 최소 속도
 
-    private int wave = 0; // 현재 웨이브
-
-
     void Update() {
         // 게임 오버 상태일때는 생성하지 않음
         if (GameManager.instance != null && GameManager.instance.isGameover)
@@ -37,7 +35,7 @@ public class EnemySpawner : MonoBehaviour {
         // 적을 모두 물리친 경우 다음 스폰 실행
         if (enemies.Count <= 0)
         {
-            Spawn();
+            SpawnWave();
         }
 
         UpdateUI(); // UI 갱신
@@ -47,7 +45,7 @@ public class EnemySpawner : MonoBehaviour {
         enemyWaveText.text = "Wave : " + wave + "\n" + "Enemy Left : " + enemies.Count;
     }
 
-    private void Spawn() {
+    private void SpawnWave() {
         // 현재 웨이브 수에 맞춰 적을 생성한다
         // 웨이브 1 증가
         wave++;
