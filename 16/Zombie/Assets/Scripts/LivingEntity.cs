@@ -13,7 +13,6 @@ public class LivingEntity : MonoBehaviour, IDamageable {
 
     private void OnEnable() {
         // 컴포넌트가 활성화될때 사용할 값들을 초기화
-
         dead = false; // 사망하지 않은 상태로 시작
         health = startingHealth; // 체력을 시작 체력으로 초기화
     }
@@ -22,9 +21,9 @@ public class LivingEntity : MonoBehaviour, IDamageable {
         // 데미지를 입었을때 실행할 처리
         health -= damage; // 체력감소
 
-        // 체력이 0 보다 작고 아직 죽지 않았다면 죽는 처리를 실행
         if (health <= 0 && !dead)
         {
+            // 체력이 0 보다 작고 아직 죽지 않았다면 죽는 처리를 실행
             Die();
         }
     }
@@ -50,7 +49,7 @@ public class LivingEntity : MonoBehaviour, IDamageable {
             onDeath();
         }
 
-        dead = true; // 사망한 상태를 참(true)으로 변경
+        dead = true; // 사망한 상태를 참으로 변경
         Destroy(gameObject, 10f); // 10초 뒤에 게임 오브젝트를 파괴
     }
 }
