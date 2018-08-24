@@ -1471,7 +1471,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4701262881481600, guid: 5314e1f0757cf4cf79d58731d117e6cd, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5314e1f0757cf4cf79d58731d117e6cd, type: 2}
@@ -2228,13 +2228,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 114802375486283842, guid: 4f284e9e466ab43979870774130923e3,
     type: 2}
-  playerEntity: {fileID: 1476843191}
-  spawnPositions:
+  targetEntity: {fileID: 1476843191}
+  spawnPoints:
   - {fileID: 1380639366}
   - {fileID: 1380639365}
   - {fileID: 1380639364}
   - {fileID: 1380639363}
-  strongEnemeyColor: {r: 1, g: 0, b: 0, a: 1}
+  strongEnemyColor: {r: 1, g: 0, b: 0, a: 1}
   enemyWaveText: {fileID: 787669997}
   damageMax: 40
   damageMin: 20
@@ -2253,7 +2253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873043259
 GameObject:
@@ -2295,7 +2295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1910037816
 GameObject:

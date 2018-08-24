@@ -14,7 +14,7 @@ public class AmmoPack : MonoBehaviour, IItem {
             // 총의 남은 탄환수를 ammo 만큼 더한다
             playerShooter.gun.ammoRemain += ammo;
         }
-        
+
         Destroy(gameObject);
     }
 }
