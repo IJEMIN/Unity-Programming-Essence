@@ -54,21 +54,21 @@ public class EnemySpawner : MonoBehaviour {
 
         for (int i = 0; i < spawnCount; i++)
         {
-            float powerPercentage = Random.Range(0f, 1f);
-            CreateEnemy(powerPercentage);
+            float enemyIntensity = Random.Range(0f, 1f);
+            CreateEnemy(enemyIntensity);
         }
     }
 
-    private void CreateEnemy(float powerPercentage) {
+    private void CreateEnemy(float intensity) {
         // 적을 생성하고 생성한 적에게 추적할 대상을 할당
 
         // powerPercentage를 기반으로 적의 능력치 결정
-        float health = Mathf.Lerp(healthMin, healthMax, powerPercentage);
-        float damage = Mathf.Lerp(damageMin, damageMax, powerPercentage);
-        float speed = Mathf.Lerp(speedMin, speedMax, powerPercentage);
+        float health = Mathf.Lerp(healthMin, healthMax, intensity);
+        float damage = Mathf.Lerp(damageMin, damageMax, intensity);
+        float speed = Mathf.Lerp(speedMin, speedMax, intensity);
 
         // powerPercentage를 기반으로 하얀색과 enemyStrength 사이에서 적의 피부색 결정
-        Color skinColor = Color.Lerp(Color.white, strongEnemyColor, powerPercentage);
+        Color skinColor = Color.Lerp(Color.white, strongEnemyColor, intensity);
 
         // 생성할 위치를 랜덤으로 결정
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
