@@ -34,13 +34,15 @@ public class ItemSpawner : MonoBehaviour {
 
     private void Spawn() {
         // 아이템을 생성하는 처리
-
+    
         // 플레이어 근처의 네브 메쉬위의 랜덤 위치를 가져온다
         Vector3 spawnPosition = GetRandomPointOnNavMesh(playerTransform.position, maxDistance);
         spawnPosition += Vector3.up * 0.5f; // 바닥에서 0.5만큼 위로 올린다
-
+    
         // 아이템 중 하나를 무작위로 골라 랜덤 위치에 생성한다
-        Instantiate(items[Random.Range(0, items.Length)], spawnPosition, Quaternion.identity);
+        GameObject item = Instantiate(items[Random.Range(0, items.Length)], spawnPosition, Quaternion.identity);
+        // 생성된 아이템은 5초 뒤에 파괴한다
+        Destroy(item, 5f);
     }
 
 
