@@ -10,28 +10,28 @@ public class Gun : MonoBehaviour {
         Reloading // 재장전 중이다
     }
 
-    public State state { get; private set; } // 현재 총의 상태
+    public int ammoRemain = 100; // 남은 전체 탄약
 
     private LineRenderer bulletLineRenderer; // 총알 궤적을 그리기 위한 랜더러
-    public Transform fireTransform; // 총알이 발사될 위치
-
-    public ParticleSystem muzzleFlashEffect; // 총구 화염 효과
-    public ParticleSystem shellEjectEffect; // 탄피 배출 효과
-
-    private AudioSource gunAudioPlayer; // 총 소리 재생기
-    public AudioClip shotClip; // 발사 소리
-    public AudioClip reloadClip; // 재장전 소리
 
     public float damage = 25; // 공격력
     private float fireDistance = 50f; // 사정거리
+    public Transform fireTransform; // 총알이 발사될 위치
 
-    public int ammoRemain = 100; // 남은 전체 탄약
+    private AudioSource gunAudioPlayer; // 총 소리 재생기
+    private float lastFireTime; // 총을 마지막으로 발사한 시점
+    public int magAmmo; // 현재 탄창에 남아있는 탄약
     public int magCapacity = 25; // 탄창 용량
-    public int magAmmo = 0; // 현재 탄창에 남아있는 탄약
+
+    public ParticleSystem muzzleFlashEffect; // 총구 화염 효과
+    public AudioClip reloadClip; // 재장전 소리
 
     public float reloadTime = 1.8f; // 재장전 소요 시간
+    public ParticleSystem shellEjectEffect; // 탄피 배출 효과
+    public AudioClip shotClip; // 발사 소리
     public float timeBetFire = 0.12f; // 총알 발사 간격
-    private float lastFireTime; // 총을 마지막으로 발사한 시점
+
+    public State state { get; private set; } // 현재 총의 상태
 
 
     private void Awake() {
@@ -56,7 +56,7 @@ public class Gun : MonoBehaviour {
 
     private void Shot() {
         RaycastHit hit; // 레이캐스트에 의한 충돌 정보를 저장하는 컨테이너
-        Vector3 hitPosition = Vector3.zero; // 총알이 맞은 곳을 저장할 변수
+        var hitPosition = Vector3.zero; // 총알이 맞은 곳을 저장할 변수
 
         // 레이캐스트(시작지점, 방향, 충돌 정보 컨테이너, 사정거리)
         if (Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
@@ -64,7 +64,7 @@ public class Gun : MonoBehaviour {
             // 레이가 어떤 물체와 충돌한 경우
 
             // 충돌한 상대방으로부터 IDamageable 오브젝트를 가져오기 시도
-            IDamageable target = hit.collider.GetComponent<IDamageable>();
+            var target = hit.collider.GetComponent<IDamageable>();
 
             // 상대방으로 부터 IDamageable 오브젝트를 가져오는데 성공했다면
             if (target != null)
@@ -129,7 +129,7 @@ public class Gun : MonoBehaviour {
 
         yield return new WaitForSeconds(reloadTime); // 재장전 소요 시간 만큼 처리를 쉰다
 
-        int ammoToFill = magCapacity - magAmmo; // 탄창에 채울 탄약을 계산한다
+        var ammoToFill = magCapacity - magAmmo; // 탄창에 채울 탄약을 계산한다
 
         // 탄창에 채워야할 탄약이 남은 탄약보다 많다면,
         // 채워야할 탄약 수를 남은 탄약 수에 맞춰 줄인다

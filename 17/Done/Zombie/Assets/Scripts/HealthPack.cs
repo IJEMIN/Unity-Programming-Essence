@@ -6,7 +6,7 @@ public class HealthPack : MonoBehaviour, IItem {
 
     public void Use(GameObject target) {
         // 전달 받은 게임 오브젝트로부터 PlayerHealth 컴포넌트를 가져오기 시도
-        LivingEntity life = target.GetComponent<LivingEntity>();
+        var life = target.GetComponent<LivingEntity>();
 
         // PlayerHeatlh 컴포넌트가 있다면
         if (life != null)

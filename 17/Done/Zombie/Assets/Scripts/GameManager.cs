@@ -4,6 +4,14 @@ using UnityEngine.UI;
 
 // 점수와 게임 오버 여부, 게임 UI를 관리하는 게임 매니저
 public class GameManager : MonoBehaviour {
+    private static GameManager m_instance; // 싱글톤 오브젝트가 할당될 static 변수
+
+    public GameObject gameoverUI; // 게임 오버시 활성화될 UI
+
+    private int score; // 현재 게임 점수
+
+    public Text scoreText; // 점수 표시 텍스트
+
     // 외부에서 싱글톤 오브젝트를 가져올때 사용할 프로퍼티
     public static GameManager instance
     {
@@ -15,17 +23,11 @@ public class GameManager : MonoBehaviour {
                 // 씬에서 GameManager 오브젝트를 찾아 할당
                 m_instance = FindObjectOfType<GameManager>();
             }
-            
+
             return m_instance; // 싱글톤 오브젝트를 반환
         }
     }
-    
-    private static GameManager m_instance; // 싱글톤 오브젝트가 할당될 static 변수
-    
-    public GameObject gameoverUI; // 게임 오버시 활성화될 UI
-    public Text scoreText; // 점수 표시 텍스트
-    
-    private int score; // 현재 게임 점수
+
     public bool isGameover { get; private set; } // 게임 오버를 표현하는 프로퍼티
 
     private void Awake() {

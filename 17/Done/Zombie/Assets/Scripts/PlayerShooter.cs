@@ -4,15 +4,14 @@ using UnityEngine.UI;
 // 주어진 Gun 오브젝트를 쏘거나 재장전
 // 알맞은 애니메이션을 재생하고 IK를 통해 캐릭터 양손이 총에 위치하도록 조정
 public class PlayerShooter : MonoBehaviour {
+    public Text ammoText; // 탄약을 표시할 UI 텍스트
     public Gun gun; // 사용할 총
     public Transform gunPivot; // 총 배치의 기준점
     public Transform leftHandMount; // 총의 왼쪽 손잡이, 왼손이 위치할 지점
-    public Transform rightHandMount; // 총의 오른쪽 손잡이, 오른손이 위치할 지점
-
-    public Text ammoText; // 탄약을 표시할 UI 텍스트
+    private Animator playerAnimator; // 애니메이터 컴포넌트
 
     private PlayerInput playerInput; // 플레이어의 입력
-    private Animator playerAnimator; // 애니메이터 컴포넌트
+    public Transform rightHandMount; // 총의 오른쪽 손잡이, 오른손이 위치할 지점
 
     private void Start() {
         // 사용할 컴포넌트들을 가져온다
@@ -35,7 +34,7 @@ public class PlayerShooter : MonoBehaviour {
         else if (playerInput.reload)
         {
             // 재장전 입력 감지시 재장전
-            bool reloading = gun.Reload();
+            var reloading = gun.Reload();
             if (reloading)
             {
                 // 재장전 성공시에만 재장전 애니메이션 재생
