@@ -7,9 +7,8 @@ public class Animal {
     public string name;
     public string sound;
 
-    // 동물에 대한 메서드
-    public void PlaySound () // 동물이 울음소리를 내는 기능
-    {
-        Debug.Log (name + " : " + sound);
+    // 울음소리를 재생하는 메서드
+    public void PlaySound() {
+        Debug.Log(name + " : " + sound);
     }
 }
