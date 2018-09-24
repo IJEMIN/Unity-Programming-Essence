@@ -35,7 +35,7 @@ public class BulletSpawner : MonoBehaviour {
             // 생성된 bullet 게임 오브젝트의 정면 방향이 target을 향하도록 회전
             bullet.transform.LookAt(target);
 
-            // 다음번 총알 생성 간격을 spawnRateMin과 spawnRateMax 사이에서 랜덤 지정 
+            // 다음 번 총알 생성 간격을 spawnRateMin과 spawnRateMax 사이에서 랜덤 지정 
             spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         }
     }
