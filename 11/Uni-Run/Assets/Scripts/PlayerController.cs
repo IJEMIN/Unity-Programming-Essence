@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // PlayerController는 플레이어 캐릭터로서 Player 게임 오브젝트를 제어한다.
 public class PlayerController : MonoBehaviour {
