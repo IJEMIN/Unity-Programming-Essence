@@ -28,7 +28,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
+    m_Name: Base Movement
     m_StateMachine: {fileID: 1107156279010911476}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -40,7 +40,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Upper Body Layer
+    m_Name: Upper Body
     m_StateMachine: {fileID: 1107674320158678900}
     m_Mask: {fileID: 31900000, guid: a0bb31f6cca2c444dabf132a8b2b5f93, type: 2}
     m_Motions: []
@@ -56,7 +56,7 @@ BlendTree:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: Movement Tree
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 5e4ae6245765bc043bb0769f060ac73c, type: 2}
@@ -331,7 +331,7 @@ AnimatorStateMachine:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: Base Movement
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102137571351859754}
@@ -356,7 +356,7 @@ AnimatorStateMachine:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Upper Body Layer
+  m_Name: Upper Body
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102184720468745612}

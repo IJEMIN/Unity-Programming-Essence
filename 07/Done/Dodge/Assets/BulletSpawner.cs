@@ -16,7 +16,7 @@ public class BulletSpawner : MonoBehaviour {
         timeAfterSpawn = 0f;
         // 총알 생성 간격을 spawnRateMin과 spawnRateMax 사이에서 랜덤 지정 
         spawnRate = Random.Range(spawnRateMin, spawnRateMax);
-        // 총알을 조준할 대상으로 PlayerController 컴포넌트를 가진 게임 오브젝트를 찾기
+        // PlayerController 컴포넌트를 가진 게임 오브젝트를 찾아 조준 대상으로 설정
         target = FindObjectOfType<PlayerController>().transform;
     }
 
@@ -30,12 +30,14 @@ public class BulletSpawner : MonoBehaviour {
             // 누적된 시간을 리셋
             timeAfterSpawn = 0f;
 
-            // bulletPrefab의 복제본을 transform.position 위치와 transform.rotation 회전으로 생성
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            // bulletPrefab의 복제본을
+            // transform.position 위치와 transform.rotation 회전으로 생성
+            GameObject bullet = Instantiate(bulletPrefab,
+                transform.position, transform.rotation);
             // 생성된 bullet 게임 오브젝트의 정면 방향이 target을 향하도록 회전
             bullet.transform.LookAt(target);
 
-            // 다음 번 총알 생성 간격을 spawnRateMin과 spawnRateMax 사이에서 랜덤 지정 
+            // 다음번 생성 간격을 spawnRateMin, spawnRateMax 사이에서 랜덤 지정
             spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         }
     }

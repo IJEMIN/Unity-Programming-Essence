@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     public float speed = 8f; // 이동 속력
 
     void Start() {
-        // 자신의 게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
+        // 게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
         playerRigidbody = GetComponent<Rigidbody>();
     }
 

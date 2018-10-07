@@ -5,6 +5,8 @@ public class AmmoPack : MonoBehaviour, IItem {
     public int ammo = 30; // 충전할 총알 수
 
     public void Use(GameObject target) {
+        
+        
         // 전달 받은 게임 오브젝트로부터 PlayerShooter 컴포넌트를 가져오기 시도
         var playerShooter = target.GetComponent<PlayerShooter>();
 

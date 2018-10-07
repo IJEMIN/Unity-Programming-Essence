@@ -509,7 +509,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1092,22 +1092,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf60ce9abab742a98a648d974181076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMax: 40
+  damageMin: 20
   enemyPrefab: {fileID: 114802375486283842, guid: 4f284e9e466ab43979870774130923e3,
     type: 2}
-  targetEntity: {fileID: 1476843191}
+  enemyWaveText: {fileID: 2044112571}
+  healthMax: 200
+  healthMin: 100
   spawnPoints:
   - {fileID: 576577131}
   - {fileID: 576577130}
   - {fileID: 576577129}
   - {fileID: 576577128}
-  enemyWaveText: {fileID: 2044112571}
-  strongEnemyColor: {r: 1, g: 0, b: 0, a: 1}
-  damageMax: 40
-  damageMin: 20
-  healthMax: 200
-  healthMin: 100
   speedMax: 3
   speedMin: 1
+  strongEnemyColor: {r: 1, g: 0, b: 0, a: 1}
+  targetEntity: {fileID: 1476843191}
 --- !u!4 &1331697187
 Transform:
   m_ObjectHideFlags: 0
@@ -1179,11 +1179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a558a9e6e5e01c842a3d56a3e825e54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 2044112572}
   gun: {fileID: 1488868875}
   gunPivot: {fileID: 179602692}
   leftHandMount: {fileID: 1488868874}
   rightHandMount: {fileID: 1488868873}
-  ammoText: {fileID: 2044112572}
 --- !u!114 &1476843185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,10 +1336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9237a6135a68a748bac9cbbfad81237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAxisName: Vertical
-  rotateAxisName: Horizontal
   fireButtonName: Fire1
+  moveAxisName: Vertical
   reloadButtonName: Reload
+  rotateAxisName: Horizontal
 --- !u!114 &1476843191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1352,8 +1352,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  healthSlider: {fileID: 700583920}
   deathClip: {fileID: 8300000, guid: 00242d505df964d49a559fa51774097a, type: 3}
+  healthSlider: {fileID: 700583920}
   hitClip: {fileID: 8300000, guid: 8f8ff3a15941843128822b35973efdd4, type: 3}
   itemPickupClip: {fileID: 8300000, guid: 519ad2e4de69341948a938bf2a31e33b, type: 3}
 --- !u!1001 &1488868867
@@ -1619,16 +1619,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c14943f73d87543b453f3a037d7029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoRemain: 100
+  damage: 25
   fireTransform: {fileID: 1488868872}
+  magAmmo: 0
+  magCapacity: 25
   muzzleFlashEffect: {fileID: 2059247470}
+  reloadClip: {fileID: 8300000, guid: 9eca29ee7f8209e419470fcd586aec21, type: 3}
+  reloadTime: 1.8
   shellEjectEffect: {fileID: 1068741348}
   shotClip: {fileID: 8300000, guid: b82a66dab749415458d1f6600c997095, type: 3}
-  reloadClip: {fileID: 8300000, guid: 9eca29ee7f8209e419470fcd586aec21, type: 3}
-  damage: 25
-  ammoRemain: 100
-  magCapacity: 25
-  magAmmo: 0
-  reloadTime: 1.8
   timeBetFire: 0.12
 --- !u!1 &1508719657
 GameObject:
@@ -1839,8 +1839,8 @@ MonoBehaviour:
   - {fileID: 1045172808418600, guid: c90bf41c504e541b98989b07b736097c, type: 2}
   - {fileID: 1676094191218838, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 2}
   - {fileID: 1838412652947266, guid: b4e7df10a580e4a1a88a79995b741816, type: 2}
-  playerTransform: {fileID: 1476843189}
   maxDistance: 5
+  playerTransform: {fileID: 1476843189}
   timeBetSpawnMax: 7
   timeBetSpawnMin: 2
 --- !u!4 &1752834315

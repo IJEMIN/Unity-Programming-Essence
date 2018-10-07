@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114586629397649346}
   - component: {fileID: 114502712827456512}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Coin Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,9 +161,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1676094191218838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5882f13730d44b2af5dd7a7401b001, type: 3}
+  m_Script: {fileID: 11500000, guid: f5f73dd88ebcd4442a53545dab94c9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpClip: {fileID: 8300000, guid: 519ad2e4de69341948a938bf2a31e33b, type: 3}
   score: 200
 --- !u!114 &114586629397649346
 MonoBehaviour:

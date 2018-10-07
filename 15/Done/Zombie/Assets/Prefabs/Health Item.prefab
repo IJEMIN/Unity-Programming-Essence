@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114062947082545464}
   - component: {fileID: 114435103929562082}
   m_Layer: 0
-  m_Name: HealthPack
+  m_Name: Health Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838412652947266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2e919aa6e4848f09ad5a784bea837e, type: 3}
+  m_Script: {fileID: 11500000, guid: 56df96b0d8b224ce7a07291ff4720bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
