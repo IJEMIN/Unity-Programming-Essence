@@ -22,7 +22,7 @@ public class Enemy : LivingEntity {
     public float timeBetAttack = 0.5f; // 공격 간격
     private float lastAttackTime; // 마지막 공격 시점
 
-    private Color skinColor; // 피부색
+    [SyncVar] private Color skinColor; // 피부색
 
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
