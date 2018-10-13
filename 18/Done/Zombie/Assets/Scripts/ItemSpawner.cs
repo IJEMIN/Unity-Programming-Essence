@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 // 주기적으로 아이템을 플레이어 근처에 생성합니다.
 // 생성할 위치는 플레이어를 기준으로 일정 반경 안에서 네브 메쉬 위의 랜덤한 지점을 찾아 설정합니다.
-public class ItemSpawner : MonoBehaviour {
+public class ItemSpawner : NetworkBehaviour {
     public GameObject[] items; // 생성할 아이템들
-
-    public Transform playerTransform; // 플레이어의 Transform
 
     public float maxDistance = 5f; // 플레이어 위치로부터 아이템이 배치될 최대 반경
 
@@ -24,7 +23,7 @@ public class ItemSpawner : MonoBehaviour {
 
     private void Update() {
         // 주기적으로 아이템 생성
-        if (Time.time >= lastSpawnTime + timeBetSpawn && playerTransform != null)
+        if (Time.time >= lastSpawnTime + timeBetSpawn && PlayerController.players.Count > 0)
         {
             lastSpawnTime = Time.time; // 마지막 생성 시간 갱신
             timeBetSpawn = Random.Range(timeBetSpawnMin, timeBetSpawnMax); // 생성 주기를 랜덤으로 변경
@@ -34,13 +33,17 @@ public class ItemSpawner : MonoBehaviour {
 
     private void Spawn() {
         // 아이템을 생성하는 처리
+        int randomSel = Random.Range(0, PlayerController.players.Count);
+        Transform targetTransform = PlayerController.players[randomSel].transform;
 
         // 플레이어 근처의 네브 메쉬위의 랜덤 위치를 가져옵니다.
-        Vector3 spawnPosition = GetRandomPointOnNavMesh(playerTransform.position, maxDistance);
+        Vector3 spawnPosition = GetRandomPointOnNavMesh(targetTransform.position, maxDistance);
         spawnPosition += Vector3.up * 0.5f; // 바닥에서 0.5만큼 위로 올립니다.
 
         // 아이템 중 하나를 무작위로 골라 랜덤 위치에 생성합니다.
         GameObject item = Instantiate(items[Random.Range(0, items.Length)], spawnPosition, Quaternion.identity);
+
+        NetworkServer.Spawn(item);
         // 생성된 아이템을 5초 뒤에 파괴
         Destroy(item, 5f);
     }

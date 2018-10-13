@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 // 플레이어 캐릭터의 생명체로서의 동작을 담당
 public class PlayerHealth : LivingEntity {
@@ -26,7 +27,6 @@ public class PlayerHealth : LivingEntity {
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-
     protected override void OnEnable() {
         base.OnEnable();
 
@@ -41,12 +41,8 @@ public class PlayerHealth : LivingEntity {
         playerMovement.enabled = true;
     }
 
-    // 체력 회복
-    public override void RestoreHealth(float newHealth) {
-        // LivingEntity의 RestoreHealth() 실행 (체력 증가)
-        base.RestoreHealth(newHealth);
-        // 갱신된 체력으로 체력 슬라이더를 갱신
-        healthSlider.value = health;
+    protected override void OnHealthUpdated(float value) {
+        healthSlider.value = value;
     }
 
     // 데미지 처리
@@ -55,21 +51,11 @@ public class PlayerHealth : LivingEntity {
         // LivingEntity의 OnDamage() 실행(데미지 적용)
         base.OnDamage(damage, hitPoint, hitDirection);
 
-        if (isServer)
-        {
-            RpcProcessOnDamage();
-        }
-    }
-
-    [ClientRpc]
-    protected void RpcProcessOnDamage() {
         if (!dead)
         {
             // 사망하지 않은 경우에만 효과음을 재생
             playerAudioPlayer.PlayOneShot(hitClip);
         }
-
-        healthSlider.value = health;
     }
 
 
@@ -105,6 +91,7 @@ public class PlayerHealth : LivingEntity {
             {
                 // Use 메서드를 실행하여 아이템 사용
                 item.Use(gameObject);
+
                 // 아이템 습득 소리 재생
                 playerAudioPlayer.PlayOneShot(itemPickupClip);
             }

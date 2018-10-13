@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 108751749025666960}
   - component: {fileID: 114062947082545464}
   - component: {fileID: 114435103929562082}
+  - component: {fileID: 114301415055815378}
   m_Layer: 0
   m_Name: HealthPack
   m_TagString: Untagged
@@ -165,6 +166,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 60
+--- !u!114 &114301415055815378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838412652947266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 180
+    i1: 231
+    i2: 223
+    i3: 16
+    i4: 165
+    i5: 128
+    i6: 228
+    i7: 161
+    i8: 168
+    i9: 138
+    i10: 121
+    i11: 153
+    i12: 91
+    i13: 116
+    i14: 24
+    i15: 22
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114435103929562082
 MonoBehaviour:
   m_ObjectHideFlags: 1

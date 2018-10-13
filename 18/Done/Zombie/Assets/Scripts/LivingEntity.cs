@@ -15,7 +15,7 @@ public class LivingEntity : NetworkBehaviour, IDamageable {
         protected set { m_health = value; }
     }
 
-    [SyncVar] private float m_health;
+    [SyncVar(hook = "HookHealthUpdated")] private float m_health;
 
     // 사망 상태
     public bool dead
@@ -26,7 +26,6 @@ public class LivingEntity : NetworkBehaviour, IDamageable {
 
     [SyncVar] private bool m_dead;
 
-
     public event Action onDeath; // 사망시 발동할 이벤트
 
     // 생명체가 활성화될 때마다 상태를 리셋
@@ -35,6 +34,14 @@ public class LivingEntity : NetworkBehaviour, IDamageable {
         dead = false;
         // 체력을 시작 체력으로 초기화
         health = startingHealth;
+    }
+
+    private void HookHealthUpdated(float value) {
+        OnHealthUpdated(value);
+    }
+
+    protected virtual void OnHealthUpdated(float value) {
+        // 자식단에서 오버라이드
     }
 
     // 데미지를 입는 기능
@@ -72,12 +79,7 @@ public class LivingEntity : NetworkBehaviour, IDamageable {
 
     // 체력을 회복하는 기능
     public virtual void RestoreHealth(float newHealth) {
-        if (!isServer)
-        {
-            return;
-        }
-
-        if (dead)
+        if (!isServer || dead)
         {
             // 이미 사망한 경우 체력을 회복할 수 없음
             return;

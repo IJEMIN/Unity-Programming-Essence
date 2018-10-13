@@ -2739,8 +2739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  health: 0
-  dead: 0
   healthSlider: {fileID: 114504827364446654}
   deathClip: {fileID: 8300000, guid: 00242d505df964d49a559fa51774097a, type: 3}
   hitClip: {fileID: 8300000, guid: 8f8ff3a15941843128822b35973efdd4, type: 3}

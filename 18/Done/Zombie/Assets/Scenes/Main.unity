@@ -422,6 +422,9 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1425826839608082, guid: c70cb3fc01ce548b3b8d4cdcd442e679, type: 2}
+  - {fileID: 1045172808418600, guid: c90bf41c504e541b98989b07b736097c, type: 2}
+  - {fileID: 1676094191218838, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 2}
+  - {fileID: 1838412652947266, guid: b4e7df10a580e4a1a88a79995b741816, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -579,7 +582,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 33a48263b70b34405ba79e06e039919c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 24917a2fbf4ba45a6b7834bd1cbf5c42, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -714,7 +717,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 100
+    FieldOfView: 175
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -959,6 +962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1488649578}
   - component: {fileID: 1488649577}
+  - component: {fileID: 1488649579}
   m_Layer: 0
   m_Name: Item Spawner
   m_TagString: Untagged
@@ -981,7 +985,6 @@ MonoBehaviour:
   - {fileID: 1045172808418600, guid: c90bf41c504e541b98989b07b736097c, type: 2}
   - {fileID: 1838412652947266, guid: b4e7df10a580e4a1a88a79995b741816, type: 2}
   - {fileID: 1676094191218838, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 2}
-  playerTransform: {fileID: 0}
   maxDistance: 5
   timeBetSpawnMax: 7
   timeBetSpawnMin: 2
@@ -998,6 +1001,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1488649579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1488649576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1761076141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1081,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 100
+  field of view: 175
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

@@ -6,16 +6,22 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
+    public static List<LivingEntity> players = new List<LivingEntity>();
+
     public GameObject followCam;
+    private LivingEntity playerEntitiy;
 
     void Start() {
-        GetComponent<PlayerHealth>().onDeath += () => Invoke("Respawn", 5f);
+        playerEntitiy = GetComponent<LivingEntity>();
+        playerEntitiy.onDeath += () => Invoke("Respawn", 5f);
 
-        if (isLocalPlayer)
+        if (isServer)
         {
-            
+            players.Add(playerEntitiy);
+            playerEntitiy.onDeath += () => players.Remove(playerEntitiy);
         }
-        else
+
+        if (!isLocalPlayer)
         {
             followCam.SetActive(false);
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
@@ -36,7 +42,10 @@ public class PlayerController : NetworkBehaviour {
             transform.rotation = spawnPosition.rotation;
         }
 
-        GetComponent<PlayerShooter>().gun.ammoRemain += 50;
+        if (isServer)
+        {
+            players.Add(playerEntitiy);
+        }
 
         gameObject.SetActive(false);
         gameObject.SetActive(true);

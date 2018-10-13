@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-
 // 총을 구현한다
 public class Gun : MonoBehaviour {
     // 총의 상태를 표현하는데 사용할 타입을 선언한다
@@ -113,7 +112,7 @@ public class Gun : MonoBehaviour {
             state = State.Empty;
         }
     }
-    
+
     // 발사 이펙트와 소리를 재생하고 총알 궤적을 그린다
     private IEnumerator ShotEffect(Vector3 hitPosition) {
         // 총구 화염 효과 재생

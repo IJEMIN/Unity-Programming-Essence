@@ -54,7 +54,6 @@ public class PlayerShooter : NetworkBehaviour {
         RpcGunFire();
     }
 
-
     [ClientRpc]
     public void RpcGunFire() {
         gun.Fire();

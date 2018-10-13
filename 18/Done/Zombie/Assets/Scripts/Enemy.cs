@@ -22,6 +22,8 @@ public class Enemy : LivingEntity {
     public float timeBetAttack = 0.5f; // 공격 간격
     private float lastAttackTime; // 마지막 공격 시점
 
+    private Color skinColor; // 피부색
+
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
     {
@@ -51,7 +53,7 @@ public class Enemy : LivingEntity {
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
     public void Setup(float newHealth, float newDamage,
-        float newSpeed, Color skinColor, LivingEntity newTarget) {
+        float newSpeed, Color newSkinColor, LivingEntity newTarget) {
         // 체력 설정
         startingHealth = newHealth;
         // 공격력 설정
@@ -59,13 +61,14 @@ public class Enemy : LivingEntity {
         // 내비메쉬 에이전트의 이동 속도 설정
         pathFinder.speed = newSpeed;
         // 렌더러가 사용중인 머테리얼의 컬러를 변경, 외형 색이 변함
-        enemyRenderer.material.color = skinColor;
-
+        skinColor = newSkinColor;
         // AI가 추적할 대상을 지정
         targetEntity = newTarget;
     }
 
     private void Start() {
+        enemyRenderer.material.color = skinColor;
+
         if (isServer)
         {
             // 게임 오브젝트 활성화와 동시에 AI의 추적 루틴 시작
@@ -95,21 +98,17 @@ public class Enemy : LivingEntity {
             }
             else
             {
-                // 추적 대상 없음 : AI 이동 중지
-                pathFinder.isStopped = true;
-
-                LivingEntity[] targets = FindObjectsOfType<PlayerHealth>();
-
-                for (int i = 0; i < targets.Length; i++)
+                if (PlayerController.players.Count > 0)
                 {
-                    if (!targets[i].dead)
-                    {
-                        targetEntity = targets[i];
-                        pathFinder.isStopped = false;
-                    }
+                    int randomSel = Random.Range(0, PlayerController.players.Count);
+                    targetEntity = PlayerController.players[randomSel];
+                }
+                else
+                {
+                    // 추적 대상 없음 : AI 이동 중지
+                    pathFinder.isStopped = true;
                 }
             }
-
 
             // 0.25초 주기로 처리 반복
             yield return new WaitForSeconds(0.25f);
@@ -157,7 +156,6 @@ public class Enemy : LivingEntity {
         // 사망 효과음 재생
         enemyAudioPlayer.PlayOneShot(deathSound);
     }
-
 
     private void OnTriggerStay(Collider other) {
         // 자신이 사망하지 않았으며,

@@ -32,6 +32,6 @@ public class UIManager : MonoBehaviour {
     }
 
     public void UpdateWaveText(int waves, int count) {
-        //...
+        waveText.text = "Wave : " + waves + "\nEnemy Left : " + count;
     }
 }

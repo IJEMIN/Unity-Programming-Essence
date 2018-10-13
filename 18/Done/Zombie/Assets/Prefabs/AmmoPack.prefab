@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 108646884597796964}
   - component: {fileID: 114923613129635330}
   - component: {fileID: 114448886708327992}
+  - component: {fileID: 114507102178823956}
   m_Layer: 0
   m_Name: AmmoPack
   m_TagString: Untagged
@@ -268,6 +269,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo: 30
+--- !u!114 &114507102178823956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045172808418600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 201
+    i1: 11
+    i2: 244
+    i3: 28
+    i4: 80
+    i5: 78
+    i6: 84
+    i7: 27
+    i8: 152
+    i9: 152
+    i10: 155
+    i11: 7
+    i12: 183
+    i13: 54
+    i14: 9
+    i15: 124
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114923613129635330
 MonoBehaviour:
   m_ObjectHideFlags: 1
