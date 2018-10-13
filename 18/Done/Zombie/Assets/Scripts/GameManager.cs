@@ -28,9 +28,8 @@ public class GameManager : NetworkBehaviour {
     [SyncVar] public int wave;
 
     public GameObject gameoverUI; // 게임 오버시 활성화될 UI
-    public Text scoreText; // 점수 표시 텍스트
 
-    [SyncVar] private int score = 0; // 현재 게임 점수
+    [SyncVar(hook = "OnScoreUpdated")] private int score = 0; // 현재 게임 점수
     public bool isGameover { get; private set; } // 게임 오버 상태
 
     private void Awake() {
@@ -62,9 +61,12 @@ public class GameManager : NetworkBehaviour {
         {
             // 점수 추가
             score += newScore;
-            // 점수 UI 텍스트 갱신
-            scoreText.text = "SCORE : " + score;
         }
+    }
+
+    // 점수 UI 텍스트 갱신
+    void OnScoreUpdated(int value) {
+        UIManager.instance.UpdateScoreText(value);
     }
 
     // 게임 오버 처리
