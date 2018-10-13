@@ -46,8 +46,14 @@ public class Gun : MonoBehaviour {
         // 라인 렌더러를 비활성화
         bulletLineRenderer.enabled = false;
 
-        // 총의 현재 상태를 탄창이 비었음으로 초기화
         state = State.Empty;
+    }
+
+    private void OnEnable() {
+        magAmmo = magCapacity;
+        // 총의 현재 상태를 총을 쏠 준비가 된 상태로 변경
+        state = State.Ready;
+
         // 마지막으로 총을 쏜 시점을 초기화
         lastFireTime = 0;
     }
