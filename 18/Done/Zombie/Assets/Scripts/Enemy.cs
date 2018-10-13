@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.AI; // AI, 내비게이션 시스템 관련 코드를 가져오기
 using UnityEngine.Networking;
 
-// AI, 내비게이션 시스템 관련 코드를 가져오기
 
 // 적 AI를 구현한다
 public class Enemy : LivingEntity {

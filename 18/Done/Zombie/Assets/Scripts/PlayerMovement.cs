@@ -18,7 +18,7 @@ public class PlayerMovement : NetworkBehaviour {
         playerAnimator = GetComponent<Animator>();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         if (!isLocalPlayer)
         {
             return;

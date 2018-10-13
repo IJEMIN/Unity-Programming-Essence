@@ -48,7 +48,6 @@ public class ItemSpawner : NetworkBehaviour {
         Destroy(item, 5f);
     }
 
-
     // 네브 메시 위의 랜덤한 위치를 반환하는 메서드
     // center를 중심으로 distance 반경 안에서 랜덤한 위치를 찾습니다.
     private Vector3 GetRandomPointOnNavMesh(Vector3 center, float distance) {

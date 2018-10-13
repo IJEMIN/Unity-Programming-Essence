@@ -17,7 +17,6 @@ public class PlayerHealth : LivingEntity {
     private PlayerShooter playerShooter;
     private PlayerMovement playerMovement;
 
-
     private void Awake() {
         // 사용할 컴포넌트를 가져오고 수치 초기화
         playerAnimator = GetComponent<Animator>();
@@ -57,7 +56,6 @@ public class PlayerHealth : LivingEntity {
             playerAudioPlayer.PlayOneShot(hitClip);
         }
     }
-
 
     // 사망 처리
     public override void Die() {

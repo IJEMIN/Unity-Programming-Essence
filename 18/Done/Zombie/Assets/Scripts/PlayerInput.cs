@@ -35,7 +35,6 @@ public class PlayerInput : NetworkBehaviour {
             return;
         }
 
-
         // move에 관한 입력 감지
         move = Input.GetAxis(moveAxisName);
         // rotate에 관한 입력 감지
