@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114923613129635330}
   - component: {fileID: 114448886708327992}
   m_Layer: 0
-  m_Name: Ammo Item
+  m_Name: AmmoPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

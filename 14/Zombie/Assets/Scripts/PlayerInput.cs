@@ -14,11 +14,10 @@ public class PlayerInput : MonoBehaviour {
     public bool fire { get; private set; } // 감지된 발사 입력값
     public bool reload { get; private set; } // 감지된 재장전 입력값
 
-    // 매프레임 사용자 입력을 감지한다
+    // 매프레임 사용자 입력을 감지
     private void Update() {
         // 게임오버 상태에서는 사용자 입력을 감지하지 않는다
-        if (GameManager.instance != null
-            && GameManager.instance.isGameover)
+        if (GameManager.instance != null && GameManager.instance.isGameover)
         {
             move = 0;
             rotate = 0;
