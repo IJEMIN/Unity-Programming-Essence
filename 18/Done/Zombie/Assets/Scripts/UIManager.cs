@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
 
     private static UIManager m_instance;
 
+
     public Text ammoText;
     public Text scoreText;
     public Text waveText;

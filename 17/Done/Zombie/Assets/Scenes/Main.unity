@@ -279,11 +279,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114186528587364174, guid: 63226789a2ac34fec8493b064c47bd44,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224345049331407482, guid: 63226789a2ac34fec8493b064c47bd44,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -374,61 +369,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114186528587364174, guid: 63226789a2ac34fec8493b064c47bd44,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Restart
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186528587364174, guid: 63226789a2ac34fec8493b064c47bd44,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186528587364174, guid: 63226789a2ac34fec8493b064c47bd44,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186528587364174, guid: 63226789a2ac34fec8493b064c47bd44,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186528587364174, guid: 63226789a2ac34fec8493b064c47bd44,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1370410590}
-    - target: {fileID: 1496761931941770, guid: 63226789a2ac34fec8493b064c47bd44, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63226789a2ac34fec8493b064c47bd44, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &842842330 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114010141499081232, guid: 63226789a2ac34fec8493b064c47bd44,
-    type: 2}
-  m_PrefabInternal: {fileID: 842842329}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &842842331 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114981677178112688, guid: 63226789a2ac34fec8493b064c47bd44,
-    type: 2}
-  m_PrefabInternal: {fileID: 842842329}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &842842332 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1496761931941770, guid: 63226789a2ac34fec8493b064c47bd44,
-    type: 2}
-  m_PrefabInternal: {fileID: 842842329}
---- !u!114 &842842333 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114843940844466002, guid: 63226789a2ac34fec8493b064c47bd44,
-    type: 2}
-  m_PrefabInternal: {fileID: 842842329}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &959788477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,8 +982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e090a9750849f49c282494b652e54999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameoverUI: {fileID: 842842332}
-  scoreText: {fileID: 842842330}
 --- !u!4 &1370410591
 Transform:
   m_ObjectHideFlags: 0
@@ -1089,7 +1030,6 @@ MonoBehaviour:
   - {fileID: 1208000543}
   - {fileID: 1208000542}
   - {fileID: 1208000541}
-  enemyWaveText: {fileID: 842842333}
   damageMax: 40
   damageMin: 20
   healthMax: 200
@@ -1412,7 +1352,6 @@ MonoBehaviour:
   gunPivot: {fileID: 959788478}
   leftHandMount: {fileID: 1969546310}
   rightHandMount: {fileID: 1969546309}
-  ammoText: {fileID: 842842331}
 --- !u!1 &1761076141
 GameObject:
   m_ObjectHideFlags: 0

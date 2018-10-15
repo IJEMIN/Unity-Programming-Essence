@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour {
     public LivingEntity targetEntity; // 생성되는 적 AI들이 추적할 대상
 
     public Transform[] spawnPoints; // 적 AI를 소환할 위치들
-    public Text enemyWaveText; // 적 개수 표시 텍스트
 
     public float damageMax = 40f; // 최대 공격력
     public float damageMin = 20f; // 최소 공격력
@@ -44,7 +43,7 @@ public class EnemySpawner : MonoBehaviour {
     // 웨이브 정보를 UI로 표시
     private void UpdateUI() {
         // 현재 웨이브와 남은 적의 수 표시
-        enemyWaveText.text = "Wave : " + wave + "\n" + "Enemy Left : " + enemies.Count;
+        UIManager.instance.UpdateWaveText(wave, enemies.Count);
     }
 
     // 현재 웨이브에 맞춰 적을 생성
@@ -68,18 +67,18 @@ public class EnemySpawner : MonoBehaviour {
     // 적을 생성하고 생성한 적에게 추적할 대상을 할당
     private void CreateEnemy(float intensity) {
         // intensity를 기반으로 적의 능력치 결정
-        var health = Mathf.Lerp(healthMin, healthMax, intensity);
-        var damage = Mathf.Lerp(damageMin, damageMax, intensity);
-        var speed = Mathf.Lerp(speedMin, speedMax, intensity);
+        float health = Mathf.Lerp(healthMin, healthMax, intensity);
+        float damage = Mathf.Lerp(damageMin, damageMax, intensity);
+        float speed = Mathf.Lerp(speedMin, speedMax, intensity);
 
         // intensity를 기반으로 하얀색과 enemyStrength 사이에서 적의 피부색 결정
-        var skinColor = Color.Lerp(Color.white, strongEnemyColor, intensity);
+        Color skinColor = Color.Lerp(Color.white, strongEnemyColor, intensity);
 
         // 생성할 위치를 랜덤으로 결정
-        var spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
         // 적 프리팹으로부터 적 생성
-        var enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Enemy enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
         // 생성한 적의 능력치와 추적 대상 설정
         enemy.Setup(health, damage, speed, skinColor, targetEntity);
@@ -88,12 +87,11 @@ public class EnemySpawner : MonoBehaviour {
         enemies.Add(enemy);
 
         // 적의 onDeath 이벤트에 익명 메서드 등록
-
         // 사망한 적을 리스트에서 제거
         enemy.onDeath += () => enemies.Remove(enemy);
-        // 적 사망시 점수 상승
-        enemy.onDeath += () => GameManager.instance.AddScore(100);
         // 사망한 적을 10 초 뒤에 파괴
         enemy.onDeath += () => Destroy(enemy.gameObject, 10f);
+        // 적 사망시 점수 상승
+        enemy.onDeath += () => GameManager.instance.AddScore(100);
     }
 }

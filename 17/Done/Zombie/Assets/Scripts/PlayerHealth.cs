@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // UI 관련 코드
 
 // 플레이어 캐릭터의 생명체로서의 동작을 담당
 public class PlayerHealth : LivingEntity {
@@ -12,24 +12,42 @@ public class PlayerHealth : LivingEntity {
     private AudioSource playerAudioPlayer; // 플레이어 소리 재생기
     private Animator playerAnimator; // 플레이어의 애니메이터
 
-    private void Start() {
-        // 사용할 컴포넌트를 가져오고 수치 초기화
+    private PlayerMovement playerMovement; // 플레이어 움직임 컴포넌트
+    private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
+
+    private void Awake() {
+        // 사용할 컴포넌트를 가져오기
         playerAnimator = GetComponent<Animator>();
         playerAudioPlayer = GetComponent<AudioSource>();
 
+        playerMovement = GetComponent<PlayerMovement>();
+        playerShooter = GetComponent<PlayerShooter>();
+    }
+
+    protected override void OnEnable() {
+        // LivingEntity의 OnEnable() 실행 (상태 초기화)
+        base.OnEnable();
+
+        // 체력 슬라이더 활성화
+        healthSlider.gameObject.SetActive(true);
         // 체력 슬라이더의 최대값을 기본 체력값으로 변경
         healthSlider.maxValue = startingHealth;
         // 체력 슬라이더의 값을 현재 체력값으로 변경
         healthSlider.value = health;
+
+        // 플레이어 조작을 받는 컴포넌트들 활성화
+        playerMovement.enabled = true;
+        playerShooter.enabled = true;
     }
 
     // 체력 회복
     public override void RestoreHealth(float newHealth) {
         // LivingEntity의 RestoreHealth() 실행 (체력 증가)
         base.RestoreHealth(newHealth);
-        // 갱신된 체력으로 체력 슬라이더를 갱신
+        // 체력 갱신
         healthSlider.value = health;
     }
+
 
     // 데미지 처리
     public override void OnDamage(float damage, Vector3 hitPoint,
@@ -51,7 +69,7 @@ public class PlayerHealth : LivingEntity {
         // LivingEntity의 Die() 실행(사망 적용)
         base.Die();
 
-        // 체력 슬라이더를 비활성화
+        // 체력 슬라이더 비활성화
         healthSlider.gameObject.SetActive(false);
 
         // 사망음 재생
@@ -59,10 +77,9 @@ public class PlayerHealth : LivingEntity {
         // 애니메이터의 Die 트리거를 발동시켜 사망 애니메이션 재생
         playerAnimator.SetTrigger("Die");
 
-        // 플레이어 슈터 컴포넌트 비활성화
-        GetComponent<PlayerShooter>().enabled = false;
-        // 플레이어 움직임 컴포넌트 해제
-        GetComponent<PlayerMovement>().enabled = false;
+        // 플레이어 조작을 받는 컴포넌트들 비활성화
+        playerMovement.enabled = false;
+        playerShooter.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other) {

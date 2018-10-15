@@ -57,7 +57,6 @@ public class Enemy : LivingEntity {
         pathFinder.speed = newSpeed;
         // 렌더러가 사용중인 머테리얼의 컬러를 변경, 외형 색이 변함
         enemyRenderer.material.color = skinColor;
-
         // AI가 추적할 대상을 지정
         targetEntity = newTarget;
     }

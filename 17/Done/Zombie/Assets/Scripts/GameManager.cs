@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 // 점수와 게임 오버 여부, 게임 UI를 관리하는 게임 매니저
 public class GameManager : MonoBehaviour {
@@ -16,14 +14,12 @@ public class GameManager : MonoBehaviour {
                 m_instance = FindObjectOfType<GameManager>();
             }
 
-            return m_instance; // 싱글톤 오브젝트를 반환
+            // 싱글톤 오브젝트를 반환
+            return m_instance;
         }
     }
 
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
-
-    public GameObject gameoverUI; // 게임 오버시 활성화될 UI
-    public Text scoreText; // 점수 표시 텍스트
 
     private int score = 0; // 현재 게임 점수
     public bool isGameover { get; private set; } // 게임 오버 상태
@@ -42,14 +38,6 @@ public class GameManager : MonoBehaviour {
         FindObjectOfType<PlayerHealth>().onDeath += EndGame;
     }
 
-    // 게임 재시작
-    public void Restart() {
-        // 게임 오버인 상태에서만 게임 재시작 가능
-        if (isGameover)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
 
     // 점수를 추가하고 UI 갱신
     public void AddScore(int newScore) {
@@ -59,7 +47,7 @@ public class GameManager : MonoBehaviour {
             // 점수 추가
             score += newScore;
             // 점수 UI 텍스트 갱신
-            scoreText.text = "SCORE : " + score;
+            UIManager.instance.UpdateScoreText(score);
         }
     }
 
@@ -68,6 +56,6 @@ public class GameManager : MonoBehaviour {
         // 게임 오버 상태를 참으로 변경
         isGameover = true;
         // 게임 오버 UI를 활성화
-        gameoverUI.SetActive(true);
+        UIManager.instance.SetActiveGameoverUI(true);
     }
 }
