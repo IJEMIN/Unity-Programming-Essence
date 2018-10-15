@@ -16,9 +16,12 @@ public class PlayerMovement : MonoBehaviour {
         playerAnimator = GetComponent<Animator>();
     }
 
-    private void Update() {
-        Rotate(); // 회전 실행
-        Move(); // 움직임 실행
+    // FixedUpdate는 물리 갱신 주기에 맞춰 실행됨
+    private void FixedUpdate() {
+        // 회전 실행
+        Rotate();
+        // 움직임 실행
+        Move();
 
         // 입력값에 따라 애니메이터의 Move 파라미터 값을 변경
         playerAnimator.SetFloat("Move", playerInput.move);
