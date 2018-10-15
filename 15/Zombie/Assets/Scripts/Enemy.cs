@@ -1,91 +1,82 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.AI; // AI, 내비게이션 시스템 관련 코드를 가져오기
 
 // 적 AI를 구현한다
 public class Enemy : LivingEntity {
-
+    public LivingEntity targetEntity; // 추적할 대상
     private NavMeshAgent pathFinder; // 경로계산 AI 에이전트
 
-    public LivingEntity targetEntity; // 추적할 대상
-    private Animator enemyAnimator; // 적 자신의 애니메이터
-    private Renderer enemeyRenderer; // 적 자신의 랜더러
-
-    public ParticleSystem hitEffect; // 공격 받았을때 재생할 파티클 효과
-
-    private AudioSource enemyAudioPlayer; // 적 자신의 소리 재생기
+    public ParticleSystem hitEffect; // 피격시 재생할 파티클 효과
     public AudioClip deathSound; // 사망시 재생할 소리
-    public AudioClip hitSound; // 공격 받았을때 재생할 소리
+    public AudioClip hitSound; // 피격시 재생할 소리
+
+    private Animator enemyAnimator; // 애니메이터 컴포넌트
+    private AudioSource enemyAudioPlayer; // 오디오 소스 컴포넌트
+    private Renderer enemyRenderer; // 렌더러 컴포넌트
 
     public float damage = 20f; // 공격력
-    public int score = 100; // 사망시 플레이어가 흭득할 점수
+    public float timeBetAttack = 0.5f; // 공격 간격
+    private float lastAttackTime; // 마지막 공격 시점
 
-    public float timeBetAttck = 0.5f; // 공격 간격
-    private float lastAttackTime; // 마지막으로 공격을 한 시간
-
-    // 추적할 대상이 있는지 알려주는 프로퍼티
-    private bool hasTarget {
-        get {
-            // 추적할 대상이 존재하고, 대상이 사망하지 않았다면 참 true
-            if (targetEntity != null && !targetEntity.dead) {
+    // 추적할 대상이 존재하는지 알려주는 프로퍼티
+    private bool hasTarget
+    {
+        get
+        {
+            // 추적할 대상이 존재하고, 대상이 사망하지 않았다면 true
+            if (targetEntity != null && !targetEntity.dead)
+            {
                 return true;
             }
 
-            // 그렇지 않다면 거짓 false
+            // 그렇지 않다면 false
             return false;
         }
     }
 
-    private void Awake () {
-        // 게임 오브젝트가 활성화되었을때 실행할 초기화들
-
+    private void Awake() {
+        // 초기화
     }
 
-    public void Setup (float newHealth, float newDamage, float newSpeed, Color skinColor, LivingEntity newTarget) {
-        // 적 AI의 생성할때 스펙을 결정하기 위해 사용할 메서드
-
-
+    // 적 AI의 초기 스펙을 결정하는 셋업 메서드
+    public void Setup(float newHealth, float newDamage, float newSpeed, Color skinColor,
+        LivingEntity newTarget) {
     }
 
-    private void Start () {
-        // 게임 오브젝트 활성화와 동시에 적 AI의 추적 루틴을 시작한다
-        StartCoroutine (UpdatePath ()); //추적 루틴 시작
+    private void Start() {
+        // 게임 오브젝트 활성화와 동시에 AI의 추적 루틴 시작
+        StartCoroutine(UpdatePath());
     }
 
-    private void Update () {
-        // 추적할 대상이 있는지 없는지에 따라 알맞은 애니메이션을 재생한다
+    private void Update() {
+        // 추적 대상의 존재 여부에 따라 다른 애니메이션을 재생
+        enemyAnimator.SetBool("HasTarget", hasTarget);
     }
 
-    private IEnumerator UpdatePath () {
-        // 주기적으로 추적할 대상의 위치를 찾아 경로를 계산한다
-
-        while (!dead) { // 살아있는 동안만 반복한다
-
-            yield return new WaitForSeconds (0.25f); // 0.25초 주기로 경로를 갱신한다
+    // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
+    private IEnumerator UpdatePath() {
+        // 살아있는 동안 무한 루프
+        while (!dead)
+        {
+            // 0.25초 주기로 처리 반복
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
-    public override void OnDamage (float damage, Vector3 hitPoint, Vector3 hitNormal) {
-        // 데미지를 입었을때 처리할 것
-
-        // 부모의 OnDamage 메서드부터 실행한다
-        base.OnDamage (damage, hitPoint, hitNormal);
-
+    // 데미지를 입었을때 실행할 처리
+    public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal) {
+        // LivingEntity의 OnDamage()를 실행하여 데미지 적용
+        base.OnDamage(damage, hitPoint, hitNormal);
     }
 
-    public override void Die () {
-        // 사망 처리를 구현한다
-
-        base.Die (); // 부모의 사망 메서드부터 실행한다
-
+    // 사망 처리
+    public override void Die() {
+        // LivingEntity의 Die()를 실행하여 기본 사망 처리 실행
+        base.Die();
     }
 
-    private void OnTriggerStay (Collider other) {
-        // 플레이어와 접촉하고 있는 동안 주기적으로 데미지를 주는 처리가 온다
-
-        // 충돌한 상대방 게임 오브젝트가 Player 태그를 가지고 있는지 검사한다
-        if (other.tag == "Player") {
-
-        }
+    private void OnTriggerStay(Collider other) {
+        // 트리거 충돌한 상대방 게임 오브젝트가 추적 대상이라면 공격 실행   
     }
 }

@@ -345,7 +345,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1030195636}
-  m_LocalRotation: {x: 0.4185248, y: 0.34116474, z: -0.17335857, w: 0.82364464}
+  m_LocalRotation: {x: 0.41852477, y: 0.3411647, z: -0.17335854, w: 0.82364464}
   m_LocalPosition: {x: -8, y: 16, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -408,6 +408,10 @@ Prefab:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 98cdee121d6e440de9fb99a7c24fa0da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98cdee121d6e440de9fb99a7c24fa0da, type: 3}
   m_IsPrefabAsset: 0
@@ -416,22 +420,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 98cdee121d6e440de9fb99a7c24fa0da,
     type: 3}
   m_PrefabInternal: {fileID: 1503011525}
---- !u!114 &1503011527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1503011526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a558a9e6e5e01c842a3d56a3e825e54e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun: {fileID: 1969546307}
-  gunPivot: {fileID: 959788478}
-  leftHandMount: {fileID: 1969546310}
-  rightHandMount: {fileID: 1969546309}
-  ammoText: {fileID: 0}
 --- !u!136 &1503011528
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -588,6 +576,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 98cdee121d6e440de9fb99a7c24fa0da,
     type: 3}
   m_PrefabInternal: {fileID: 1503011525}
+--- !u!114 &1503011534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1503011526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a558a9e6e5e01c842a3d56a3e825e54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 1969546307}
+  gunPivot: {fileID: 959788478}
+  leftHandMount: {fileID: 1969546310}
+  rightHandMount: {fileID: 1969546309}
 --- !u!1 &1761076141
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +652,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -659,7 +662,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1761076141}
-  m_LocalRotation: {x: 0.4185248, y: 0.34116474, z: -0.17335857, w: 0.82364464}
+  m_LocalRotation: {x: 0.41852477, y: 0.3411647, z: -0.17335854, w: 0.82364464}
   m_LocalPosition: {x: -8, y: 16, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

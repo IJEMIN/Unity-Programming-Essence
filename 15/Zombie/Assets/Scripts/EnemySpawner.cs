@@ -1,14 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-// 적 게임 오브젝트를 주기적으로 생성한다
+// 적 게임 오브젝트를 주기적으로 생성
 public class EnemySpawner : MonoBehaviour {
-
     public Enemy enemyPrefab; // 생성할 적 AI
-    public LivingEntity playerEntity; // 생성되는 적 AI들이 추적할 대상
-    public Transform[] spawnPositions; // 적 AI를 소환할 위치들
-    public Color strongEnemeyColor = Color.red; // 강한 적 AI가 가지게 될 피부색
+    public LivingEntity targetEntity; // 생성되는 적 AI들이 추적할 대상
 
-    // 적 AI가 생성되면서 가지게 될 스펙들의 범위
+    public Transform[] spawnPoints; // 적 AI를 소환할 위치들
+
     public float damageMax = 40f; // 최대 공격력
     public float damageMin = 20f; // 최소 공격력
 
@@ -17,36 +16,40 @@ public class EnemySpawner : MonoBehaviour {
 
     public float speedMax = 3f; // 최대 속도
     public float speedMin = 1f; // 최소 속도
-    public float timeBetSpawn = 7f; // 생성 주기
 
-    private int wave = 0; // 현재 웨이브 횟수
+    public Color strongEnemyColor = Color.red; // 강한 적 AI가 가지게 될 피부색
 
-    private void Start () {
-        // 1초 뒤에 Spawn 메서드를 timeBetSpawn 간격으로 주기적으로 반복 실행 시작
-        InvokeRepeating ("Spawn", 1f, timeBetSpawn);
-    }
+    private List<Enemy> enemies = new List<Enemy>(); // 생성된 적들을 담는 리스트
+    private int wave; // 현재 웨이브
 
-    private void Spawn () {
-        // 현재 웨이브 수에 맞춰 적을 생성한다
-
-        if (!playerEntity) {
-            // 생성된 AI들이 추적할 대상이 없다면 적 AI를 생성하지 않는다
+    private void Update() {
+        // 게임 오버 상태일때는 생성하지 않음
+        if (GameManager.instance != null && GameManager.instance.isGameover)
+        {
             return;
         }
 
-        // 웨이브 1 증가
-        wave++;
-
-        // 현재 웨이브 * 1.5에 반올림 한 개수 만큼 적 AI를 생성한다
-        int spawnCount = Mathf.CeilToInt (wave * 1.5f);
-
-        for (int i = 0; i < spawnCount; i++) {
-            CreateEnemey ();
+        // 적을 모두 물리친 경우 다음 스폰 실행
+        if (enemies.Count <= 0)
+        {
+            SpawnWave();
         }
+
+        // UI 갱신
+        UpdateUI();
     }
 
-    void CreateEnemey () {
-        // 실제 적 AI를 생성하고, 적 AI의 스펙을 랜덤하게 결정한다
+    // 웨이브 정보를 UI로 표시
+    private void UpdateUI() {
+        // 현재 웨이브와 남은 적의 수 표시
+        UIManager.instance.UpdateWaveText(wave, enemies.Count);
+    }
 
+    // 현재 웨이브에 맞춰 적을 생성
+    private void SpawnWave() {
+    }
+
+    // 적을 생성하고 생성한 적에게 추적할 대상을 할당
+    private void CreateEnemy(float intensity) {
     }
 }
