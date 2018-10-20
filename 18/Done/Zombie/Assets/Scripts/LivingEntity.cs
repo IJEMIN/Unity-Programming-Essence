@@ -1,34 +1,34 @@
 ﻿using System;
-using Cinemachine;
+using Photon.Pun;
 using UnityEngine;
-using UnityEngine.Networking;
+
 
 // 생명체로서 동작할 게임 오브젝트들을 위한 뼈대를 제공
 // 체력, 데미지 받아들이기, 사망 기능, 사망 이벤트를 제공
-public class LivingEntity : NetworkBehaviour, IDamageable {
+public class LivingEntity : MonoBehaviourPun, IDamageable, IPunObservable {
     public float startingHealth = 100f; // 시작 체력
-
-    // 현재 체력
-    public float health
-    {
-        get { return m_health; }
-        protected set { m_health = value; }
-    }
-
-    [SyncVar(hook = "HookHealthUpdated")] private float m_health;
-
-    // 사망 상태
-    public bool dead
-    {
-        get { return m_dead; }
-        protected set { m_dead = value; }
-    }
-
-    [SyncVar] private bool m_dead;
-
+    public float health { get; protected set; } // 현재 체력
+    public bool dead { get; protected set; } // 사망 상태
     public event Action onDeath; // 사망시 발동할 이벤트
 
-    // 생명체가 활성화될 때마다 상태를 리셋
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(health);
+            stream.SendNext(dead);
+        }
+        else
+        {
+            // Network player, receive data
+            health = (float) stream.ReceiveNext();
+            dead = (bool) stream.ReceiveNext();
+        }
+    }
+
+
+    // 생명체가 활성화될때 상태를 리셋
     protected virtual void OnEnable() {
         // 사망하지 않은 상태로 시작
         dead = false;
@@ -36,36 +36,44 @@ public class LivingEntity : NetworkBehaviour, IDamageable {
         health = startingHealth;
     }
 
-    private void HookHealthUpdated(float value) {
-        OnHealthUpdated(value);
-    }
-
-    protected virtual void OnHealthUpdated(float value) {
-        // 자식단에서 오버라이드
-    }
-
-    // 데미지를 입는 기능
+    [PunRPC]
     public virtual void OnDamage(float damage, Vector3 hitPoint,
         Vector3 hitNormal) {
-        if (isServer)
+        if (!photonView.IsMine)
         {
-            health -= damage;
+            return;
+        }
 
-            // 체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
-            if (health <= 0 && !dead)
-            {
-                RpcDieProcess();
-            }
+        // 데미지만큼 체력 감소
+        health -= damage;
+
+        // 체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
+        if (health <= 0 && !dead)
+        {
+            photonView.RPC("Die", RpcTarget.All);
         }
     }
 
 
-    [ClientRpc]
-    void RpcDieProcess() {
-        Die();
+    // 체력을 회복하는 기능
+    public virtual void RestoreHealth(float newHealth) {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+
+        if (dead)
+        {
+            // 이미 사망한 경우 체력을 회복할 수 없음
+            return;
+        }
+
+        // 체력 추가
+        health += newHealth;
     }
 
     // 사망 처리
+    [PunRPC]
     public virtual void Die() {
         // onDeath 이벤트에 등록된 메서드가 있다면 실행
         if (onDeath != null)
@@ -75,17 +83,5 @@ public class LivingEntity : NetworkBehaviour, IDamageable {
 
         // 사망 상태를 참으로 변경
         dead = true;
-    }
-
-    // 체력을 회복하는 기능
-    public virtual void RestoreHealth(float newHealth) {
-        if (!isServer || dead)
-        {
-            // 이미 사망한 경우 체력을 회복할 수 없음
-            return;
-        }
-
-        // 체력 추가
-        health += newHealth;
     }
 }

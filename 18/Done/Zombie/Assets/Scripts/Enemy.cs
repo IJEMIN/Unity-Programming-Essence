@@ -1,8 +1,10 @@
 ﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
-using UnityEngine.AI; // AI, 내비게이션 시스템 관련 코드를 가져오기
-using UnityEngine.Networking;
+using UnityEngine.AI;
+using System.Collections.Generic;
 
+// AI, 내비게이션 시스템 관련 코드를 가져오기
 
 // 적 AI를 구현한다
 public class Enemy : LivingEntity {
@@ -21,7 +23,7 @@ public class Enemy : LivingEntity {
     public float timeBetAttack = 0.5f; // 공격 간격
     private float lastAttackTime; // 마지막 공격 시점
 
-    [SyncVar] private Color skinColor; // 피부색
+    public LayerMask targetLayer;
 
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
@@ -52,35 +54,38 @@ public class Enemy : LivingEntity {
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
     public void Setup(float newHealth, float newDamage,
-        float newSpeed, Color newSkinColor, LivingEntity newTarget) {
+        float newSpeed, Color skinColor, LivingEntity newTarget) {
         // 체력 설정
         startingHealth = newHealth;
+        health = newHealth;
         // 공격력 설정
         damage = newDamage;
         // 내비메쉬 에이전트의 이동 속도 설정
         pathFinder.speed = newSpeed;
         // 렌더러가 사용중인 머테리얼의 컬러를 변경, 외형 색이 변함
-        skinColor = newSkinColor;
+        enemyRenderer.material.color = skinColor;
         // AI가 추적할 대상을 지정
         targetEntity = newTarget;
     }
 
     private void Start() {
-        enemyRenderer.material.color = skinColor;
-
-        if (isServer)
+        if (!PhotonNetwork.IsMasterClient)
         {
-            // 게임 오브젝트 활성화와 동시에 AI의 추적 루틴 시작
-            StartCoroutine(UpdatePath());
+            return;
         }
+
+        // 게임 오브젝트 활성화와 동시에 AI의 추적 루틴 시작
+        StartCoroutine(UpdatePath());
     }
 
     private void Update() {
-        if (isServer)
+        if (!PhotonNetwork.IsMasterClient)
         {
-            // 추적 대상의 존재 여부에 따라 다른 애니메이션을 재생
-            enemyAnimator.SetBool("HasTarget", hasTarget);
+            return;
         }
+
+        // 추적 대상의 존재 여부에 따라 다른 애니메이션을 재생
+        enemyAnimator.SetBool("HasTarget", hasTarget);
     }
 
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
@@ -97,15 +102,23 @@ public class Enemy : LivingEntity {
             }
             else
             {
-                if (PlayerController.players.Count > 0)
+                // 추적 대상 없음 : AI 이동 중지
+                pathFinder.isStopped = true;
+
+                Collider[] colliders =
+                    Physics.OverlapSphere(transform.position, 20f, targetLayer);
+
+                for (int i = 0; i < colliders.Length; i++)
                 {
-                    int randomSel = Random.Range(0, PlayerController.players.Count);
-                    targetEntity = PlayerController.players[randomSel];
-                }
-                else
-                {
-                    // 추적 대상 없음 : AI 이동 중지
-                    pathFinder.isStopped = true;
+                    LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
+
+                    if (livingEntity != null && !livingEntity.dead)
+                    {
+                        targetEntity = livingEntity;
+                        pathFinder.isStopped = false;
+
+                        break;
+                    }
                 }
             }
 
@@ -114,7 +127,9 @@ public class Enemy : LivingEntity {
         }
     }
 
+
     // 데미지를 입었을때 실행할 처리
+    [PunRPC]
     public override void OnDamage(float damage,
         Vector3 hitPoint, Vector3 hitNormal) {
         // 아직 사망하지 않은 경우에만 피격 효과 재생
@@ -135,6 +150,7 @@ public class Enemy : LivingEntity {
     }
 
     // 사망 처리
+    [PunRPC]
     public override void Die() {
         // LivingEntity의 Die()를 실행하여 기본 사망 처리 실행
         base.Die();
@@ -152,6 +168,7 @@ public class Enemy : LivingEntity {
 
         // 사망 애니메이션 재생
         enemyAnimator.SetTrigger("Die");
+
         // 사망 효과음 재생
         enemyAudioPlayer.PlayOneShot(deathSound);
     }
@@ -178,7 +195,8 @@ public class Enemy : LivingEntity {
                     = transform.position - other.transform.position;
 
                 // 공격 실행
-                attackTarget.OnDamage(damage, hitPoint, hitNormal);
+                attackTarget.photonView.RPC("OnDamage", RpcTarget.All, damage, hitPoint,
+                    hitNormal);
             }
         }
     }

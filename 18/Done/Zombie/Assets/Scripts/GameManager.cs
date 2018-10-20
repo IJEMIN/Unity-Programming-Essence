@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using UnityEngine.Networking;
 
 // 점수와 게임 오버 여부, 게임 UI를 관리하는 게임 매니저
-public class GameManager : NetworkBehaviour {
+public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
     // 외부에서 싱글톤 오브젝트를 가져올때 사용할 프로퍼티
     public static GameManager instance
     {
@@ -18,19 +19,35 @@ public class GameManager : NetworkBehaviour {
                 m_instance = FindObjectOfType<GameManager>();
             }
 
-            return m_instance; // 싱글톤 오브젝트를 반환
+            // 싱글톤 오브젝트를 반환
+            return m_instance;
         }
     }
 
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
-    [SyncVar] public int enemyCount;
-    [SyncVar] public int wave;
+    public GameObject playerPrefab;
 
-    public GameObject gameoverUI; // 게임 오버시 활성화될 UI
-
-    [SyncVar(hook = "OnScoreUpdated")] private int score = 0; // 현재 게임 점수
+    private int score = 0; // 현재 게임 점수
     public bool isGameover { get; private set; } // 게임 오버 상태
+
+
+    public List<GameObject> players = new List<GameObject>();
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(score);
+        }
+        else
+        {
+            // Network player, receive data
+            score = (int) stream.ReceiveNext();
+            UIManager.instance.UpdateScoreText(score);
+        }
+    }
+
 
     private void Awake() {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
@@ -41,32 +58,25 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-    void Update() {
-        UIManager.instance.UpdateWaveText(wave, enemyCount);
-    }
+    void Start() {
+        Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
+        randomSpawnPos.y = 0f;
 
-    // 게임 재시작
-    public void Restart() {
-        // 게임 오버인 상태에서만 게임 재시작 가능
-        if (isGameover)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        PhotonNetwork.Instantiate(playerPrefab.name,
+            randomSpawnPos,
+            Quaternion.identity);
     }
 
     // 점수를 추가하고 UI 갱신
     public void AddScore(int newScore) {
         // 게임 오버가 아닌 상태에서만 점수 증가 가능
-        if (!isGameover && isServer)
+        if (!isGameover)
         {
             // 점수 추가
             score += newScore;
+            // 점수 UI 텍스트 갱신
+            UIManager.instance.UpdateScoreText(score);
         }
-    }
-
-    // 점수 UI 텍스트 갱신
-    void OnScoreUpdated(int value) {
-        UIManager.instance.UpdateScoreText(value);
     }
 
     // 게임 오버 처리
@@ -74,6 +84,15 @@ public class GameManager : NetworkBehaviour {
         // 게임 오버 상태를 참으로 변경
         isGameover = true;
         // 게임 오버 UI를 활성화
-        gameoverUI.SetActive(true);
+        UIManager.instance.SetActiveGameoverUI(true);
+    }
+
+
+    public override void OnLeftRoom() {
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void LeaveRoom() {
+        PhotonNetwork.LeaveRoom();
     }
 }

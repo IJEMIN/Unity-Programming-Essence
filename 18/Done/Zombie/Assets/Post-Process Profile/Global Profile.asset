@@ -18,7 +18,6 @@ MonoBehaviour:
   - {fileID: 114555643489232010}
   - {fileID: 114721578521910272}
   - {fileID: 114084445761780702}
-  - {fileID: 114841610796650034}
 --- !u!114 &114084445761780702
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -63,7 +62,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 4.78
+    value: 2.2
   threshold:
     overrideState: 1
     value: 0.22
@@ -75,9 +74,9 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 1
-    value: 4.23
+    value: 4
   anamorphicRatio:
-    overrideState: 1
+    overrideState: 0
     value: 0
   color:
     overrideState: 0
@@ -113,10 +112,10 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.47
+    value: 0.3
   fastMode:
     overrideState: 0
-    value: 1
+    value: 0
 --- !u!114 &114575927451129068
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -164,10 +163,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.45
+    value: 0.437
   smoothness:
     overrideState: 1
-    value: 0.46
+    value: 0.391
   roundness:
     overrideState: 0
     value: 1
@@ -179,33 +178,6 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 1
   opacity:
-    overrideState: 0
-    value: 1
---- !u!114 &114841610796650034
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
-  m_Name: DepthOfField
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  focusDistance:
-    overrideState: 0
-    value: 10
-  aperture:
-    overrideState: 0
-    value: 5.6
-  focalLength:
-    overrideState: 0
-    value: 50
-  kernelSize:
     overrideState: 0
     value: 1
 --- !u!114 &114896867226755362
@@ -260,7 +232,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -11
+    value: -30
   tint:
     overrideState: 0
     value: 0
@@ -269,19 +241,19 @@ MonoBehaviour:
     value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 0
-    value: 16
+    value: 0
   saturation:
     overrideState: 1
-    value: 93
+    value: 8
   brightness:
     overrideState: 0
     value: 0
   postExposure:
     overrideState: 1
-    value: 1.37
+    value: 1.4
   contrast:
     overrideState: 1
-    value: 29
+    value: 6
   mixerRedOutRedIn:
     overrideState: 0
     value: 100

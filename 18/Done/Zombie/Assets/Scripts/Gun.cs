@@ -1,8 +1,10 @@
 ﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
+
 // 총을 구현한다
-public class Gun : MonoBehaviour {
+public class Gun : MonoBehaviourPun {
     // 총의 상태를 표현하는데 사용할 타입을 선언한다
     public enum State {
         Ready, // 발사 준비됨
@@ -35,7 +37,6 @@ public class Gun : MonoBehaviour {
     public float reloadTime = 1.8f; // 재장전 소요 시간
     private float lastFireTime; // 총을 마지막으로 발사한 시점
 
-
     private void Awake() {
         // 사용할 컴포넌트들의 참조를 가져오기
         gunAudioPlayer = GetComponent<AudioSource>();
@@ -45,18 +46,18 @@ public class Gun : MonoBehaviour {
         bulletLineRenderer.positionCount = 2;
         // 라인 렌더러를 비활성화
         bulletLineRenderer.enabled = false;
-
-        state = State.Empty;
     }
 
+
     private void OnEnable() {
+        // 현재 탄창을 가득채우기
         magAmmo = magCapacity;
         // 총의 현재 상태를 총을 쏠 준비가 된 상태로 변경
         state = State.Ready;
-
         // 마지막으로 총을 쏜 시점을 초기화
         lastFireTime = 0;
     }
+
 
     // 발사 시도
     public void Fire() {
@@ -68,11 +69,11 @@ public class Gun : MonoBehaviour {
             // 마지막 총 발사 시점을 갱신
             lastFireTime = Time.time;
             // 실제 발사 처리 실행
-            Shot();
+            photonView.RPC("Shot", RpcTarget.All);
         }
     }
 
-    // 실제 발사 처리
+    [PunRPC]
     private void Shot() {
         // 레이캐스트에 의한 충돌 정보를 저장하는 컨테이너
         RaycastHit hit;
@@ -119,6 +120,7 @@ public class Gun : MonoBehaviour {
         }
     }
 
+
     // 발사 이펙트와 소리를 재생하고 총알 궤적을 그린다
     private IEnumerator ShotEffect(Vector3 hitPosition) {
         // 총구 화염 효과 재생
@@ -154,8 +156,14 @@ public class Gun : MonoBehaviour {
         }
 
         // 재장전 처리 시작
-        StartCoroutine(ReloadRoutine());
+        photonView.RPC("ReloadRoutineRPC", RpcTarget.All);
         return true;
+    }
+
+
+    [PunRPC]
+    private void ReloadRoutineRPC() {
+        StartCoroutine(ReloadRoutine());
     }
 
     // 실제 재장전 처리를 진행
@@ -182,6 +190,7 @@ public class Gun : MonoBehaviour {
         magAmmo += ammoToFill;
         // 남은 탄약에서, 탄창에 채운만큼 탄약을 뺸다
         ammoRemain -= ammoToFill;
+
 
         // 총의 현재 상태를 발사 준비된 상태로 변경
         state = State.Ready;

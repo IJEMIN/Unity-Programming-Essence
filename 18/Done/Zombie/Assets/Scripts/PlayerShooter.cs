@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
+﻿using Photon.Pun;
+using UnityEngine;
 
 // 주어진 Gun 오브젝트를 쏘거나 재장전
 // 알맞은 애니메이션을 재생하고 IK를 사용해 캐릭터 양손이 총에 위치하도록 조정
-public class PlayerShooter : NetworkBehaviour {
+public class PlayerShooter : MonoBehaviourPun {
     public Gun gun; // 사용할 총
     public Transform gunPivot; // 총 배치의 기준점
     public Transform leftHandMount; // 총의 왼쪽 손잡이, 왼손이 위치할 지점
@@ -30,48 +29,44 @@ public class PlayerShooter : NetworkBehaviour {
     }
 
     private void Update() {
-        if (!isLocalPlayer)
+        if (!photonView.IsMine)
         {
             return;
         }
+
 
         // 입력을 감지하고 총 발사하거나 재장전
         if (playerInput.fire)
         {
             // 발사 입력 감지시 총 발사
-            CmdGunFire();
+            gun.Fire();
         }
         else if (playerInput.reload)
         {
-            CmdReload();
+            // 재장전 입력 감지시 재장전
+            if (gun.Reload())
+            {
+                // 재장전 성공시에만 재장전 애니메이션 재생
+                playerAnimator.SetTrigger("Reload");
+            }
         }
 
         // 남은 탄약 UI를 갱신
-        UIManager.instance.UpdateAmmoText(gun.magAmmo, gun.ammoRemain);
+        UpdateUI();
     }
 
-    [Command]
-    public void CmdGunFire() {
-        RpcGunFire();
-    }
-
-    [ClientRpc]
-    public void RpcGunFire() {
-        gun.Fire();
-    }
-
-    [Command]
-    public void CmdReload() {
-        RpcGunReload();
-    }
-
-    [ClientRpc]
-    public void RpcGunReload() {
-        // 재장전 입력 감지시 재장전
-        if (gun.Reload())
+    // 탄약 UI 갱신
+    private void UpdateUI() {
+        if (!photonView.IsMine)
         {
-            // 재장전 성공시에만 재장전 애니메이션 재생
-            playerAnimator.SetTrigger("Reload");
+            return;
+        }
+
+
+        if (gun != null && UIManager.instance != null)
+        {
+            // UI 매니저의 탄약 텍스트에 탄창의 탄약과 남은 전체 탄약을 표시
+            UIManager.instance.UpdateAmmoText(gun.magAmmo, gun.ammoRemain);
         }
     }
 
