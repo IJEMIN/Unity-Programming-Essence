@@ -2611,7 +2611,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114608082312623796
 MonoBehaviour:
@@ -2631,7 +2631,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: Move
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Reload
   - Type: 9
     SynchronizeType: 0
@@ -2690,9 +2690,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114608082312623796}
   - {fileID: 114635706721382326}
-  - {fileID: 114851991896860568}
   viewIdField: 0
-  InstantiationId: 1
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114654284721293748
 MonoBehaviour:

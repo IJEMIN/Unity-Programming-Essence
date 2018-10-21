@@ -7,7 +7,8 @@ using System.Collections.Generic;
 // AI, 내비게이션 시스템 관련 코드를 가져오기
 
 // 적 AI를 구현한다
-public class Enemy : LivingEntity {
+public class Enemy : LivingEntity
+{
     public LivingEntity targetEntity; // 추적할 대상
     private NavMeshAgent pathFinder; // 경로계산 AI 에이전트
 
@@ -41,7 +42,8 @@ public class Enemy : LivingEntity {
         }
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         // 게임 오브젝트로부터 사용할 컴포넌트들을 가져오기
         pathFinder = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<Animator>();
@@ -54,7 +56,8 @@ public class Enemy : LivingEntity {
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
     public void Setup(float newHealth, float newDamage,
-        float newSpeed, Color skinColor, LivingEntity newTarget) {
+        float newSpeed, Color skinColor, LivingEntity newTarget)
+    {
         // 체력 설정
         startingHealth = newHealth;
         health = newHealth;
@@ -64,11 +67,20 @@ public class Enemy : LivingEntity {
         pathFinder.speed = newSpeed;
         // 렌더러가 사용중인 머테리얼의 컬러를 변경, 외형 색이 변함
         enemyRenderer.material.color = skinColor;
+        photonView.RPC("ApplyUpdatedSkin", RpcTarget.Others, skinColor.r, skinColor.g, skinColor.b);
+
         // AI가 추적할 대상을 지정
         targetEntity = newTarget;
     }
 
-    private void Start() {
+    [PunRPC]
+    void ApplyUpdatedSkin(float r, float g, float b)
+    {
+        enemyRenderer.material.color = new Color(r, g, b, 1f);
+    }
+
+    private void Start()
+    {
         if (!PhotonNetwork.IsMasterClient)
         {
             return;
@@ -78,7 +90,8 @@ public class Enemy : LivingEntity {
         StartCoroutine(UpdatePath());
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (!PhotonNetwork.IsMasterClient)
         {
             return;
@@ -89,7 +102,8 @@ public class Enemy : LivingEntity {
     }
 
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
-    private IEnumerator UpdatePath() {
+    private IEnumerator UpdatePath()
+    {
         // 살아있는 동안 무한 루프
         while (!dead)
         {
@@ -131,7 +145,8 @@ public class Enemy : LivingEntity {
     // 데미지를 입었을때 실행할 처리
     [PunRPC]
     public override void OnDamage(float damage,
-        Vector3 hitPoint, Vector3 hitNormal) {
+        Vector3 hitPoint, Vector3 hitNormal)
+    {
         // 아직 사망하지 않은 경우에만 피격 효과 재생
         if (!dead)
         {
@@ -150,8 +165,8 @@ public class Enemy : LivingEntity {
     }
 
     // 사망 처리
-    [PunRPC]
-    public override void Die() {
+    public override void Die()
+    {
         // LivingEntity의 Die()를 실행하여 기본 사망 처리 실행
         base.Die();
 
@@ -173,7 +188,13 @@ public class Enemy : LivingEntity {
         enemyAudioPlayer.PlayOneShot(deathSound);
     }
 
-    private void OnTriggerStay(Collider other) {
+    private void OnTriggerStay(Collider other)
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 자신이 사망하지 않았으며,
         // 최근 공격 시점에서 timeBetAttack 이상 시간이 지났다면 공격 가능
         if (!dead && Time.time >= lastAttackTime + timeBetAttack)
@@ -195,8 +216,7 @@ public class Enemy : LivingEntity {
                     = transform.position - other.transform.position;
 
                 // 공격 실행
-                attackTarget.photonView.RPC("OnDamage", RpcTarget.All, damage, hitPoint,
-                    hitNormal);
+                attackTarget.OnDamage(damage, hitPoint, hitNormal);
             }
         }
     }

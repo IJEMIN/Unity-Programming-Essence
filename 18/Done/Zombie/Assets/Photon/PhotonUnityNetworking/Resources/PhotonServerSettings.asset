@@ -39,4 +39,12 @@ MonoBehaviour:
   - UpdateHealth
   - ProcessShotEffect
   - DestroyByServer
+  - ShotProcessOnServer
+  - ShotEffectProcessOnClients
+  - UpdateHealthByServer
+  - ApplyUpdatedHealth
+  - AddNewAmmo
+  - AddAmmo
+  - ApplyUpdatedAmmo
+  - ApplyUpdatedSkin
   DisableAutoOpenWizard: 1
