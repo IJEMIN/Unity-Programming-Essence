@@ -25,7 +25,6 @@ public class PlayerHealth : LivingEntity {
         playerShooter = GetComponent<PlayerShooter>();
     }
 
-
     protected override void OnEnable() {
         // LivingEntity의 OnEnable() 실행 (상태 초기화)
         base.OnEnable();
@@ -66,14 +65,6 @@ public class PlayerHealth : LivingEntity {
         base.OnDamage(damage, hitPoint, hitDirection);
         // 갱신된 체력을 체력 슬라이더에 반영
         healthSlider.value = health;
-    }
-
-    // 체력 동기화가 지연된 경우를 대비하여, 매 프레임 체력 슬라이더를 갱신
-    void Update() {
-        if (!dead)
-        {
-            healthSlider.value = health;
-        }
     }
 
     public override void Die() {
