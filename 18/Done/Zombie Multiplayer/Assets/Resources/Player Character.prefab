@@ -102,9 +102,9 @@ GameObject:
   - component: {fileID: 114099988342005996}
   - component: {fileID: 114077459051816764}
   - component: {fileID: 114051529243828206}
-  - component: {fileID: 114635706721382326}
-  - component: {fileID: 114648348064156270}
   - component: {fileID: 114654284721293748}
+  - component: {fileID: 114648348064156270}
+  - component: {fileID: 114635706721382326}
   - component: {fileID: 114608082312623796}
   m_Layer: 9
   m_Name: Player Character
@@ -2611,7 +2611,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 4
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114608082312623796
 MonoBehaviour:
@@ -2691,7 +2691,7 @@ MonoBehaviour:
   - {fileID: 114608082312623796}
   - {fileID: 114635706721382326}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114654284721293748
 MonoBehaviour:

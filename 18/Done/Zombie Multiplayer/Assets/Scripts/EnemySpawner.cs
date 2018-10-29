@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using UnityEngine;
 
@@ -43,6 +44,11 @@ public class EnemySpawner : MonoBehaviourPun, IPunObservable {
             // 현재 웨이브를 네트워크를 통해 받기 
             wave = (int) stream.ReceiveNext();
         }
+    }
+
+    void Awake() {
+        PhotonPeer.RegisterType(typeof(Color), 128, ColorSerialization.SerializeColor,
+            ColorSerialization.DeserializeColor);
     }
 
     private void Update() {
@@ -121,7 +127,8 @@ public class EnemySpawner : MonoBehaviourPun, IPunObservable {
         Enemy enemy = createdEnemy.GetComponent<Enemy>();
 
         // 생성한 적의 능력치와 추적 대상 설정
-        enemy.Setup(health, damage, speed, skinColor, null);
+        enemy.photonView.RPC("Setup", RpcTarget.All, health, damage, speed,
+            skinColor);
 
         // 생성된 적을 리스트에 추가
         enemies.Add(enemy);

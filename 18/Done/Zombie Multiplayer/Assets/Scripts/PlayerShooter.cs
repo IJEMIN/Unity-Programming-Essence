@@ -29,7 +29,7 @@ public class PlayerShooter : MonoBehaviourPun {
     }
 
     private void Update() {
-        // 로컬 플레이어만 총을 직접 사격 가능
+        // 로컬 플레이어만 총을 직접 사격, 탄약 UI 갱신 가능
         if (!photonView.IsMine)
         {
             return;
@@ -57,12 +57,6 @@ public class PlayerShooter : MonoBehaviourPun {
 
     // 탄약 UI 갱신
     private void UpdateUI() {
-        // 로컬 플레이어만 탄약 UI 갱신 가능
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-
         if (gun != null && UIManager.instance != null)
         {
             // UI 매니저의 탄약 텍스트에 탄창의 탄약과 남은 전체 탄약을 표시

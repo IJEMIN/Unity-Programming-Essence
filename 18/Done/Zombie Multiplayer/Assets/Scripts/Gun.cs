@@ -2,7 +2,6 @@
 using Photon.Pun;
 using UnityEngine;
 
-
 // 총을 구현한다
 public class Gun : MonoBehaviourPun {
     // 총의 상태를 표현하는데 사용할 타입을 선언한다
@@ -173,15 +172,9 @@ public class Gun : MonoBehaviourPun {
             return false;
         }
 
-        // 재장전 처리를 모든 클라이언트에서 실행
-        photonView.RPC("ReloadRoutineRPC", RpcTarget.All);
-        return true;
-    }
-
-    // 재장전 코루틴을 랩핑하는 메서드
-    [PunRPC]
-    private void ReloadRoutineRPC() {
+        // 재장전 처리 실행
         StartCoroutine(ReloadRoutine());
+        return true;
     }
 
     // 실제 재장전 처리를 진행
