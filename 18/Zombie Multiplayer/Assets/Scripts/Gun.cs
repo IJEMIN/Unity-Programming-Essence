@@ -2,7 +2,6 @@
 using Photon.Pun;
 using UnityEngine;
 
-
 // 총을 구현한다
 public class Gun : MonoBehaviourPun {
     // 총의 상태를 표현하는데 사용할 타입을 선언한다

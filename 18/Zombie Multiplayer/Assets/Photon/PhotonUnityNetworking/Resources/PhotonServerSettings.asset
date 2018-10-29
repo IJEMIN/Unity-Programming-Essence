@@ -39,4 +39,5 @@ MonoBehaviour:
   - RestoreHealth
   - ShotEffectProcessOnClients
   - ShotProcessOnServer
+  - Setup
   DisableAutoOpenWizard: 1

@@ -50,8 +50,9 @@ public class Enemy : LivingEntity {
     }
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
+    [PunRPC]
     public void Setup(float newHealth, float newDamage,
-        float newSpeed, Color skinColor, LivingEntity newTarget) {
+        float newSpeed, Color skinColor) {
         // 체력 설정
         startingHealth = newHealth;
         health = newHealth;
@@ -61,20 +62,6 @@ public class Enemy : LivingEntity {
         pathFinder.speed = newSpeed;
         // 렌더러가 사용중인 머테리얼의 컬러를 변경, 외형 색이 변함
         enemyRenderer.material.color = skinColor;
-
-        // 다른 클라이언트들에게 같은 색을 적용
-        photonView.RPC("ApplyUpdatedSkin", RpcTarget.Others, skinColor.r, skinColor.g,
-            skinColor.b);
-
-        // AI가 추적할 대상을 지정
-        targetEntity = newTarget;
-    }
-
-    // Setup 함수를 직접 실행하지 못한 다른 클라이언트들의 Enemy 오브젝트들이
-    // 마스터 클라이언트로부터 색을 전달받아 적용하기 위한 메서드
-    [PunRPC]
-    void ApplyUpdatedSkin(float r, float g, float b) {
-        enemyRenderer.material.color = new Color(r, g, b, 1f);
     }
 
     private void Start() {
