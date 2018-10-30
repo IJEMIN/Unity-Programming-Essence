@@ -47,12 +47,13 @@ public class ItemSpawner : MonoBehaviourPun {
         // 바닥에서 0.5만큼 위로 올리기
         spawnPosition += Vector3.up * 0.5f;
 
-        // 생성할 아이템을 무작위로 하나 선택하고, 선택한 아이템의 이름을 가져옴
-        string itemToCreate = items[Random.Range(0, items.Length)].name;
+        // 생성할 아이템을 무작위로 하나 선택
+        GameObject itemToCreate = items[Random.Range(0, items.Length)];
 
         // 네트워크의 모든 클라이언트에서 해당 아이템 생성
         GameObject item =
-            PhotonNetwork.Instantiate(itemToCreate, spawnPosition, Quaternion.identity);
+            PhotonNetwork.Instantiate(itemToCreate.name, spawnPosition,
+                Quaternion.identity);
 
         // 생성한 아이템을 5초 뒤에 파괴
         StartCoroutine(DestroyAfter(item, 5f));
@@ -69,7 +70,6 @@ public class ItemSpawner : MonoBehaviourPun {
             PhotonNetwork.Destroy(target);
         }
     }
-
 
     // 네브 메시 위의 랜덤한 위치를 반환하는 메서드
     // center를 중심으로 distance 반경 안에서 랜덤한 위치를 찾는다.

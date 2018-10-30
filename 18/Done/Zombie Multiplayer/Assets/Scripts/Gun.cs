@@ -3,7 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 
 // 총을 구현한다
-public class Gun : MonoBehaviourPun {
+public class Gun : MonoBehaviourPun, IPunObservable {
     // 총의 상태를 표현하는데 사용할 타입을 선언한다
     public enum State {
         Ready, // 발사 준비됨
@@ -31,16 +31,38 @@ public class Gun : MonoBehaviourPun {
     public int magCapacity = 25; // 탄창 용량
     public int magAmmo; // 현재 탄창에 남아있는 탄약
 
-
     public float timeBetFire = 0.12f; // 총알 발사 간격
     public float reloadTime = 1.8f; // 재장전 소요 시간
     private float lastFireTime; // 총을 마지막으로 발사한 시점
 
+    // 주기적으로 자동 실행되는, 동기화 메서드
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        // 로컬 오브젝트라면 쓰기 부분이 실행됨
+        if (stream.IsWriting)
+        {
+            // 남은 탄약수를 네트워크를 통해 보내기
+            stream.SendNext(ammoRemain);
+            // 탄창의 탄약수를 네트워크를 통해 보내기
+            stream.SendNext(magAmmo);
+            // 현재 총의 상태를 네트워크를 통해 보내기
+            stream.SendNext(state);
+        }
+        else
+        {
+            // 리모트 오브젝트라면 읽기 부분이 실행됨
+            // 남은 탄약수를 네트워크를 통해 받기
+            ammoRemain = (int) stream.ReceiveNext();
+            // 탄창의 탄약수를 네트워크를 통해 받기
+            magAmmo = (int) stream.ReceiveNext();
+            // 현재 총의 상태를 네트워크를 통해 받기
+            state = (State) stream.ReceiveNext();
+        }
+    }
 
     // 남은 탄약을 추가하는 메서드
     [PunRPC]
-    public void AddAmmo(int newAmmo) {
-        ammoRemain += newAmmo;
+    public void AddAmmo(int ammo) {
+        ammoRemain += ammo;
     }
 
     private void Awake() {

@@ -12,31 +12,31 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 
     // 게임 실행과 동시에 마스터 서버 접속 시도
     private void Start() {
-
+        
     }
 
     // 마스터 서버 접속 성공시 자동 실행
     public override void OnConnectedToMaster() {
-      
+        
     }
 
     // 마스터 서버 접속 실패시 자동 실행
     public override void OnDisconnected(DisconnectCause cause) {
-      
+        
     }
 
     // 룸 접속 시도
     public void Connect() {
-
+        
     }
 
     // (빈 방이 없어)랜덤 룸 참가에 실패한 경우 자동 실행
     public override void OnJoinRandomFailed(short returnCode, string message) {
-
+        
     }
 
     // 룸에 참가 완료된 경우 자동 실행
     public override void OnJoinedRoom() {
-
+        
     }
 }

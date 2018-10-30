@@ -23,21 +23,24 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
 
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
-    public GameObject playerPrefab;
+    public GameObject playerPrefab; // 생성할 플레이어 캐릭터 프리팹
 
     private int score = 0; // 현재 게임 점수
     public bool isGameover { get; private set; } // 게임 오버 상태
 
-    // 점수 동기화
+    // 주기적으로 자동 실행되는, 동기화 메서드
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        // 호스트는 점수를 쓰기로 보냄
+        // 로컬 오브젝트라면 쓰기 부분이 실행됨
         if (stream.IsWriting)
         {
+            // 네트워크를 통해 score 값을 보내기
             stream.SendNext(score);
         }
         else
         {
-            // 다른 클라이언트들은 점수를 읽기로 받음
+            // 리모트 오브젝트라면 읽기 부분이 실행됨         
+
+            // 네트워크를 통해 score 값 받기
             score = (int) stream.ReceiveNext();
             // 동기화하여 받은 점수를 UI로 표시
             UIManager.instance.UpdateScoreText(score);
@@ -90,13 +93,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            LeaveRoom();
+            PhotonNetwork.LeaveRoom();
         }
-    }
-
-    // 룸 나가기
-    public void LeaveRoom() {
-        PhotonNetwork.LeaveRoom();
     }
 
     // 룸을 나갈때 자동 실행되는 메서드

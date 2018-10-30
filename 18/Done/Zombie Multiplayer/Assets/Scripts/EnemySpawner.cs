@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviourPun, IPunObservable {
 
     private List<Enemy> enemies = new List<Enemy>(); // 생성된 적들을 담는 리스트
 
-    private int enemyCount = 0;
+    private int enemyCount = 0; // 남은 적의 수
     private int wave; // 현재 웨이브
 
     // 주기적으로 자동 실행되는, 동기화 메서드
@@ -122,7 +122,7 @@ public class EnemySpawner : MonoBehaviourPun, IPunObservable {
         GameObject createdEnemy = PhotonNetwork.Instantiate(enemyPrefab.gameObject.name,
             spawnPoint.position,
             spawnPoint.rotation);
-
+        
         // 생성한 적을 셋업하기 위해 Enemy 컴포넌트를 가져옴
         Enemy enemy = createdEnemy.GetComponent<Enemy>();
 
@@ -140,13 +140,13 @@ public class EnemySpawner : MonoBehaviourPun, IPunObservable {
         enemy.onDeath += () => StartCoroutine(DestroyAfter(enemy.gameObject, 10f));
         // 적 사망시 점수 상승
         enemy.onDeath += () => GameManager.instance.AddScore(100);
-    }
+        }
 
     // 포톤의 Network.Destroy()는 지연 파괴를 지원하지 않으므로 지연 파괴를 직접 구현함
     IEnumerator DestroyAfter(GameObject target, float delay) {
         // delay 만큼 쉬고
         yield return new WaitForSeconds(delay);
-
+    
         // target이 아직 파괴되지 않았다면
         if (target != null)
         {
