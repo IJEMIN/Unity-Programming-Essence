@@ -5,7 +5,10 @@ using UnityEngine.AI; // AI, 내비게이션 시스템 관련 코드를 가져�
 
 // 적 AI를 구현한다
 public class Enemy : LivingEntity {
-    public LivingEntity targetEntity; // 추적할 대상
+
+    public LayerMask whatIsTarget; // 추적 대상 레이어
+
+    private LivingEntity targetEntity; // 추적할 대상
     private NavMeshAgent pathFinder; // 경로계산 AI 에이전트
 
     public ParticleSystem hitEffect; // 피격시 재생할 파티클 효과
@@ -20,7 +23,6 @@ public class Enemy : LivingEntity {
     public float timeBetAttack = 0.5f; // 공격 간격
     private float lastAttackTime; // 마지막 공격 시점
 
-    public LayerMask targetLayer; // 공격 대상
 
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
@@ -51,8 +53,7 @@ public class Enemy : LivingEntity {
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
     [PunRPC]
-    public void Setup(float newHealth, float newDamage,
-        float newSpeed, Color skinColor) {
+    public void Setup(float newHealth, float newDamage, float newSpeed, Color skinColor) {
         // 체력 설정
         startingHealth = newHealth;
         health = newHealth;
@@ -106,7 +107,7 @@ public class Enemy : LivingEntity {
                 // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
                 // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
                 Collider[] colliders =
-                    Physics.OverlapSphere(transform.position, 20f, targetLayer);
+                    Physics.OverlapSphere(transform.position, 20f, whatIsTarget);
 
                 // 모든 콜라이더들을 순회하면서, 살아있는 플레이어를 찾기
                 for (int i = 0; i < colliders.Length; i++)

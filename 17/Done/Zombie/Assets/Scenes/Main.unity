@@ -1024,7 +1024,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 114480822159471870, guid: c70cb3fc01ce548b3b8d4cdcd442e679,
     type: 2}
-  targetEntity: {fileID: 1503011527}
   spawnPoints:
   - {fileID: 1208000544}
   - {fileID: 1208000543}
@@ -1156,6 +1155,10 @@ Prefab:
     - target: {fileID: 100000, guid: 98cdee121d6e440de9fb99a7c24fa0da, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 98cdee121d6e440de9fb99a7c24fa0da, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98cdee121d6e440de9fb99a7c24fa0da, type: 3}

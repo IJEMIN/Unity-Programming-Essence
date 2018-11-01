@@ -4,7 +4,9 @@ using UnityEngine.AI; // AI, 내비게이션 시스템 관련 코드를 가져�
 
 // 적 AI를 구현한다
 public class Enemy : LivingEntity {
-    public LivingEntity targetEntity; // 추적할 대상
+    public LayerMask whatIsTarget;
+
+    private LivingEntity targetEntity; // 추적할 대상
     private NavMeshAgent pathFinder; // 경로계산 AI 에이전트
 
     public ParticleSystem hitEffect; // 피격시 재생할 파티클 효과
@@ -40,8 +42,8 @@ public class Enemy : LivingEntity {
     }
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
-    public void Setup(float newHealth, float newDamage, float newSpeed, Color skinColor,
-        LivingEntity newTarget) {
+    public void Setup(float newHealth, float newDamage, float newSpeed, Color skinColor) {
+        
     }
 
     private void Start() {

@@ -4,7 +4,9 @@ using UnityEngine.AI; // AI, 내비게이션 시스템 관련 코드를 가져�
 
 // 적 AI를 구현한다
 public class Enemy : LivingEntity {
-    public LivingEntity targetEntity; // 추적할 대상
+    public LayerMask whatIsTarget; // 추적 대상 레이어
+
+    private LivingEntity targetEntity; // 추적할 대상
     private NavMeshAgent pathFinder; // 경로계산 AI 에이전트
 
     public ParticleSystem hitEffect; // 피격시 재생할 파티클 효과
@@ -47,8 +49,7 @@ public class Enemy : LivingEntity {
     }
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
-    public void Setup(float newHealth, float newDamage,
-        float newSpeed, Color skinColor, LivingEntity newTarget) {
+    public void Setup(float newHealth, float newDamage, float newSpeed, Color skinColor) {
         // 체력 설정
         startingHealth = newHealth;
         // 공격력 설정
@@ -57,8 +58,6 @@ public class Enemy : LivingEntity {
         pathFinder.speed = newSpeed;
         // 렌더러가 사용중인 머테리얼의 컬러를 변경, 외형 색이 변함
         enemyRenderer.material.color = skinColor;
-        // AI가 추적할 대상을 지정
-        targetEntity = newTarget;
     }
 
     private void Start() {
@@ -87,6 +86,30 @@ public class Enemy : LivingEntity {
             {
                 // 추적 대상 없음 : AI 이동 중지
                 pathFinder.isStopped = true;
+
+                // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
+                // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
+                Collider[] colliders =
+                    Physics.OverlapSphere(transform.position, 20f, whatIsTarget);
+
+                // 모든 콜라이더들을 순회하면서, 살아있는 플레이어를 찾기
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    // 콜라이더로부터 LivingEntity 컴포넌트 가져오기
+                    LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
+
+                    // LivingEntity 컴포넌트가 존재하며, 해당 LivingEntity가 살아있다면,
+                    if (livingEntity != null && !livingEntity.dead)
+                    {
+                        // 추적 대상을 해당 LivingEntity로 설정
+                        targetEntity = livingEntity;
+                        // 추적 대상이 존재하므로 AI 이동을 계속 진행
+                        pathFinder.isStopped = false;
+
+                        // for문 루프 즉시 정지
+                        break;
+                    }
+                }
             }
 
             // 0.25초 주기로 처리 반복

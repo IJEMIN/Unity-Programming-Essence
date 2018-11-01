@@ -4,8 +4,7 @@ using UnityEngine;
 // 적 게임 오브젝트를 주기적으로 생성
 public class EnemySpawner : MonoBehaviour {
     public Enemy enemyPrefab; // 생성할 적 AI
-    public LivingEntity targetEntity; // 생성되는 적 AI들이 추적할 대상
-
+    
     public Transform[] spawnPoints; // 적 AI를 소환할 위치들
 
     public float damageMax = 40f; // 최대 공격력

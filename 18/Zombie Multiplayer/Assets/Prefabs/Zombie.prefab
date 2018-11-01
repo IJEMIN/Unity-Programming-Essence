@@ -1759,15 +1759,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  targetEntity: {fileID: 0}
+  whatIsTarget:
+    serializedVersion: 2
+    m_Bits: 512
   hitEffect: {fileID: 198994151060198714}
   deathSound: {fileID: 8300000, guid: b86f03005ed394911b43027aeaaedeb7, type: 3}
   hitSound: {fileID: 8300000, guid: c3d8accfc053f004ca665a1c8c4a6919, type: 3}
   damage: 20
   timeBetAttack: 0.5
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!136 &136673845010476024
 CapsuleCollider:
   m_ObjectHideFlags: 1
