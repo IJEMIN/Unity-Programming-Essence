@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/unity
 
 ### Unity ###
+/*/*/[Ll]ogs/
 /*/*/[Ll]ibrary/
 /*/*/[Tt]emp/
 /*/*/[Oo]bj/
@@ -10,6 +11,7 @@
 /*/*/Assets/AssetStoreTools*
 
 ### Unity Done ###
+/*/*/*/[Ll]ogs/
 /*/*/*/[Ll]ibrary/
 /*/*/*/[Tt]emp/
 /*/*/*/[Oo]bj/

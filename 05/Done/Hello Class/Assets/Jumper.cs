@@ -6,6 +6,6 @@ public class Jumper : MonoBehaviour {
     public Rigidbody myRigidbody;
 
     void Start() {
-        myRigidbody.AddForce(0, 1000, 0);
+        myRigidbody.AddForce(0, 500, 0);
     }
 }

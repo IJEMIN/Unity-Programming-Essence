@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HelloCode : MonoBehaviour {
-    
     void Start() {
         // Hello World!를 콘솔에 출력
         Debug.Log("Hello World!");
@@ -45,6 +44,19 @@ public class HelloCode : MonoBehaviour {
             Debug.Log("배드엔딩: 히로인에게 차였다.");
         }
 
+        age = 11;
+
+        if (age > 7 && age < 18)
+        {
+            Debug.Log("의무 교육을 받고 있습니다.");
+        }
+
+        if (age < 13 || age > 70)
+        {
+            Debug.Log("일을 할 수 없는 나이입니다.");
+        }
+
+
         // for문으로 반복하기
         for (int i = 0; i < 10; i++)
         {
@@ -55,7 +67,7 @@ public class HelloCode : MonoBehaviour {
         bool isDead = false;
         int hp = 100;
 
-        while (isDead != true)
+        while (!isDead)
         {
             Debug.Log("현재 체력 : " + hp);
 
