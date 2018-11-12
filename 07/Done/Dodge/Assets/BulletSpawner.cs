@@ -32,8 +32,8 @@ public class BulletSpawner : MonoBehaviour {
 
             // bulletPrefab의 복제본을
             // transform.position 위치와 transform.rotation 회전으로 생성
-            GameObject bullet = Instantiate(bulletPrefab,
-                transform.position, transform.rotation);
+            GameObject bullet
+                = Instantiate(bulletPrefab, transform.position, transform.rotation);
             // 생성된 bullet 게임 오브젝트의 정면 방향이 target을 향하도록 회전
             bullet.transform.LookAt(target);
 
