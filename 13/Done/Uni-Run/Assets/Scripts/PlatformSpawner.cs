@@ -16,7 +16,8 @@ public class PlatformSpawner : MonoBehaviour {
     private GameObject[] platforms; // 미리 생성한 발판들
     private int currentIndex = 0; // 사용할 현재 순번의 발판
 
-    private Vector2 poolPosition = new Vector2(0, -20); // 초반에 생성된 발판들을 화면 밖에 숨겨둘 위치
+    // 초반에 생성된 발판들을 화면 밖에 숨겨둘 위치
+    private Vector2 poolPosition = new Vector2(0, -20);
     private float lastSpawnTime; // 마지막 배치 시점
 
     // 변수들을 초기화하고 사용할 발판들을 미리 생성
@@ -33,6 +34,8 @@ public class PlatformSpawner : MonoBehaviour {
         }
 
         // 마지막 배치 시점 초기화
+        lastSpawnTime = 0f;
+        // 다음번 배치 까지의 시간 간격을 0으로 초기화
         timeBetSpawn = 0f;
     }
 
@@ -49,7 +52,7 @@ public class PlatformSpawner : MonoBehaviour {
             // 기록된 마지막 배치 시점을 현재 시점으로 갱신
             lastSpawnTime = Time.time;
 
-            // 다음번 배치까지의 시간 간격을 timeBetSpawnMin과 timeBetSpawnMax 사이에서 랜덤 설정
+            // 다음 배치까지의 시간 간격을 timeBetSpawnMin, timeBetSpawnMax 사이에서 랜덤 설정
             timeBetSpawn = Random.Range(timeBetSpawnMin, timeBetSpawnMax);
 
             // 배치할 위치의 높이를 yMin과 yMax 사이에서 랜덤 설정
