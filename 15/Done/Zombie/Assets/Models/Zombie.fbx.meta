@@ -1,119 +1,341 @@
 fileFormatVersion: 2
 guid: 6bc76eedb6629574a83870562bc0c4ee
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Head
-    100002: HeadTop_End
-    100004: HeadTop_End_end
-    100006: Hips
-    100008: LeftArm
-    100010: LeftFoot
-    100012: LeftForeArm
-    100014: LeftHand
-    100016: LeftHandIndex1
-    100018: LeftHandIndex2
-    100020: LeftHandIndex3
-    100022: LeftHandIndex4
-    100024: LeftHandIndex4_end
-    100026: LeftHandThumb1
-    100028: LeftHandThumb2
-    100030: LeftHandThumb3
-    100032: LeftHandThumb4
-    100034: LeftHandThumb4_end
-    100036: LeftLeg
-    100038: LeftShoulder
-    100040: LeftToe_End
-    100042: LeftToe_End_end
-    100044: LeftToeBase
-    100046: LeftUpLeg
-    100048: Neck
-    100050: RightArm
-    100052: RightFoot
-    100054: RightForeArm
-    100056: RightHand
-    100058: RightHandIndex1
-    100060: RightHandIndex2
-    100062: RightHandIndex3
-    100064: RightHandIndex4
-    100066: RightHandIndex4_end
-    100068: RightHandThumb1
-    100070: RightHandThumb2
-    100072: RightHandThumb3
-    100074: RightHandThumb4
-    100076: RightHandThumb4_end
-    100078: RightLeg
-    100080: RightShoulder
-    100082: RightToe_End
-    100084: RightToe_End_end
-    100086: RightToeBase
-    100088: RightUpLeg
-    100090: Spine
-    100092: Spine1
-    100094: Spine2
-    100096: //RootNode
-    100098: Zombie
-    100100: Zombie_Cylinder
-    400000: Head
-    400002: HeadTop_End
-    400004: HeadTop_End_end
-    400006: Hips
-    400008: LeftArm
-    400010: LeftFoot
-    400012: LeftForeArm
-    400014: LeftHand
-    400016: LeftHandIndex1
-    400018: LeftHandIndex2
-    400020: LeftHandIndex3
-    400022: LeftHandIndex4
-    400024: LeftHandIndex4_end
-    400026: LeftHandThumb1
-    400028: LeftHandThumb2
-    400030: LeftHandThumb3
-    400032: LeftHandThumb4
-    400034: LeftHandThumb4_end
-    400036: LeftLeg
-    400038: LeftShoulder
-    400040: LeftToe_End
-    400042: LeftToe_End_end
-    400044: LeftToeBase
-    400046: LeftUpLeg
-    400048: Neck
-    400050: RightArm
-    400052: RightFoot
-    400054: RightForeArm
-    400056: RightHand
-    400058: RightHandIndex1
-    400060: RightHandIndex2
-    400062: RightHandIndex3
-    400064: RightHandIndex4
-    400066: RightHandIndex4_end
-    400068: RightHandThumb1
-    400070: RightHandThumb2
-    400072: RightHandThumb3
-    400074: RightHandThumb4
-    400076: RightHandThumb4_end
-    400078: RightLeg
-    400080: RightShoulder
-    400082: RightToe_End
-    400084: RightToe_End_end
-    400086: RightToeBase
-    400088: RightUpLeg
-    400090: Spine
-    400092: Spine1
-    400094: Spine2
-    400096: //RootNode
-    400098: Zombie
-    400100: Zombie_Cylinder
-    2100000: Texture
-    4300000: Zombie_Cylinder
-    7400000: Zombie|ZombieBite
-    7400002: Zombie|ZombieCrawl
-    7400004: Zombie|ZombieIdle
-    7400006: Zombie|ZombieRun
-    7400008: Zombie|ZombieWalk
-    9500000: //RootNode
-    13700000: Zombie_Cylinder
+  serializedVersion: 24
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Head
+  - first:
+      1: 100002
+    second: HeadTop_End
+  - first:
+      1: 100004
+    second: HeadTop_End_end
+  - first:
+      1: 100006
+    second: Hips
+  - first:
+      1: 100008
+    second: LeftArm
+  - first:
+      1: 100010
+    second: LeftFoot
+  - first:
+      1: 100012
+    second: LeftForeArm
+  - first:
+      1: 100014
+    second: LeftHand
+  - first:
+      1: 100016
+    second: LeftHandIndex1
+  - first:
+      1: 100018
+    second: LeftHandIndex2
+  - first:
+      1: 100020
+    second: LeftHandIndex3
+  - first:
+      1: 100022
+    second: LeftHandIndex4
+  - first:
+      1: 100024
+    second: LeftHandIndex4_end
+  - first:
+      1: 100026
+    second: LeftHandThumb1
+  - first:
+      1: 100028
+    second: LeftHandThumb2
+  - first:
+      1: 100030
+    second: LeftHandThumb3
+  - first:
+      1: 100032
+    second: LeftHandThumb4
+  - first:
+      1: 100034
+    second: LeftHandThumb4_end
+  - first:
+      1: 100036
+    second: LeftLeg
+  - first:
+      1: 100038
+    second: LeftShoulder
+  - first:
+      1: 100040
+    second: LeftToe_End
+  - first:
+      1: 100042
+    second: LeftToe_End_end
+  - first:
+      1: 100044
+    second: LeftToeBase
+  - first:
+      1: 100046
+    second: LeftUpLeg
+  - first:
+      1: 100048
+    second: Neck
+  - first:
+      1: 100050
+    second: RightArm
+  - first:
+      1: 100052
+    second: RightFoot
+  - first:
+      1: 100054
+    second: RightForeArm
+  - first:
+      1: 100056
+    second: RightHand
+  - first:
+      1: 100058
+    second: RightHandIndex1
+  - first:
+      1: 100060
+    second: RightHandIndex2
+  - first:
+      1: 100062
+    second: RightHandIndex3
+  - first:
+      1: 100064
+    second: RightHandIndex4
+  - first:
+      1: 100066
+    second: RightHandIndex4_end
+  - first:
+      1: 100068
+    second: RightHandThumb1
+  - first:
+      1: 100070
+    second: RightHandThumb2
+  - first:
+      1: 100072
+    second: RightHandThumb3
+  - first:
+      1: 100074
+    second: RightHandThumb4
+  - first:
+      1: 100076
+    second: RightHandThumb4_end
+  - first:
+      1: 100078
+    second: RightLeg
+  - first:
+      1: 100080
+    second: RightShoulder
+  - first:
+      1: 100082
+    second: RightToe_End
+  - first:
+      1: 100084
+    second: RightToe_End_end
+  - first:
+      1: 100086
+    second: RightToeBase
+  - first:
+      1: 100088
+    second: RightUpLeg
+  - first:
+      1: 100090
+    second: Spine
+  - first:
+      1: 100092
+    second: Spine1
+  - first:
+      1: 100094
+    second: Spine2
+  - first:
+      1: 100096
+    second: //RootNode
+  - first:
+      1: 100098
+    second: Zombie
+  - first:
+      1: 100100
+    second: Zombie_Cylinder
+  - first:
+      4: 400000
+    second: Head
+  - first:
+      4: 400002
+    second: HeadTop_End
+  - first:
+      4: 400004
+    second: HeadTop_End_end
+  - first:
+      4: 400006
+    second: Hips
+  - first:
+      4: 400008
+    second: LeftArm
+  - first:
+      4: 400010
+    second: LeftFoot
+  - first:
+      4: 400012
+    second: LeftForeArm
+  - first:
+      4: 400014
+    second: LeftHand
+  - first:
+      4: 400016
+    second: LeftHandIndex1
+  - first:
+      4: 400018
+    second: LeftHandIndex2
+  - first:
+      4: 400020
+    second: LeftHandIndex3
+  - first:
+      4: 400022
+    second: LeftHandIndex4
+  - first:
+      4: 400024
+    second: LeftHandIndex4_end
+  - first:
+      4: 400026
+    second: LeftHandThumb1
+  - first:
+      4: 400028
+    second: LeftHandThumb2
+  - first:
+      4: 400030
+    second: LeftHandThumb3
+  - first:
+      4: 400032
+    second: LeftHandThumb4
+  - first:
+      4: 400034
+    second: LeftHandThumb4_end
+  - first:
+      4: 400036
+    second: LeftLeg
+  - first:
+      4: 400038
+    second: LeftShoulder
+  - first:
+      4: 400040
+    second: LeftToe_End
+  - first:
+      4: 400042
+    second: LeftToe_End_end
+  - first:
+      4: 400044
+    second: LeftToeBase
+  - first:
+      4: 400046
+    second: LeftUpLeg
+  - first:
+      4: 400048
+    second: Neck
+  - first:
+      4: 400050
+    second: RightArm
+  - first:
+      4: 400052
+    second: RightFoot
+  - first:
+      4: 400054
+    second: RightForeArm
+  - first:
+      4: 400056
+    second: RightHand
+  - first:
+      4: 400058
+    second: RightHandIndex1
+  - first:
+      4: 400060
+    second: RightHandIndex2
+  - first:
+      4: 400062
+    second: RightHandIndex3
+  - first:
+      4: 400064
+    second: RightHandIndex4
+  - first:
+      4: 400066
+    second: RightHandIndex4_end
+  - first:
+      4: 400068
+    second: RightHandThumb1
+  - first:
+      4: 400070
+    second: RightHandThumb2
+  - first:
+      4: 400072
+    second: RightHandThumb3
+  - first:
+      4: 400074
+    second: RightHandThumb4
+  - first:
+      4: 400076
+    second: RightHandThumb4_end
+  - first:
+      4: 400078
+    second: RightLeg
+  - first:
+      4: 400080
+    second: RightShoulder
+  - first:
+      4: 400082
+    second: RightToe_End
+  - first:
+      4: 400084
+    second: RightToe_End_end
+  - first:
+      4: 400086
+    second: RightToeBase
+  - first:
+      4: 400088
+    second: RightUpLeg
+  - first:
+      4: 400090
+    second: Spine
+  - first:
+      4: 400092
+    second: Spine1
+  - first:
+      4: 400094
+    second: Spine2
+  - first:
+      4: 400096
+    second: //RootNode
+  - first:
+      4: 400098
+    second: Zombie
+  - first:
+      4: 400100
+    second: Zombie_Cylinder
+  - first:
+      21: 2100000
+    second: Texture
+  - first:
+      43: 4300000
+    second: Zombie_Cylinder
+  - first:
+      74: 7400000
+    second: Zombie|ZombieBite
+  - first:
+      74: 7400002
+    second: Zombie|ZombieCrawl
+  - first:
+      74: 7400004
+    second: Zombie|ZombieIdle
+  - first:
+      74: 7400006
+    second: Zombie|ZombieRun
+  - first:
+      74: 7400008
+    second: Zombie|ZombieWalk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Zombie_Cylinder
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -129,22 +351,13 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Zombie|ZombieBite':\n\tRetargeting
-      quality is good. No significant differences with original animation were found.\n\nRetargeting
-      quality report for clip 'Zombie|ZombieCrawl':\n\tRightLowerLeg average position
-      error 0.3 mm and maximum position error 1.3 mm at time 0:11 (8.9%) Frame 11\n\nRetargeting
-      quality report for clip 'Zombie|ZombieIdle':\n\tRetargeting quality is good.
-      No significant differences with original animation were found.\n\nRetargeting
-      quality report for clip 'Zombie|ZombieRun':\n\tRetargeting quality is good.
-      No significant differences with original animation were found.\n\nRetargeting
-      quality report for clip 'Zombie|ZombieWalk':\n\tLeftLowerArm average position
-      error 0.2 mm and maximum position error 1.1 mm at time 0:14 (14.6%) Frame 14\n"
+    animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -159,6 +372,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Zombie|ZombieBite
       takeName: Zombie|ZombieBite
+      internalID: 0
       firstFrame: 0
       lastFrame: 122
       wrapMode: 0
@@ -289,6 +503,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Zombie|ZombieCrawl
       takeName: Zombie|ZombieCrawl
+      internalID: 0
       firstFrame: 0
       lastFrame: 123
       wrapMode: 0
@@ -419,6 +634,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Zombie|ZombieIdle
       takeName: Zombie|ZombieIdle
+      internalID: 0
       firstFrame: 0
       lastFrame: 134
       wrapMode: 0
@@ -549,6 +765,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Zombie|ZombieRun
       takeName: Zombie|ZombieRun
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -679,6 +896,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Zombie|ZombieWalk
       takeName: Zombie|ZombieWalk
+      internalID: 0
       firstFrame: 0
       lastFrame: 96
       wrapMode: 0
@@ -812,6 +1030,7 @@ ModelImporter:
     globalScale: 0.2
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -819,10 +1038,13 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -836,6 +1058,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 0
   copyAvatar: 0
   humanDescription:
@@ -1379,7 +1604,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1

@@ -1,125 +1,359 @@
 fileFormatVersion: 2
 guid: 98cdee121d6e440de9fb99a7c24fa0da
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Armature
-    100004: Head
-    100006: HeadTop_End
-    100008: HeadTop_End_end
-    100010: Hips
-    100012: LeftArm
-    100014: LeftFoot
-    100016: LeftForeArm
-    100018: LeftHand
-    100020: LeftHandIndex1
-    100022: LeftHandIndex2
-    100024: LeftHandIndex3
-    100026: LeftHandIndex4
-    100028: LeftHandIndex4_end
-    100030: LeftHandThumb1
-    100032: LeftHandThumb2
-    100034: LeftHandThumb3
-    100036: LeftHandThumb4
-    100038: LeftHandThumb4_end
-    100040: LeftLeg
-    100042: LeftShoulder
-    100044: LeftToe_End
-    100046: LeftToe_End_end
-    100048: LeftToeBase
-    100050: LeftUpLeg
-    100052: Neck
-    100054: RightArm
-    100056: RightFoot
-    100058: RightForeArm
-    100060: RightHand
-    100062: RightHandIndex1
-    100064: RightHandIndex2
-    100066: RightHandIndex3
-    100068: RightHandIndex4
-    100070: RightHandIndex4_end
-    100072: RightHandThumb1
-    100074: RightHandThumb2
-    100076: RightHandThumb3
-    100078: RightHandThumb4
-    100080: RightHandThumb4_end
-    100082: RightLeg
-    100084: RightShoulder
-    100086: RightToe_End
-    100088: RightToe_End_end
-    100090: RightToeBase
-    100092: RightUpLeg
-    100094: Spine
-    100096: Spine1
-    100098: Spine2
-    100100: Woman
-    400000: //RootNode
-    400002: Armature
-    400004: Head
-    400006: HeadTop_End
-    400008: HeadTop_End_end
-    400010: Hips
-    400012: LeftArm
-    400014: LeftFoot
-    400016: LeftForeArm
-    400018: LeftHand
-    400020: LeftHandIndex1
-    400022: LeftHandIndex2
-    400024: LeftHandIndex3
-    400026: LeftHandIndex4
-    400028: LeftHandIndex4_end
-    400030: LeftHandThumb1
-    400032: LeftHandThumb2
-    400034: LeftHandThumb3
-    400036: LeftHandThumb4
-    400038: LeftHandThumb4_end
-    400040: LeftLeg
-    400042: LeftShoulder
-    400044: LeftToe_End
-    400046: LeftToe_End_end
-    400048: LeftToeBase
-    400050: LeftUpLeg
-    400052: Neck
-    400054: RightArm
-    400056: RightFoot
-    400058: RightForeArm
-    400060: RightHand
-    400062: RightHandIndex1
-    400064: RightHandIndex2
-    400066: RightHandIndex3
-    400068: RightHandIndex4
-    400070: RightHandIndex4_end
-    400072: RightHandThumb1
-    400074: RightHandThumb2
-    400076: RightHandThumb3
-    400078: RightHandThumb4
-    400080: RightHandThumb4_end
-    400082: RightLeg
-    400084: RightShoulder
-    400086: RightToe_End
-    400088: RightToe_End_end
-    400090: RightToeBase
-    400092: RightUpLeg
-    400094: Spine
-    400096: Spine1
-    400098: Spine2
-    400100: Woman
-    2100000: Texture
-    4300000: Woman
-    7400000: Armature|Death
-    7400002: Armature|Idle
-    7400004: Armature|Jump
-    7400006: Armature|Jump2
-    7400008: Armature|PickUp
-    7400010: Armature|Punch
-    7400012: Armature|Running
-    7400014: Armature|SitIdle
-    7400016: Armature|Sitting
-    7400018: Armature|Walking
-    9500000: //RootNode
-    13700000: Woman
-    2186277476908879412: ImportLogs
+  serializedVersion: 24
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Armature
+  - first:
+      1: 100004
+    second: Head
+  - first:
+      1: 100006
+    second: HeadTop_End
+  - first:
+      1: 100008
+    second: HeadTop_End_end
+  - first:
+      1: 100010
+    second: Hips
+  - first:
+      1: 100012
+    second: LeftArm
+  - first:
+      1: 100014
+    second: LeftFoot
+  - first:
+      1: 100016
+    second: LeftForeArm
+  - first:
+      1: 100018
+    second: LeftHand
+  - first:
+      1: 100020
+    second: LeftHandIndex1
+  - first:
+      1: 100022
+    second: LeftHandIndex2
+  - first:
+      1: 100024
+    second: LeftHandIndex3
+  - first:
+      1: 100026
+    second: LeftHandIndex4
+  - first:
+      1: 100028
+    second: LeftHandIndex4_end
+  - first:
+      1: 100030
+    second: LeftHandThumb1
+  - first:
+      1: 100032
+    second: LeftHandThumb2
+  - first:
+      1: 100034
+    second: LeftHandThumb3
+  - first:
+      1: 100036
+    second: LeftHandThumb4
+  - first:
+      1: 100038
+    second: LeftHandThumb4_end
+  - first:
+      1: 100040
+    second: LeftLeg
+  - first:
+      1: 100042
+    second: LeftShoulder
+  - first:
+      1: 100044
+    second: LeftToe_End
+  - first:
+      1: 100046
+    second: LeftToe_End_end
+  - first:
+      1: 100048
+    second: LeftToeBase
+  - first:
+      1: 100050
+    second: LeftUpLeg
+  - first:
+      1: 100052
+    second: Neck
+  - first:
+      1: 100054
+    second: RightArm
+  - first:
+      1: 100056
+    second: RightFoot
+  - first:
+      1: 100058
+    second: RightForeArm
+  - first:
+      1: 100060
+    second: RightHand
+  - first:
+      1: 100062
+    second: RightHandIndex1
+  - first:
+      1: 100064
+    second: RightHandIndex2
+  - first:
+      1: 100066
+    second: RightHandIndex3
+  - first:
+      1: 100068
+    second: RightHandIndex4
+  - first:
+      1: 100070
+    second: RightHandIndex4_end
+  - first:
+      1: 100072
+    second: RightHandThumb1
+  - first:
+      1: 100074
+    second: RightHandThumb2
+  - first:
+      1: 100076
+    second: RightHandThumb3
+  - first:
+      1: 100078
+    second: RightHandThumb4
+  - first:
+      1: 100080
+    second: RightHandThumb4_end
+  - first:
+      1: 100082
+    second: RightLeg
+  - first:
+      1: 100084
+    second: RightShoulder
+  - first:
+      1: 100086
+    second: RightToe_End
+  - first:
+      1: 100088
+    second: RightToe_End_end
+  - first:
+      1: 100090
+    second: RightToeBase
+  - first:
+      1: 100092
+    second: RightUpLeg
+  - first:
+      1: 100094
+    second: Spine
+  - first:
+      1: 100096
+    second: Spine1
+  - first:
+      1: 100098
+    second: Spine2
+  - first:
+      1: 100100
+    second: Woman
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Armature
+  - first:
+      4: 400004
+    second: Head
+  - first:
+      4: 400006
+    second: HeadTop_End
+  - first:
+      4: 400008
+    second: HeadTop_End_end
+  - first:
+      4: 400010
+    second: Hips
+  - first:
+      4: 400012
+    second: LeftArm
+  - first:
+      4: 400014
+    second: LeftFoot
+  - first:
+      4: 400016
+    second: LeftForeArm
+  - first:
+      4: 400018
+    second: LeftHand
+  - first:
+      4: 400020
+    second: LeftHandIndex1
+  - first:
+      4: 400022
+    second: LeftHandIndex2
+  - first:
+      4: 400024
+    second: LeftHandIndex3
+  - first:
+      4: 400026
+    second: LeftHandIndex4
+  - first:
+      4: 400028
+    second: LeftHandIndex4_end
+  - first:
+      4: 400030
+    second: LeftHandThumb1
+  - first:
+      4: 400032
+    second: LeftHandThumb2
+  - first:
+      4: 400034
+    second: LeftHandThumb3
+  - first:
+      4: 400036
+    second: LeftHandThumb4
+  - first:
+      4: 400038
+    second: LeftHandThumb4_end
+  - first:
+      4: 400040
+    second: LeftLeg
+  - first:
+      4: 400042
+    second: LeftShoulder
+  - first:
+      4: 400044
+    second: LeftToe_End
+  - first:
+      4: 400046
+    second: LeftToe_End_end
+  - first:
+      4: 400048
+    second: LeftToeBase
+  - first:
+      4: 400050
+    second: LeftUpLeg
+  - first:
+      4: 400052
+    second: Neck
+  - first:
+      4: 400054
+    second: RightArm
+  - first:
+      4: 400056
+    second: RightFoot
+  - first:
+      4: 400058
+    second: RightForeArm
+  - first:
+      4: 400060
+    second: RightHand
+  - first:
+      4: 400062
+    second: RightHandIndex1
+  - first:
+      4: 400064
+    second: RightHandIndex2
+  - first:
+      4: 400066
+    second: RightHandIndex3
+  - first:
+      4: 400068
+    second: RightHandIndex4
+  - first:
+      4: 400070
+    second: RightHandIndex4_end
+  - first:
+      4: 400072
+    second: RightHandThumb1
+  - first:
+      4: 400074
+    second: RightHandThumb2
+  - first:
+      4: 400076
+    second: RightHandThumb3
+  - first:
+      4: 400078
+    second: RightHandThumb4
+  - first:
+      4: 400080
+    second: RightHandThumb4_end
+  - first:
+      4: 400082
+    second: RightLeg
+  - first:
+      4: 400084
+    second: RightShoulder
+  - first:
+      4: 400086
+    second: RightToe_End
+  - first:
+      4: 400088
+    second: RightToe_End_end
+  - first:
+      4: 400090
+    second: RightToeBase
+  - first:
+      4: 400092
+    second: RightUpLeg
+  - first:
+      4: 400094
+    second: Spine
+  - first:
+      4: 400096
+    second: Spine1
+  - first:
+      4: 400098
+    second: Spine2
+  - first:
+      4: 400100
+    second: Woman
+  - first:
+      21: 2100000
+    second: Texture
+  - first:
+      43: 4300000
+    second: Woman
+  - first:
+      74: 7400000
+    second: Armature|Death
+  - first:
+      74: 7400002
+    second: Armature|Idle
+  - first:
+      74: 7400004
+    second: Armature|Jump
+  - first:
+      74: 7400006
+    second: Armature|Jump2
+  - first:
+      74: 7400008
+    second: Armature|PickUp
+  - first:
+      74: 7400010
+    second: Armature|Punch
+  - first:
+      74: 7400012
+    second: Armature|Running
+  - first:
+      74: 7400014
+    second: Armature|SitIdle
+  - first:
+      74: 7400016
+    second: Armature|Sitting
+  - first:
+      74: 7400018
+    second: Armature|Walking
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Woman
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -135,7 +369,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -156,6 +390,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Death
       takeName: Armature|Death
+      internalID: 0
       firstFrame: 0
       lastFrame: 62
       wrapMode: 0
@@ -286,6 +521,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Idle
       takeName: Armature|Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 200
       wrapMode: 0
@@ -314,6 +550,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Jump
       takeName: Armature|Jump
+      internalID: 0
       firstFrame: 0
       lastFrame: 62
       wrapMode: 0
@@ -342,6 +579,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Jump2
       takeName: Armature|Jump2
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -370,6 +608,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|PickUp
       takeName: Armature|PickUp
+      internalID: 0
       firstFrame: 0
       lastFrame: 143
       wrapMode: 0
@@ -398,6 +637,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Punch
       takeName: Armature|Punch
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -426,6 +666,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Running
       takeName: Armature|Running
+      internalID: 0
       firstFrame: 0
       lastFrame: 17
       wrapMode: 0
@@ -454,6 +695,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|SitIdle
       takeName: Armature|SitIdle
+      internalID: 0
       firstFrame: 0
       lastFrame: 154
       wrapMode: 0
@@ -482,6 +724,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Sitting
       takeName: Armature|Sitting
+      internalID: 0
       firstFrame: 0
       lastFrame: 106
       wrapMode: 0
@@ -510,6 +753,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Walking
       takeName: Armature|Walking
+      internalID: 0
       firstFrame: 0
       lastFrame: 29
       wrapMode: 0
@@ -541,6 +785,7 @@ ModelImporter:
     globalScale: 0.3
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -548,10 +793,13 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -565,6 +813,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 0
   copyAvatar: 0
   humanDescription:
@@ -1108,7 +1359,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
