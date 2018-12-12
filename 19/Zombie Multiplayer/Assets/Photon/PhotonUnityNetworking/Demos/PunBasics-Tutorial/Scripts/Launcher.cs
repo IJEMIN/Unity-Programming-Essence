@@ -15,6 +15,8 @@ using Photon.Realtime;
 
 namespace Photon.Pun.Demo.PunBasics
 {
+	#pragma warning disable 649
+
     /// <summary>
     /// Launch manager. Connect, join a random room or create one if none or all full.
     /// </summary>

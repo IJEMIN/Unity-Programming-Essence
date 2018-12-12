@@ -60,15 +60,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
+  group: 0
+  prefixBackup: -1
+  synchronization: 3
+  ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 11405652}
+  ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
-  InstantiationId: -1
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &11437928
 MonoBehaviour:

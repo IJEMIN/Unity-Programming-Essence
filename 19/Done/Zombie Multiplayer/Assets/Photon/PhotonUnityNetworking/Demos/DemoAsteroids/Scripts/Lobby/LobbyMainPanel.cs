@@ -197,6 +197,11 @@ namespace Photon.Pun.Demo.Asteroids
 
         public void OnBackButtonClicked()
         {
+            if (PhotonNetwork.InLobby)
+            {
+                PhotonNetwork.LeaveLobby();
+            }
+
             SetActivePanel(SelectionPanel.name);
         }
 
@@ -247,8 +252,8 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 PhotonNetwork.JoinLobby();
             }
-            SetActivePanel(RoomListPanel.name);
 
+            SetActivePanel(RoomListPanel.name);
         }
 
         public void OnStartGameButtonClicked()

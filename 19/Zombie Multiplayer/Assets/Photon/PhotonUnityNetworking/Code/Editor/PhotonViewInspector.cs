@@ -24,7 +24,7 @@ namespace Photon.Pun
         public override void OnInspectorGUI()
         {
             this.m_Target = (PhotonView)this.target;
-            bool isProjectPrefab = EditorUtility.IsPersistent(this.m_Target.gameObject);
+			bool isProjectPrefab = PhotonEditorUtils.IsPrefab(this.m_Target.gameObject);
 
             if (this.m_Target.ObservedComponents == null)
             {
@@ -327,7 +327,7 @@ namespace Photon.Pun
 
         private static GameObject GetPrefabParent(GameObject mp)
         {
-            return PrefabUtility.GetCorrespondingObjectFromSource(mp) as GameObject;
+            return PrefabUtility.GetPrefabParent(mp) as GameObject;
         }
     }
 }

@@ -77,12 +77,15 @@ namespace Photon.Pun
 
 			foreach (PhotonView view in pvObjects)
 			{
+		
 				// first pass: fix prefabs to viewID 0 if they got a view number assigned (cause they should not have one!)
-				if (EditorUtility.IsPersistent(view.gameObject))
+				if (PhotonEditorUtils.IsPrefab(view.gameObject))
 				{
 					if (view.ViewID != 0 || view.prefixField != -1)
 					{
-						Debug.LogWarning("PhotonView on persistent object being fixed (id and prefix must be 0). Was: " + view);
+						#if !UNITY_2018_3_OR_NEWER
+							Debug.LogWarning("PhotonView on persistent object being fixed (id and prefix must be 0). Was: " + view);
+						#endif
 						view.ViewID = 0;
 						view.prefixField = -1;
 						EditorUtility.SetDirty(view);   // even in Unity 5.3+ it's OK to SetDirty() for non-scene objects.

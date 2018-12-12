@@ -162,7 +162,7 @@ namespace Photon.Pun
             {
                 if (m_HelpIcon == null)
                 {
-                    m_HelpIcon = AssetDatabase.LoadAssetAtPath("Assets/Photon Unity Networking/Editor/PhotonNetwork/help.png", typeof(Texture2D)) as Texture2D;
+                    m_HelpIcon = AssetDatabase.LoadAssetAtPath("Assets/Photon/PhotonUnityNetworking/Code/Editor/help.png", typeof(Texture2D)) as Texture2D;
                 }
 
                 return m_HelpIcon;

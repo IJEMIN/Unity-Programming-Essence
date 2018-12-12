@@ -132,25 +132,34 @@ namespace Photon.Pun
             }
         }
 
+        public static int MaxDatagrams = 10;
+        public static bool SendAsap;
+        
+        /// <summary>This corrects the "next time to serialize the state" value by some ms. As LateUpdate typically gets called every 15ms it's better to be early(er) than late to achieve a SerializeRate.</summary>
+        private const int SerializeRateFrameCorrection = 8;
+
         protected void LateUpdate()
         {
             int currentMsSinceStart = (int)(Time.realtimeSinceStartup * 1000); // avoiding Environment.TickCount, which could be negative on long-running platforms
             if (PhotonNetwork.IsMessageQueueRunning && currentMsSinceStart > this.nextSendTickCountOnSerialize)
             {
                 PhotonNetwork.RunViewUpdate();
-                this.nextSendTickCountOnSerialize = currentMsSinceStart + this.UpdateIntervalOnSerialize;
+                this.nextSendTickCountOnSerialize = currentMsSinceStart + this.UpdateIntervalOnSerialize - SerializeRateFrameCorrection;
                 this.nextSendTickCount = 0; // immediately send when synchronization code was running
             }
 
             currentMsSinceStart = (int)(Time.realtimeSinceStartup * 1000);
-            if (currentMsSinceStart > this.nextSendTickCount)
+            if (SendAsap || currentMsSinceStart > this.nextSendTickCount)
             {
+                SendAsap = false;
                 bool doSend = true;
-                while (PhotonNetwork.IsMessageQueueRunning && doSend)
+                int sendCounter = 0;
+                while (PhotonNetwork.IsMessageQueueRunning && doSend && sendCounter < MaxDatagrams)
                 {
                     // Send all outgoing commands
                     Profiler.BeginSample("SendOutgoingCommands");
                     doSend = PhotonNetwork.NetworkingClient.LoadBalancingPeer.SendOutgoingCommands();
+                    sendCounter++;
                     Profiler.EndSample();
                 }
 

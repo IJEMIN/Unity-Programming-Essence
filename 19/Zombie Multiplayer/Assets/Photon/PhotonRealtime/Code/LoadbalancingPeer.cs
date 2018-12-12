@@ -206,12 +206,16 @@ namespace Photon.Realtime
             int flags = 0;  // a new way to send the room options as bitwise-flags
             flags = flags | (int)RoomOptionBit.BroadcastPropsChangeToAll;               // we want this as new default value. this avoids inconsistent properties
 
-            op[ParameterCode.CleanupCacheOnLeave] = roomOptions.CleanupCacheOnLeave;	// this is actually setting the room's config
-            flags = flags | (int)RoomOptionBit.DeleteCacheOnLeave;
 
-            if (!roomOptions.CleanupCacheOnLeave)
+            if (roomOptions.CleanupCacheOnLeave)
             {
-                gameProperties[GamePropertyKey.CleanupCacheOnLeave] = false;  			// this is only informational for the clients which join
+                op[ParameterCode.CleanupCacheOnLeave] = true;	                // this defines the server's room settings and logic
+                flags = flags | (int)RoomOptionBit.DeleteCacheOnLeave;          // this defines the server's room settings and logic (for servers that support flags)
+            }
+            else
+            {
+                op[ParameterCode.CleanupCacheOnLeave] = false;	                // this defines the server's room settings and logic
+                gameProperties[GamePropertyKey.CleanupCacheOnLeave] = false;    // this is only informational for the clients which join
             }
 
             #if SERVERSDK
