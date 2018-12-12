@@ -105,8 +105,6 @@ public class Enemy : LivingEntity {
                     {
                         // 추적 대상을 해당 LivingEntity로 설정
                         targetEntity = livingEntity;
-                        // 추적 대상이 존재하므로 AI 이동을 계속 진행
-                        pathFinder.isStopped = false;
 
                         // for문 루프 즉시 정지
                         break;
