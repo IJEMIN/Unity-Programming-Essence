@@ -47,10 +47,6 @@ public class UIManager : MonoBehaviour {
 
     // 게임 재시작
     public void GameRestart() {
-        // 게임 오버인 상태에서만 게임 재시작 가능
-        if (GameManager.instance.isGameover)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
