@@ -6,8 +6,8 @@ Unity 2019.1.0a12을 기준으로 만들어졌으며, Unity 2018 버전과 호�
 
 ## 다운로드 하는 방법
 
-### 압축파일 다운로드
-일반적인 경우, 다음 링크에서 다운로드 합니다 : [다운로드 링크](https://github.com/IJEMIN/Unity-Programming-Essence/releases/download/v1.0/Unity-Programming-Essence.zip)
+### 일반적인 경우 : 압축파일 다운로드
+다음 링크에서 압축 파일을 다운로드 합니다 : [다운로드 링크](https://github.com/IJEMIN/Unity-Programming-Essence/releases/download/v1.0/Unity-Programming-Essence.zip)
 
 같은 파일을 저장소의 릴리즈 탭이나 한빛미디어 홈페이지에서도 다운로드 할 수 있습니다.
 
@@ -15,7 +15,7 @@ Unity 2019.1.0a12을 기준으로 만들어졌으며, Unity 2018 버전과 호�
 ### 저장소를 다운로드(클론)하기
 
 깃 사용법을 안다면 이 저장소를 여러분들의 PC로 클론합니다.
-단 아래 사항을 주의합니다.
- ~~~
- git-lfs를 사용하므로, 깃허브 페이지 오른쪽 상단의 초록색 버튼을 눌러 'Download as zip'하는 것은 제대로 동작하지 않습니다. 또한 git-lfs를 내장한 최신 버전의 git으로 저장소를 클론해야 합니다.
- ~~~
+
+> __주의사항__: 
+> 이 저장소는 Git LFS를 사용합니다.
+> 깃허브 오른쪽 상단의 초록색 버튼 > 'Downloading Zip'으로는 파일을 정상적으로 다운로드 할 수 없습니다.
