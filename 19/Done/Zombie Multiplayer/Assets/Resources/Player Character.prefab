@@ -363,8 +363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   healthSlider: {fileID: 114284936809249164}
-  deathClip: {fileID: 8300000, guid: 00242d505df964d49a559fa51774097a, type: 3}
-  hitClip: {fileID: 8300000, guid: 8f8ff3a15941843128822b35973efdd4, type: 3}
+  deathClip: {fileID: 8300000, guid: 4265c953ea2b74edabac0c972182dcba, type: 3}
+  hitClip: {fileID: 8300000, guid: cbfb3a79860ac42c89b09fc131ef4b61, type: 3}
   itemPickupClip: {fileID: 8300000, guid: 519ad2e4de69341948a938bf2a31e33b, type: 3}
 --- !u!114 &114099988342005996
 MonoBehaviour:
@@ -449,7 +449,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114608082312623796}
   - {fileID: 114635706721382326}
-  viewIdField: 2
+  viewIdField: 0
   InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114635706721382326
@@ -5541,7 +5541,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114028690273384408}
-  viewIdField: 4
+  viewIdField: 0
   InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!1 &1202132023927478
