@@ -832,6 +832,10 @@ namespace Photon.Realtime
         /// <summary>
         /// Can be used to return to a room quickly, by directly reconnecting to a game server to rejoin a room.
         /// </summary>
+        /// <remarks>
+        /// Rejoining room will not send any player properties. Instead client will receive up-to-date ones from server.
+        /// If you want to set new player properties, do it once rejoined.
+        /// </remarks>
         /// <returns>False, if the conditions are not met. Then, this client does not attempt the ReconnectAndRejoin.</returns>
         public bool ReconnectAndRejoin()
         {
@@ -1339,6 +1343,9 @@ namespace Photon.Realtime
         ///
         /// This method will fail on the server, when the room does not exist, can't be loaded (persistent rooms) or
         /// when the userId is not in the player list of this room. This will lead to a callback OnJoinRoomFailed.
+        /// 
+        /// Rejoining room will not send any player properties. Instead client will receive up-to-date ones from server.
+        /// If you want to set new player properties, do it once rejoined.
         /// </remarks>
         public bool OpRejoinRoom(string roomName)
         {
@@ -1986,11 +1993,19 @@ namespace Photon.Realtime
                         {
                             this.State = ClientState.Joining;
 
-                            Hashtable allProps = new Hashtable();
-                            allProps.Merge(this.LocalPlayer.CustomProperties);
-                            allProps[ActorProperties.PlayerName] = this.LocalPlayer.NickName;
+                            if (this.enterRoomParamsCache.RejoinOnly)
+                            {
+                                this.enterRoomParamsCache.PlayerProperties = null;
+                            }
+                            else
+                            {
+                                Hashtable allProps = new Hashtable();
+                                allProps.Merge(this.LocalPlayer.CustomProperties);
+                                allProps[ActorProperties.PlayerName] = this.LocalPlayer.NickName;
 
-                            this.enterRoomParamsCache.PlayerProperties = allProps;
+                                this.enterRoomParamsCache.PlayerProperties = allProps;
+                            }
+                            
                             this.enterRoomParamsCache.OnGameServer = true;
 
                             if (this.lastJoinType == JoinType.JoinRoom || this.lastJoinType == JoinType.JoinRandomRoom || this.lastJoinType == JoinType.JoinOrCreateRoom)

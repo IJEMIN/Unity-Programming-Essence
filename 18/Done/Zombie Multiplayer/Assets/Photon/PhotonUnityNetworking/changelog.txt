@@ -1,12 +1,23 @@
 PUN 2 Change Log
 
+v2.5 (20th November 2018)
+Fixed: The RoomOption CleanupCacheOnLeave is now correctly set per room (if set for creation of the room). This bug caused a server-side cleanup of Instantiate-events, buffered RPCs and other buffered events, despite a different setting in the options. This messed with a game's state, if you wanted to keep networked objects when players leave.
+Fixed: Regression during PhotoView cleanup leading to loss of viewId in OnDisable and OnDestroy calls. Now OnDisable and OnDestroy can access the viewID. Pooling the game object will set the new viewID before OnEnable is called.
+Fixed: Asteroids Demo. The cached room list now gets cleared correctly when the client joins a room / leaves the lobby.
+Added: The component "PhotonTransformViewClassic", which provides all the options (and implementation) from PUN Classic (1.xy). Use this if you want to use the options that were previously available. This component is deliberately not used by default.
+Changed: The inspector for PhotonTransformView to hint about the PhotonTransformViewClassic and using your own synchronization in general.
+Changed: PUN now suppresses the compiler warning "649" on newer versions of Unity for some of our Basics Tutorial scripts. This helps us keep the used code simple and better at "teaching" PUN.
+Changed: The Realtime API no longer sends the actor properties on a rejoin. The values are known to the server and should not be updated. Set new values after rejoining the room, if that's needed.
+Fixed: Support for 2018.3 and newer prefab workflow to not show/deal the viewId field when editing a prefab.
+Fixed: ViewID assignment algorithm when reaching the max view ID value.
+Fixed: Removed harmless "duplicate"-warnig inside the DemoHub context. Now eventSystem is only created if needed.
+
 
 v2.4 (24th October 2018)
 Fixed: Duplicated Instantiation Events when using PhotonNetwork.ReconnectAndRejoin: when a client rejoins a room, his server-side cached Instantiation Events get duplicated, resulting in duplicated objects. This has been fixed.
 Changed: When Unity exports with Runtime 4.x and Mono, PUN and Chat now use a new, async socket class to work around issues with Socket.Receive blocking indefinitely (and timing out). This is now available for UDP and TCP. IL2CPP is not using this.
 Note: We changed the "productname" internally from PhotonUnityNetworking to PUN2, to avoid a problem when building UWP apps with the AssemblyDefinitions in place. In that case, two .dbg files were created and put into the generated solution. This does not affect projects which import PUN (without the ProjectSettings file) but you should keep this in mind.
 Updated: The Photon3Unity3d.dll to v4.1.2.4 with some fixes and improvements. See release_history.txt.
-
 
 v2.3.1 (17th October 2018)
 Updated: The Photon3Unity3d.dll to v4.1.2.3 for fix one issue with duplicates of fragmented messages. This could cause an exception and disconnect.
