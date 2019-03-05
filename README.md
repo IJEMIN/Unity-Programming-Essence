@@ -19,6 +19,9 @@
 
 ## 다운로드
 
+- **중요** : 예제 프로젝트들은 유니티 2019.1 버전을 기준을 제작되었습니다.<br>유니티 2018 또는 그 이하의 버전에서는 정상 동작하지 않습니다.
+> Unity Hub의 Beta Release에서 유니티 2019.1 이상의 버전을 설치하고 프로젝트를 열어야 정상 동작합니다.
+
 ### 권장 : 압축파일 다운로드
 다음 링크에서 압축 파일을 다운로드 합니다 : [**다운로드 하기**](https://github.com/IJEMIN/Unity-Programming-Essence/releases/download/v1.1/Unity-Programming-Essence.zip)
 
