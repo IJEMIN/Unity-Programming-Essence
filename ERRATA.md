@@ -17,12 +17,32 @@
 >string 저장/가져오기<br>- **```PlayerPrefs.SetString(string key, string value);```**<br>- ```PlayerPrefs.GetString(string key);```
 
 
+### P529, P537
+- **오타**
+
+다른 페이지에서는 poolPosition에 (0, -25)가 할당되어 있지만 위 두 페이지에서는 poolPosition에 (0, -20)을 할당합니다.
+>```private Vector2 poolPosition = __new Vector2(0, -20);__```
+
+- **수정**
+>```private Vector2 poolPosition = __new Vector2(0, -25);__```
+
+poolPosition의 값은 화면에 보이지 않을 정도로 원점에서 멀리 떨어진 위치 값이면 어떠한 값이라도 좋습니다.
+따라서 (0, -20)과 (0, -25) 중에서 어느쪽을 사용해도 상관없지만, 통일성을 위해 (0, -25)로 통일합니다.
+
 ### P530
 - **오타**
 >**timeSpawn** 위에 선언된 timeBetSpawnMin, timeBetSpawnMax는 timeBetSpawn의 최솟값과 최댓값을 결정합니다.
 
 - **수정**
 >**timeBetSpawn** 위에 선언된 timeBetSpawnMin, timeBetSpawnMax는 timeBetSpawn의 최솟값과 최댓값을 결정합니다.
+
+### P532
+- **오타**
+> poolPosition의 값은 (0, -25)이므로 복제 생성된 발판은 게임 화면에서 **왼쪽**으로 멀리 벗어나 보이지 않습니다.
+
+- **수정**
+> poolPosition의 값은 (0, -25)이므로 복제 생성된 발판은 게임 화면에서 **아래쪽**으로 멀리 벗어나 보이지 않습니다.
+
 
 ### P592, 593
 - **오타**
@@ -37,6 +57,6 @@ P592, 593에서 언급된 **move** 변수는 **moveDistance** 를 가리키는 �
 
 - 해당 사항이 존재하지 않습니다.
 
-# 잘못된 설명
+# 개념 오류
 
 - 해당 사항이 존재하지 않습니다.
