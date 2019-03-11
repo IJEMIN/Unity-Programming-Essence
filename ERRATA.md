@@ -21,10 +21,10 @@
 - **오타**
 
 다른 페이지에서는 poolPosition에 (0, -25)가 할당되어 있지만 위 두 페이지에서는 poolPosition에 (0, -20)을 할당합니다.
->```private Vector2 poolPosition = __new Vector2(0, -20);__```
+>```private Vector2 poolPosition = new Vector2(0, -20);```
 
 - **수정**
->```private Vector2 poolPosition = __new Vector2(0, -25);__```
+>```private Vector2 poolPosition = new Vector2(0, -25);```
 
 poolPosition의 값은 화면에 보이지 않을 정도로 원점에서 멀리 떨어진 위치 값이면 어떠한 값이라도 좋습니다.
 따라서 (0, -20)과 (0, -25) 중에서 어느쪽을 사용해도 상관없지만, 통일성을 위해 (0, -25)로 통일합니다.
