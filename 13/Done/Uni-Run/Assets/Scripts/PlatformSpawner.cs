@@ -17,7 +17,7 @@ public class PlatformSpawner : MonoBehaviour {
     private int currentIndex = 0; // 사용할 현재 순번의 발판
 
     // 초반에 생성된 발판들을 화면 밖에 숨겨둘 위치
-    private Vector2 poolPosition = new Vector2(0, -20);
+    private Vector2 poolPosition = new Vector2(0, -25);
     private float lastSpawnTime; // 마지막 배치 시점
 
     // 변수들을 초기화하고 사용할 발판들을 미리 생성
