@@ -63,3 +63,19 @@ poolPosition의 값은 화면에 보이지 않을 정도로 원점에서 멀리 
 - **수정**
 
 P592, 593에서 언급된 **move** 변수는 **moveDistance** 를 가리키는 것입니다.
+
+### P670
+- **오타**
+~~~
+void Start() {
+    onClean += CleanRoomA;
+    onClean += CleanRoomB;
+}
+~~~
+- **수정**
+~~~
+void Start() {
+    onClean += CleaningRoomA;
+    onClean += CleaningRoomB;
+}
+~~~
