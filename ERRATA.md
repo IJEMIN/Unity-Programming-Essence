@@ -16,6 +16,13 @@
 - **수정**
 >string 저장/가져오기<br>- **```PlayerPrefs.SetString(string key, string value);```**<br>- ```PlayerPrefs.GetString(string key);```
 
+### P407
+- **오타**
+> 왼쪽 방향키나 아래쪽 방향키
+
+- **수정**
+> 왼쪽 방향키나 오른쪽 방향키
+
 ### P432
 - **오타**
 >**오디오 소스 컴포넌트**가 게임속에서 듣는 소리가 게임에 최종출력되는 소리가 됩니다.
