@@ -9,6 +9,13 @@
 
 ## 오탈자
 
+### P249
+- **오타**
+> Random.Range() 메서드는 입력으로 최댓값과 최솟값을 순서대로
+
+- **수정**
+> Random.Range() 메서드는 입력으로 최솟값과 최댓값을 순서대로
+
 ### P341
 - **오타**
 >string 저장/가져오기<br>- **```PlayerPrefs.SetString(string key, float value);```**<br>- ```PlayerPrefs.GetString(string key);```
