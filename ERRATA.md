@@ -1,10 +1,9 @@
 # 오류와 오탈자
 
-이 문서는 『레트로의 유니티 게임 프로그래밍 에센스』 초판의 확인된 오류와 출판사에서 확인 중인 제보를 관리합니다.
+이 문서는 『레트로의 유니티 게임 프로그래밍 에센스』 초판의 확인된 오류와 수정 사항을 관리합니다.
 
 - 최종 갱신: 2026-07-13
 - 오탈자 제보: [GitHub Issues](https://github.com/IJEMIN/Unity-Programming-Essence/issues) 또는 [한빛미디어 홈페이지](https://www.hanbit.co.kr/store/books/look.php?p_code=B3604463061)
-- 출판사에서 아직 검토 중인 항목은 `위치 및 비고`에 **출판사 확인 중**으로 표시합니다.
 
 | 페이지 | 위치 및 비고 | 오탈자 | 수정 |
 | ---: | --- | --- | --- |
@@ -13,16 +12,16 @@
 | 193 | 5.2.4 멤버와 접근 제한자 | \[도표\] 접근 제한자의 동작<br>**punlic** name; | \[도표\] 접근 제한자의 동작<br>**public** name; |
 | 289 |  | 수정사항이 적용했으니 | 수정사항을 적용했으니 |
 | 294 |  | Random.Range() 메서드는 입력으로 **최댓값과 최솟값**을 순서대로 | Random.Range() 메서드는 입력으로 **최솟값과 최댓값**을 순서대로 |
-| 295 | 마지막 줄<br><br>**비고:** 출판사 확인 중 (종이책, 2021-03-19 등록) | 누적된 시간을 저장하는 변수 **timeSpawnRate**를 체크합니다. | 누적된 시간을 저장하는 변수 **timeAfterSpawn**를 체크합니다. |
+| 295 | 마지막 줄 | 누적된 시간을 저장하는 변수 **timeSpawnRate**를 체크합니다. | 누적된 시간을 저장하는 변수 **timeAfterSpawn**를 체크합니다. |
 | 338 | 위에서 3번째 줄 | **SampleManager**.LoadScene(0); | **SceneManager**.LoadScene(0); |
 | 341 | 페이지 하단에 있는 함수 정의 부분 | string 저장/가져오기<br>- **PlayerPrefs.SetString(string key, float value);**<br>- PlayerPrefs.GetString(string key); | string 저장/가져오기<br>- **PlayerPrefs.SetString(string key, string value);**<br>- PlayerPrefs.GetString(string key); |
-| 367 | 1권 마지막 줄<br><br>**비고:** 출판사 확인 중 (종이책, 2021-01-15 등록) | B - A = (-3, 5)를 공간상에서 보면 **B에서 A로** 가는 방향과 거리를 표현 | B - A = (-3, 5)를 공간상에서 보면 **A에서 B로** 가는 방향과 거리를 표현 |
-| 369 | 1권 가장 위 그림<br><br>**비고:** 출판사 확인 중 (종이책, 2021-01-15 등록) | A • B = \|B\| cos θ | A • B = \|A\| \|B\| cos θ |
-| 374 | 맨 마지막 줄<br><br>**비고:** 출판사 확인 중 (종이책, 2021-04-08 등록) | Vector3 c = a - b // c는 (-1, **2**, -1)이 됨 | Vector3 c = a - b // c는 (-1, **-2**, -1)이 됨 |
+| 367 | 1권 마지막 줄 | B - A = (-3, 5)를 공간상에서 보면 **B에서 A로** 가는 방향과 거리를 표현 | B - A = (-3, 5)를 공간상에서 보면 **A에서 B로** 가는 방향과 거리를 표현 |
+| 369 | 1권 가장 위 그림 | A • B = \|B\| cos θ | A • B = \|A\| \|B\| cos θ |
+| 374 | 맨 마지막 줄 | Vector3 c = a - b // c는 (-1, **2**, -1)이 됨 | Vector3 c = a - b // c는 (-1, **-2**, -1)이 됨 |
 | 407 | 10.2.5 회전 | 왼쪽 방향키나 **아래쪽** 방향키 | 왼쪽 방향키나 **오른쪽** 방향키 |
 | 432 |  | **오디오 소스 컴포넌트**가 게임속에서 듣는 소리가 게임에 최종출력되는 소리가 됩니다. | **오디오 리스너 컴포넌트**가 게임속에서 듣는 소리가 게임에 최종출력되는 소리가 됩니다. |
 | 432 |  | **오디오 컴포넌트**가 오디오 리스너 컴포넌트를 가진 게임 오브젝트에 가까워질수록 해당 **오디오 컴포넌트**의 소리가 크게 들립니다. | **오디오 소스 컴포넌트**가 오디오 리스너 컴포넌트를 가진 게임 오브젝트에 가까워질수록 해당 **오디오 소스 컴포넌트**의 소리가 크게 들립니다. |
-| 459 | 맨 위에서 3번째 줄<br><br>**비고:** 출판사 확인 중 (종이책, 2021-03-18 등록) | 플레이어 캐릭터의 발이 바닥에 닿아 있어 isGrounded의 값이 **false**라면 | 플레이어 캐릭터의 발이 바닥에 닿아 있어 isGrounded의 값이 **true**라면 |
+| 459 | 맨 위에서 3번째 줄 | 플레이어 캐릭터의 발이 바닥에 닿아 있어 isGrounded의 값이 **false**라면 | 플레이어 캐릭터의 발이 바닥에 닿아 있어 isGrounded의 값이 **true**라면 |
 | 529 | **비고:** 다른 페이지에서는 poolPosition에 (0, -25)가 할당되어 있지만 위 두 페이지에서는 poolPosition에 (0, -20)을 할당합니다. | private Vector2 poolPosition = new Vector2(0, **-20**); | private Vector2 poolPosition = new Vector2(0, **-25**); |
 | 530 | 페이지 중간, 코드 제외하고 설명 8번째줄 | **timeSpawn** 위에 선언된 timeBetSpawnMin, timeBetSpawnMax는 timeBetSpawn의 최솟값과 최댓값을 결정합니다. | **timeBetSpawn** 위에 선언된 timeBetSpawnMin, timeBetSpawnMax는 timeBetSpawn의 최솟값과 최댓값을 결정합니다. |
 | 532 | 2번째 줄 (주석) | 생성된 발판을 **platform** 배열에 할당 | 생성된 발판을 **platforms** 배열에 할당 |
@@ -34,7 +33,7 @@
 | 634 | 밑에서 3번째 줄 | OnDamabe() | OnDamage() |
 | 635 | **비고:** 슬래시 두개 --가 —로 인쇄됨 | // 남은 탄알 수를 -1<br>magAmmo—; | // 남은 탄알 수를 -1<br>magAmmo--; |
 | 641 | **비고:** 슬래시 두개 --가 —로 인쇄됨 | // 남은 탄알 수를 -1<br>magAmmo—; | // 남은 탄알 수를 -1<br>magAmmo--; |
-| 649 | 15.4.4의 OnDisable() 설명 부분<br><br>**비고:** 출판사 확인 중 (ePub, 2020-09-05 등록) | 컴포넌트가 **비할성화**될 때 | 컴포넌트가 **비활성화**될 때 |
+| 649 | 15.4.4의 OnDisable() 설명 부분 | 컴포넌트가 **비할성화**될 때 | 컴포넌트가 **비활성화**될 때 |
 | 653 | 위에서 2번째 줄 | **AvatarIKHit** 타입으로 | **AvatarIKHint** 타입으로 |
 | 662 | 아래에서 9번째 줄 | 상속한 자식 클래스는 **LivignEntity**의 구현을 | 상속한 자식 클래스는 **LivingEntity**의 구현을 |
 | 670 | 하단 소스코드 | void Start() \{<br>&nbsp;&nbsp;&nbsp;&nbsp;onClean += **CleanRoomA;**<br>&nbsp;&nbsp;&nbsp;&nbsp;onClean += **CleanRoomB;**<br>\} | void Start() \{<br>&nbsp;&nbsp;&nbsp;&nbsp;**onClean += CleaningRoomA;**<br>&nbsp;&nbsp;&nbsp;&nbsp;**onClean += CleaningRoomB;**<br>\} |
