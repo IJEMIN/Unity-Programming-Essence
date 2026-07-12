@@ -1,6 +1,6 @@
 # 오류와 오탈자
 
-이 문서는 『레트로의 유니티 게임 프로그래밍 에센스』 초판의 확인된 오류와 수정 사항을 관리합니다.
+이 문서는 『레트로의 유니티 게임 프로그래밍 에센스』 초판의 오류와 수정 사항을 정리합니다.
 
 - 최종 갱신: 2026-07-13
 - 오탈자 제보: [GitHub Issues](https://github.com/IJEMIN/Unity-Programming-Essence/issues) 또는 [한빛미디어 홈페이지](https://www.hanbit.co.kr/store/books/look.php?p_code=B3604463061)
